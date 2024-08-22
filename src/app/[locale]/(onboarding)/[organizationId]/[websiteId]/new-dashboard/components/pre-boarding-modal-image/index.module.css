@@ -1,0 +1,23 @@
+.pre-boarding-modal-image {
+  height: 100%;
+  margin: auto;
+  object-fit: contain;
+  opacity: 0;
+  width: 100%;
+
+  @keyframes scale-in {
+    0% {
+      opacity: 0.8;
+      transform: scale(0.6);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &--loaded {
+    animation: scale-in 0.5s cubic-bezier(0.13, 0, 0.53, 1.42) forwards;
+  }
+}

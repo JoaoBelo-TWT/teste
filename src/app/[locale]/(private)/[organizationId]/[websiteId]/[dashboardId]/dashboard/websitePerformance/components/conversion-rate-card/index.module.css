@@ -1,0 +1,20 @@
+.conversion-rate-card {
+  &__card-root {
+    align-items: flex-start;
+    border: 1px solid var(--mantine-color-dark-4);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 176px;
+    padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
+  }
+
+  &__figure-container {
+    align-items: center;
+    display: flex;
+    gap: calc(var(--mantine-spacing-xs) / 2);
+  }
+}

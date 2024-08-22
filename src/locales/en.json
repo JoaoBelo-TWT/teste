@@ -1,0 +1,1065 @@
+{
+  "title": "Tracking with Source",
+  "common": {
+    "showMore": "Show More",
+    "justNow": "Just now",
+    "minutesAgo": "minutes ago",
+    "hoursAgo": "hours ago",
+    "notApplicable": "n/a",
+    "sortBy": "Sort By",
+    "finish": "Finish",
+    "ok": "Ok",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "settings": "Settings",
+    "comingSoon": "Coming Soon",
+    "display": "Display",
+    "suggested": "Suggested",
+    "skipForNow": "Skip for now",
+    "add": "Add",
+    "remove": "Remove",
+    "reload": "Reload",
+    "rename": "Rename",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "nothingFound": "Nothing found",
+    "logout": "Logout",
+    "account": "Account",
+    "websites": "Your websites",
+    "addWebsite": "Add new website",
+    "organizations": "Your organizations",
+    "success": "Success",
+    "error": "Error",
+    "addGoals": "Add goals",
+    "goals": "Goals",
+    "addCustomerFunnels": "Add customer funnels",
+    "customerFunnel": "Customer Funnel",
+    "connectWebsite": "Connect to your website",
+    "noData": "No data available, yet. Wait a couple minutes.",
+    "noDataSimple": "No data available, yet.",
+    "noGoals": "You still don't have any goals setup.",
+    "noCustomerFunnels": "You still don't have any customer funnels setup.",
+    "noWebsiteConnected": "You still don't have any website connected.",
+    "join": "Join",
+    "noChannel": "No selected channel",
+    "billing": "Billing",
+    "personalSettings": "Personal Details",
+    "organizationSettings": "Organization Settings",
+    "inviteMembers": "Invite Members",
+    "user": "User",
+    "errorGeneral": "An error occurred, please try again later",
+    "loadingText": "Loading...",
+    "goToDashboard": "Go to dashboard",
+    "leave": "Leave",
+    "upload": "Upload",
+    "image": "Image",
+    "deleteDashboard": "Delete dashboard",
+    "cantBeUndone": "This action is permanent and cannot be undone.",
+    "eventName": "Event Name",
+    "events": "Events",
+    "conversions": "Conversions",
+    "conversionsByName": "{channel} Conversions",
+    "costPerByName": "Cost Per {channel}",
+    "campaignPerformance": "campaign-performance",
+    "noNotifications": "You don’t have notifications yet.",
+    "connect": "Connect"
+  },
+  "general": {
+    "navigation": {
+      "dashboard": "Dashboard",
+      "settings": "Settings",
+      "connections": "Connections",
+      "yourDashboards": "Your dashboards",
+      "notifications": "Notifications"
+    },
+    "expenses": {
+      "categories": {
+        "contentCreation": "Content Creation",
+        "contractor": "Contractor",
+        "fullTimeEmployee": "Full Time Employee",
+        "maintenanceAndSupport": "Maintenance and Support",
+        "marketingAndAdvertising": "Marketing and Advertising",
+        "miscellaneous": "Miscellaneous",
+        "other": "Other",
+        "software": "Software",
+        "trainingAndEducation": "Training and Education"
+      }
+    },
+    "channels": {
+      "direct": "Direct",
+      "email": "Email",
+      "other": "Other",
+      "referrals": "Referrals",
+      "search": "Search",
+      "social": "Social"
+    },
+    "verifyEmail": {
+      "title": "Check your inbox",
+      "description": "We sent you a confirmation email to the email address you provided. Click the link in there to verify and get started.",
+      "resendEmail": "Resend email"
+    },
+    "emailVerified": {
+      "title": "Email verified",
+      "description": "Your email has already been verified."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "There is nothing at this URL",
+    "button": "Go to dashboard",
+    "goBack": "Go back"
+  },
+  "deepDives": {
+    "stats": {
+      "mqls": "MQLS",
+      "visits": "Visits",
+      "spend": "Spend",
+      "cac": "CAC",
+      "totalLeads": "Total Leads",
+      "total": "Total",
+      "customers": "Customers",
+      "topPerformer": "Top Performer"
+    },
+    "table": {
+      "columns": {
+        "region": "Region",
+        "email": "Email",
+        "firstPage": "First Page Visited",
+        "searchTerm": "Search Term",
+        "type": "Type",
+        "date": "Date",
+        "sourceUrl": "Source URL"
+      }
+    },
+
+    "sort": {
+      "MostRecent": "Most recent",
+      "MostConversions": "Most conversions",
+      "null": "Select a filter"
+    }
+  },
+  "website": {
+    "filterBy": "Filter By",
+    "paid": "PAID",
+    "organic": "ORGANIC",
+    "filter": {
+      "paidAndOrganic": "Organic and Paid",
+      "organic": "Organic only",
+      "paid": "Paid ony",
+      "null": "Select a filter"
+    },
+    "sort": {
+      "phaseAscending": "Phase Ascending",
+      "phaseDescending": "Phase Descending",
+      "region": "Region",
+      "platformUrl": "Platform URL",
+      "pageUrl": "Page URL",
+      "email": "Email Address (Alphabetical)",
+      "null": "Select a sort"
+    },
+    "detail": {
+      "direct": "Activity Details",
+      "search": "Search Terms",
+      "social": "Activity Details",
+      "referrals": "Referral Details",
+      "email": "Campaign Details"
+    },
+    "activity": {
+      "activityDetails": "Activity Details",
+      "sources": "Sources",
+      "campaigns": "Campaigns",
+      "region": "Region",
+      "email": "Email",
+      "pageUrl": "Page URL",
+      "stage": "Stage",
+      "searchTerm": "Search Term"
+    },
+    "details": {
+      "title": "Website Details",
+      "detailsList": {
+        "name": "Name",
+        "image": "Thumbnail Image",
+        "organization": "Organization",
+        "websiteUrl": "Website URL",
+        "dateCreated": "Date Created",
+        "createdBy": "Created By"
+      },
+      "pixel": {
+        "title": "Source Pixel",
+        "description": "This custom snippet of code that will allow you to track user activity across your website. ",
+        "header": "Code snippet",
+        "card": {
+          "title": "Sign up forms",
+          "description": "URLs of all the pages on your website that contain forms.",
+          "button": "Settings"
+        }
+      }
+    },
+    "dashboards": {
+      "title": "Dashboards",
+      "executive": "Executive",
+      "dashboardName": "Dashboard Name"
+    },
+    "connectGoogleAdds": {
+      "title": "Connect Google Ads",
+      "description": "Keep track of your ads by connecting Google Ads with your website.",
+      "description1": "It is important that you follow the order of this instructions without skipping any step.",
+      "goTo": "Go to ",
+      "usersPath": "Access & Security -> Users",
+      "securityPath": "Access & Security -> Security",
+      "placeholder": "123-456-7890",
+      "steps": {
+        "1": "Log in to your Google Ads account",
+        "2": " and in the Allowed domains, add this domain. Save to finish!",
+        "3": " and in the allowed emails list, add this email:",
+        "4": "Provide us with your Google Ads Customer ID"
+      },
+      "googleCustomerId": "Google Ads Customer ID",
+      "connectButton": "Connect Google Ads",
+      "tooltip": "You can find you customer ID on the top right corner of the window next to the profile picture. It is a series of numbers with this format: 123-456-7890"
+    },
+    "connections": {
+      "connect": "Connect",
+      "details": "Details",
+      "title": "Connections",
+      "connectButton": {
+        "ACTIVE": "Details",
+        "DISABLED": "Connect",
+        "OUT_OF_SYNC": "Reconnect"
+      },
+      "toasts": {
+        "error": {
+          "hubspotAuthFailed": "Hubspot failed to get authorization URL",
+          "hubspotCallbackNotAllowed": "Hubspot callback URL provided is not allowed",
+          "hubspotCallbackFailed": "Hubspot authorization callback failed",
+          "salesforceAuthorizationFailed": "Salesforce failed to authorize",
+          "salesforceCallbackUrlNotAllowed": "Salesforce callback URL provided is not allowed",
+          "salesforceAuthorizationCallbackFailed": "Salesforce authorization callback failed",
+          "salesforceQueryFailed": "Salesforce API failed to query data",
+          "metaAuthFailed": "Meta Ads failed to get authorization URL",
+          "metaCallbackNotAllowed": "Meta Ads callback URL provided is not allowed",
+          "metaCallbackFailed": "Meta Ads authorization callback failed",
+          "googleAuthFailed": "Google Ads failed to get authorization URL",
+          "googleCallbackNotAllowed": "Google Ads callback URL provided is not allowed",
+          "googleCallbackFailed": "Google Ads authorization callback failed"
+        },
+        "success": {
+          "hubspotAuthSuccess": "Hubspot connected successfully",
+          "salesforceAuthSuccess": "Salesforce connected successfully",
+          "salesforceQuerySuccess": "Salesforce API query successful",
+          "metaAuthSuccess": "Meta ads connected successfully",
+          "googleAuthSuccess": "Google Ads connected successfully"
+        },
+        "info": {
+          "noMoreCampaigns": "No more tabs to load"
+        }
+      },
+      "table": {
+        "headers": {
+          "connectionName": "Connection name",
+          "category": "Category",
+          "status": "Status"
+        },
+        "status": {
+          "ACTIVE": "Active",
+          "DISABLED": "Disabled",
+          "OUT_OF_SYNC": "Out of Sync"
+        },
+        "category": {
+          "eventTracking": "Event Tracking",
+          "advertising": "Advertising",
+          "emailMarketing": "Email Marketing",
+          "crm": "CRM"
+        },
+        "moreOptions": "More Options",
+        "remove": "Remove"
+      }
+    }
+  },
+  "onboarding": {
+    "keepConnecting": "Keep connecting more data sources",
+    "selectSource": {
+      "title": "Select your Source",
+      "description": "Choose the Source you want to use when defining the Customer Funnel.",
+      "crmList": {
+        "label": "For B2B Software Companies that use a CRM to manage their lead funnel.",
+        "connect": "Please connect this CRM before setting up the customer funnel.",
+        "hubspot": "Hubspot",
+        "salesforce": "Salesforce",
+        "tooltip": "It’s not possible to connect more than 1 CRM. If you have any questions please contact our Support Team."
+      },
+      "selectedSource": "Customer funnel successfully defined for:",
+      "selectedSourceSimple": "Customer funnel defined for:",
+      "selfServeLabel": "For Self-serve SaaS Companies or eCommerce Companies that don't use a CRM.",
+      "openHubspot": "Open Hubspot",
+      "openSalesforce": "Open Salesforce",
+      "noFunnelsSetup": "No Customer Funnel defined yet",
+      "defineFunnel": "Define Customer Funnel",
+      "cantEditFunnels": "You can not edit this funnel settings here on Source. To edit this funnel, you need to login to your {crm} account."
+    },
+    "account": {
+      "step1": {
+        "title": "First, tell us a bit about yourself",
+        "name": "What's your name?",
+        "first": "First",
+        "last": "Last",
+        "company": "Company",
+        "companyName": "Company name",
+        "email": "Email Address"
+      },
+      "step2": {
+        "role": "What's your role?",
+        "rolePlaceholder": "Select your role...",
+        "industry": "What industry are you in?",
+        "industryPlaceholder": "Select your industry...",
+        "companySize": "What is the size of your company?",
+        "companySizePlaceholder": "Select your company size..."
+      },
+      "step3": {
+        "title": "Ok {name}, let's get that good good data!",
+        "text": "First, let's setup your data connections. Don't worry if it gets too technical, we'll send the task to someone in your organization to complete."
+      }
+    },
+    "dashboard": {
+      "stepper": "Name your dashboard",
+      "title": "Give your dashboard a unique name",
+      "text": "This is the name you'll see in your website and when you share reports with others.",
+      "goals": {
+        "title": "Add a couple goals",
+        "text1": "Adding key performance indicators will help to paint a full picture of your data in context.",
+        "text2": "You can add these at any time if you're not sure yet."
+      },
+      "defineFunnel": {
+        "stepper": "Define the customer funnel",
+        "title": "Ready to define your customer funnel?",
+        "text1": "Everyone measures their funnel in different ways — so what does your funnel look like? Add at least one event that defines each phase of the funnel: top, middle and bottom.",
+        "text2": "As always, you can skip them and add them to your dashboard at any time if you're not sure yet."
+      }
+    },
+    "deepDive": {
+      "stats": { "spend": "Spend", "perLead": "Per Lead", "perMql": "Per MQL", "perSql": "Per SQL", "cac": "CAC" }
+    },
+    "funnels": {
+      "title": "Confirm your customer funnel stages",
+      "text1": "Defining each stage and assigning key performance indicators will allow you to keep track of your customers throughout the funnel.",
+      "text": "Defining each stage and assigning key performance indicators will allow you to keep track of your customers throughout the funnel. You can change and adjust these later, so just do your best.",
+      "addPhase": "Add a Stage",
+      "leads": "Leads",
+      "mqls": "Marketing Qualified Leads",
+      "sqls": "Sales Qualified Leads",
+      "customers": "Customers"
+    },
+    "stages": {
+      "title": "How do you define {name}?",
+      "description": "Folks often start with something that denotes interest - like pricing page views.",
+      "changeSourceButton": "Change source (Coming soon)",
+      "form": {
+        "namePlaceholder": "Untitled Event",
+        "pageViewTab": "Page View",
+        "disabledTooltip": "You can set up only one of these two types of events.",
+        "actionTab": "Action",
+        "continueButton": "Continue",
+        "pageUrlLabel": "Page URL",
+        "visitorType": {
+          "label": "Visitor Type",
+          "options": {
+            "unique": "Unique views only",
+            "newAndReturning": "New and returning users"
+          }
+        },
+        "addAnotherEventButton": "Add another event",
+        "startingUrlLabel": "Starting URL",
+        "destinationUrlLabel": "Destination URL",
+        "conditionsDropdown": {
+          "endsWith": "Ends With",
+          "equal": "Equal",
+          "includes": "Includes",
+          "matches": "Matches",
+          "startsWith": "Starts With"
+        }
+      }
+    },
+    "goals": {
+      "budgetTracker": {
+        "title": "Budget Tracker",
+        "description": "Track your spend against a budget",
+        "recurringMonthly": "{budget}, refreshes on the 1st of each month",
+        "recurringAnnually": "{budget}, refreshes on the 1st of January",
+        "recurringWeekly": "{budget}, refreshes every Monday",
+        "noRecurring": "{budget}, no recurring budget"
+      },
+      "websiteActivity": {
+        "title": "Website Activity",
+        "description": "{number, plural, =0 {Track any defined action on your site} =1 {1 event tracked} other {# events tracked}}"
+      }
+    },
+    "setup": {
+      "step1": {
+        "title": "Ok {name}, let's get that good good data!",
+        "description": "First, let's setup your data connections. Don't worry if it gets too technical, we'll send the task to someone in your organization to complete.",
+        "imageAlt": "Hello blue hand"
+      },
+      "step2": {
+        "stepper": "Name your website",
+        "title": "Name your website",
+        "description": "This will be private for now but you'll be able to invite collaborators and share reports from this space.",
+        "namePlaceholder": "i.e. Your website name",
+        "thumbnailImageButton": "Add a thumbnail image",
+        "organizationLabel": "Select an organization",
+        "dropzone": {
+          "accept": "Drop image here",
+          "reject": "File must be an image less than 5mb",
+          "idle": "Add a thumbnail image",
+          "description": "Drag and drop your image here to upload. We can accept only image files that are less than 5mb in size.",
+          "descriptionReplace": "Drag and drop other image to replace this one if you to change it. We can accept only image files that are less than 5mb in size."
+        }
+      },
+      "step3": {
+        "stepper": "Add your website URL",
+        "title": "Select any connection to add data to Source",
+        "description": "Just add platforms that you have existing accounts with for now. You'll be able to add new ones later.",
+        "supportedConnectionsLabel": "Supported CONNECTIONS",
+        "connectButton": "Connect",
+        "requestConnectionTitle": "Would you like to add something to this?",
+        "requestConnection": "Request a connection",
+        "detailsButton": "Details",
+        "gettingData": "Getting that data...",
+        "websiteTracking": "Website Tracking",
+        "googleAds": "Google Ads",
+        "metaAds": "Meta Ads",
+        "hubspot": "Hubspot",
+        "salesforce": "Salesforce",
+        "successMessage": "Request submitted successfully!",
+        "errorMessage": "There is an error submitting the request"
+      },
+      "step4": {
+        "stepper": "Connect forms",
+        "title": "Identify your sign up forms",
+        "description": "Please provide the URLs for the website pages that contain a sign up form that you would like to track. This information will help us customize your tracking pixel as a next step.",
+        "queryPlaceholder": "querySelector",
+        "websitePlaceholder": "www.website.com",
+        "urlLabel": "Page URL",
+        "fieldLabel": "Field",
+        "learnMore": "Learn More",
+        "addAnotherUrl": "Add another URL",
+        "tooltipLabel": "Query selectors are tools that help you find and use specific elements on a webpage.",
+        "tooltipLabel2": "Learn more on",
+        "tooltipLabel3": "how to get query selectors"
+      },
+      "step5": {
+        "stepper": "Set up tracking",
+        "title": "Plug in your website",
+        "description": "Add the URL of your website. Don't worry about any of the formatting, we'll take care of that.",
+        "websitePlaceholder": "examplewebsite.com"
+      },
+      "step6": {
+        "stepper": "Connect your data source",
+        "title": "Connect your website — it's easy, we promise.",
+        "description": "We've created a custom snippet of code that will allow you to track user activity across your website.",
+        "selectWebsiteLabel": "Select your website type",
+        "markAsCompleteButton": "Mark as Complete",
+        "needHelpQuestion": "Need help with installation?",
+        "needHelpResponse": "Send the website tracking instructions to someone on your team with more technical experience if needed. The installation should take no more than a few minutes of their time.",
+        "shareLinkButton": "Share link",
+        "shareLinkButtonSuccess": "Copied!",
+        "copyButton": "Copy",
+        "copyTooltip": "Copy code snippet",
+        "copiedTooltip": "Copied code snippet",
+        "options": {
+          "selfHosted": "Self-hosted (Wordpress, Joomla, etc)"
+        },
+        "instructions": {
+          "selfHosted": {
+            "1": "Log in to your websites admin panel",
+            "2": "Access the template or theme editor and open 'header.php' or {htmlTag}",
+            "3": "Insert this code snippet before < /head> in your custom snippet. Save to finish!",
+            "4": "Test your website (optional)",
+            "5": "We’ll be able to test this later."
+          }
+        },
+        "generateScript": {
+          "error": "Failed to generate pixel script."
+        }
+      },
+      "step7": {
+        "title": "You're all set.",
+        "description": "Now, let's get into the good stuff.",
+        "getStarted": "Let's get started",
+        "imageAtl": "Green Hand with a smiley face"
+      },
+      "logoImageAlt": "Source Logo",
+      "continueButton": "Continue",
+      "continueTestLater": "Continue & test later",
+      "continueButtonComplete": "Mark as Complete",
+      "testButton": "Test",
+      "testingButton": "Testing...",
+      "submitButton": "Submit",
+      "websiteConnected": "Website connected!",
+      "websiteNotConnected": "The code snippet wasn't detected in your website."
+    },
+    "teamInvitation": {
+      "title": "You have been invited to join an organization",
+      "button": "Continue to sign up"
+    }
+  },
+  "personal-settings": {
+    "title": "Personal Details",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "profileImage": "Profile Image",
+    "email": "Email"
+  },
+  "organization-settings": {
+    "resendInvite": "Resend invite",
+    "removeTeamMember": "Remove team member",
+    "organizationDetails": "Organization Details",
+    "teamMembers": "Team Members",
+    "teamMember": "team member",
+    "organizationTitle": "Organization Details",
+    "organizationAvatar": "Organization {name} logo",
+    "organizationMembers": "{count, plural, =0 {no team members on this organization} =1 {1 team member} other {# team members}}",
+    "teamMembersTitle": "Team Members",
+    "permissionsOptions": {
+      "viewOnly": {
+        "title": "View-only",
+        "description": "As a view-only member, team members have the capability to only view dashboards."
+      },
+      "editor": {
+        "title": "Editor",
+        "description": "As an editor, team members have the capability to modify dashboards."
+      },
+      "admin": {
+        "title": "Admin",
+        "description": "As an administrator, team members have the capability to add or remove other team members and modify dashboards."
+      }
+    },
+    "permissionsTitle": "Manage access",
+    "inviteTeamMembers": "Invite team members",
+    "addTeamMember": "Add another team member",
+    "sendInvite": "Send Invite",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "Enter email address...",
+    "permissionsLabel": "Account Permissions",
+    "memberStatus": {
+      "active": "Active",
+      "inviteSent": "Invite Sent"
+    },
+    "teamMembersTable": {
+      "teamMember": "Team member",
+      "emailAddress": "Email Address",
+      "accountPermissions": "Account Permissions",
+      "status": "Status",
+      "you": "you",
+      "displayName": "{teamMemberName}{isOwner, select, true { (owner)} other {}}{isYou, select, true { (you)} other {}}",
+      "removeButton": "Remove"
+    },
+    "removeTeamMemberTitle": "Remove team member",
+    "removeTeamMemberDescription": "Are you sure you want to remove ",
+    "confirmButton": "Confirm",
+    "cancelButton": "Cancel",
+    "yesRemove": "Yes, confirm",
+    "editPermissionsTitle": "Change permissions",
+    "editPermissionsDescription": "Do you confirm your decision to grant {name} the ability to make changes to dashboards?",
+    "organizationDetailsList": {
+      "name": "Name",
+      "image": "Thumbnail Image",
+      "teamMembers": "Team Members"
+    }
+  },
+  "dashboard": {
+    "type": {
+      "executive": "Executive"
+    },
+    "tooltips": {
+      "funnelPerformance": "Below is a complete view of your marketing and sales funnel for the date range specified.",
+      "websitePerformance": "Your websites most visited and best converting web pages are displayed below.",
+      "campaignPerformance": "Campaigns with UTM parameters are automatically displayed below.",
+      "channelPerformance": "Track which channels are performing the best to drive your highest quality leads and customer conversions."
+    },
+    "filters": {
+      "timeframe": {
+        "dropdownHeader": "Dashboard Timeframe",
+        "dropdownOptions": {
+          "lastDay": "Last 24 hours",
+          "thisWeek": "This Week",
+          "thisMonth": "This Month",
+          "thisYear": "This Year"
+        }
+      },
+      "connections": {
+        "dropdownHeader": "Showing {selectedConnections} of {totalConnections, plural, =1 {# Connection} other {# Connections}}",
+        "dropdownText": "{number, plural, =1 {# Connection} other {# Connections}}"
+      }
+    },
+    "overview": {
+      "topBar": {
+        "error": "An error occurred while fetching dashboards data."
+      },
+      "welcomeCard": {
+        "title": {
+          "green": "Hey {name}, it's a great day to get data",
+          "orange": "Hey {name}, a few things could use some tlc here",
+          "empty": "You're almost there"
+        },
+        "leadGen": "Lead Gen",
+        "conversion": "Website Conv. Rate",
+        "cac": "CAC",
+        "newCustomers": "New Customers",
+        "error": "An error occurred while fetching dashboard overview data.",
+        "noGoals": "You still don't have any goals setup.",
+        "noCustomerFunnels": "You still don't have any customer funnels setup.",
+        "addCustomerFunnels": "Add customer funnels",
+        "addGoals": "Add goals"
+      },
+      "performanceCard": {
+        "addGoals": "Add goals",
+        "title": "Channel Performance",
+        "statusCard": {
+          "sql": "Sql",
+          "spend": "Spend",
+          "costPer": "Cost Per"
+        },
+        "filters": {
+          "performance": {
+            "dropdownHeader": "Performance",
+            "dropdownOptions": {
+              "cost": "Cost",
+              "performance": "Performance",
+              "spend": "Spend"
+            }
+          }
+        },
+        "error": "An error occurred while fetching channel performance data."
+      },
+      "customerJourneyCard": {
+        "title": "Funnel Performance",
+        "conversionEvents": "Conversion Events",
+        "trackedEvents": "Tracked Events",
+        "filters": {
+          "attributionModel": {
+            "dropdownHeader": "Attribution Model",
+            "dropdownOptions": {
+              "firstTouch": "First Touch"
+            }
+          }
+        },
+        "error": "An error occurred while fetching customer journey data."
+      },
+      "activityGoalCard": {
+        "title": "Activity Goal",
+        "empty": "No activity goals set",
+        "addButton": "Add Activity Goal",
+        "completesIn": "{days, plural, =0 {} =1 {Completes in # day} other {Completes in # days}}",
+        "error": "An error occurred while fetching activity goal data.",
+        "noFunnels": "To setup this goal, you first need to define a customer funnel."
+      },
+      "budgetGoalCard": {
+        "title": "Budget Goal",
+        "empty": "No budget goals set",
+        "addButton": "Add Budget Goal",
+        "renewsIn": "Renews in {days, plural, =1 {# day} other {# days}}",
+        "error": "An error occurred while fetching budget goal data.",
+        "edit": "Edit",
+        "goals": "Goals"
+      },
+      "campaignsCard": {
+        "title": "Campaign Performance",
+        "totalVisits": "Total Visits",
+        "totalConversions": "Total Conversions",
+        "showMoreButton": "Show {number} more",
+        "error": "An error occurred while fetching campaigns data.",
+        "figuresCard": {
+          "visits": "Visits",
+          "leads": "Leads",
+          "customers": "Customers",
+          "spend": "Spend",
+          "cac": "CAC"
+        },
+        "filters": {
+          "campaignStatus": {
+            "dropdownOptions": {
+              "all": "All",
+              "active": "Active",
+              "inactive": "Inactive"
+            }
+          },
+          "campaignSorting": {
+            "dropdownHeader": "Sort By",
+            "dropdownOptions": {
+              "mostRecent": "Most Recent",
+              "oldestFirst": "Oldest First",
+              "topPerforming": "Top Performing"
+            }
+          }
+        }
+      },
+      "activityCard": {
+        "title": "Website Performance",
+        "error": "An error occurred while fetching website activity data.",
+        "websiteVisitsCard": {
+          "title": "Total Web Visits",
+          "visits": "Visits"
+        },
+        "topPagesCard": {
+          "title": "Top Pages",
+          "page": "Page",
+          "views": "Views",
+          "conversions": "Visitors",
+          "viewAllPages": "View All Pages",
+          "filters": {
+            "pagesViewsSorting": {
+              "dropdownOptions": {
+                "mostViews": "Most Views",
+                "mostConversions": "Most Conversions"
+              }
+            }
+          }
+        },
+        "topSourcesCard": {
+          "title": "Top Sources"
+        },
+        "conversionRateCard": {
+          "title": "Conversion Rate"
+        },
+        "trafficCard": {
+          "title": "Website Visits",
+          "tooltip": "website visits"
+        }
+      }
+    },
+    "new": {
+      "title": "Create your first dashboard",
+      "text": "You'll be able to adjust order and contents a little later.",
+      "widgets": "{number, plural, =1 {# Widget} other {# Widgets}}",
+      "cards": {
+        "executive": {
+          "title": "Executive",
+          "description": "Your favorite set of high-level essential metrics.",
+          "tooltip": "You already have an executive dashboard. To create a new one, please delete the existing dashboard first."
+        },
+        "paid": {
+          "title": "Paid",
+          "description": "Track the impact of your paid traffic channels against your KPIs."
+        },
+        "campaign": {
+          "title": "Campaign",
+          "description": "Metrics to monitor and dissect what's driving your campaigns."
+        },
+        "organic": {
+          "title": "Organic",
+          "description": "Track the impact of your organic traffic channels against your KPIs."
+        }
+      },
+      "dashboardNameLabel": "dashboard name",
+      "dashboardNamePlaceholder": "Executive",
+      "preBoardingModal": {
+        "cards": {
+          "marketing": {
+            "title": "Take the pain out of marketing data.",
+            "description": "From the jump, Source let's you spend more time doing what you were hired to do and less time in the data dumps.",
+            "imageAlt": "Marketing"
+          },
+          "presetDashboard": {
+            "title": "Get up and running fast with preset dashboards.",
+            "description": "Customize your dashboards in minutes, not hours with ready-made dashboards made by marketers, for marketers.",
+            "imageAlt": "Preset Dashboard"
+          },
+          "itHassle": {
+            "title": "Track your website without the IT hassle.",
+            "description": "Remember that little snippet your dropped into your website? That's all you'll need to track visitors across your site.",
+            "imageAlt": "It Hassle"
+          }
+        },
+        "nextButton": "Next",
+        "prevButton": "Prev",
+        "doneButton": "Done"
+      }
+    }
+  },
+  "modals": {
+    "confirmConnection": {
+      "description": "You're about to integrate {connection} with your existing setup.",
+      "description2": "This action will replace your current Customer Funnel with a new one from {connection}.",
+      "important": "Important:",
+      "importantDescription": "This change is irreversible, and your existing funnel will be permanently deleted",
+      "confirmQuestion": "Would you like to proceed?"
+    },
+    "shareALink": {
+      "title": "Share link",
+      "assignTo": "ASSIGN TO",
+      "assignToPlaceHolder": "Helpers name",
+      "email": "EMAIL",
+      "emailPlaceHolder": "Helper's email",
+      "message": "MESSAGE",
+      "test": "test\n1test2",
+      "defaultMessage": "Hey! We are installing a tracking conversion code snippet on our website to improve our marketing data and I need your help installing. Here are the easy to follow instructions to setup the Source tracking code on our site: \n1. Log in to your website's admin panel \n2. Access the template or theme editor and open 'header.php' or similar \n3. Insert this code snippet before {htmlTag} in your custom snippet. Save to finish! \n4. Test your website",
+      "addAnotherRecipient": "Add another recipient",
+      "submit": "Send to recipient(s)",
+      "successMessage": "Email(s) sent successfully!",
+      "errorMessage": "There is an error submitting the request"
+    },
+    "deleteActivityGoal": {
+      "title": "Remove Website Activity goal?",
+      "description": "Are you sure you want to remove the Website Activity goal from your website?"
+    },
+    "deleteBudgetGoal": {
+      "title": "Remove Budget Tracker goal?",
+      "description": "Are you sure you want to remove the Budge Tracker goal from your website?"
+    },
+    "editFunnelStage": {
+      "title": "How do you define {stageName}?",
+      "description": "We like starting at the top with understanding who's coming to your website."
+    },
+    "deleteFunnelStage": {
+      "title": "Remove {stageName} stage?",
+      "description": "Are you sure you want to delete {stageName} from your funnel?"
+    },
+    "deleteDashboard": {
+      "title": "Delete Dashboard?",
+      "description": "Are you sure you want to delete Executive?",
+      "description2": "Deleting this Dashboard will delete all data and reports."
+    },
+    "closeWebsiteCreation": {
+      "title": "Exit new website creation",
+      "description": "Are you sure you want to leave the new website creation process?",
+      "description1": "You won’t be able to recover these changes."
+    },
+    "logout": {
+      "title": "Logout",
+      "description": "Are you sure you want to logout?",
+      "descriptionLogOut": "You are being logged out. Please wait...",
+      "confirmButton": "Logout",
+      "cancelButton": "No, cancel"
+    },
+    "error": {
+      "description": "Something went wrong, please try again later",
+      "closeButton": "Close"
+    },
+    "createExpense": {
+      "title": "Add Expense",
+      "subtitle": "Provide some information about the expense you want to add, along with the amount and any specific categories and channels. This will help in accurately updating your dashboard and tracking your budget goals.",
+      "descriptionPlaceholder": "Description",
+      "descriptionLabel": "What was this for?",
+      "categoryLabel": "Category",
+      "channelsLabel": "Channels",
+      "recurringExpenseLabel": "Recurring Expense",
+      "expenseTermLabel": "Expense Term",
+      "button": "Add Expense",
+      "successToastMessage": "Expense created successfully. Dashboard will update in a couple minutes"
+    },
+    "activityGoal": {
+      "title": "Activity Goal",
+      "numberOfEventsLabel": "number of events",
+      "customerFunnelStageLabel": "Customer Funnel Stage",
+      "pageUrlPlaceholder": "Page URL",
+      "pageUrlLabel": "Paste the page address here",
+      "visitorType": {
+        "label": "Visitor Type",
+        "placeholder": "Select visitor type",
+        "options": {
+          "unique": "Unique views only",
+          "newAndReturning": "New and returning users"
+        }
+      },
+      "addAnotherEvent": "Add another event",
+      "button": "Confirm Goal"
+    },
+    "budgetGoal": {
+      "editTitle": "Edit the budget goal",
+      "title": "Add a budget",
+      "recurring": {
+        "label": "Recurring Budget",
+        "placeholder": "Select recurring repeat",
+        "options": { "weekly": "Weekly", "monthly": "Monthly", "annually": "Annually" }
+      },
+      "termLabel": "Budget Term",
+      "button": "Create Budget",
+      "successToastMessage": "Budget created successfully. Dashboard will update in a couple minutes"
+    },
+    "closeDashboardCreate": {
+      "title": "Exit Dashboard setup",
+      "description": "Are you sure you want to exit the dashboard setup?",
+      "deleteDashboard": "Delete dashboard"
+    },
+    "upsertQuerySelectors": {
+      "title": "Identify your sign up forms",
+      "description": "Please provide the URLs for the website pages that contain a sign up form that you would like to track.  This information will help us customize your tracking pixel as a next step.",
+      "continueButton": "Save"
+    }
+  },
+  "components": {
+    "table": {
+      "pagination": {
+        "page": "Page",
+        "rowsPerPage": "Rows per page"
+      }
+    },
+    "inputWithDropdown": {
+      "matches": "Matches"
+    },
+    "errorCard": {
+      "title": "Something went wrong!"
+    }
+  },
+  "actions": {
+    "googleAdsConnection": {
+      "successMessage": "Google Ads has been successfully connected!",
+      "errorMessage": "Something went wrong while trying to connect to Google Ads. Please, try again."
+    },
+    "requestConnection": {
+      "successMessage": "Connection request submitted successfully!",
+      "errorMessage": "Unexpected error while sending the connection request. Please try again later"
+    },
+    "deleteActivityGoal": {
+      "successMessage": "Activity goal deleted successfully!",
+      "errorMessage": "Unexpected error while deleting the activity goal. Please try again later"
+    },
+    "deleteBudgetGoal": {
+      "successMessage": "Budget goal deleted successfully!",
+      "errorMessage": "Unexpected error while deleting the budget goal. Please try again later"
+    },
+    "deleteDashboard": {
+      "successMessage": "Dashboard deleted successfully!",
+      "errorMessage": "Unexpected error while deleting the dashboard. Please try again later"
+    },
+    "updateUser": {
+      "successMessage": "User data updated successfully",
+      "errorMessage": "Unexpected error while updating user data. Please try again later"
+    },
+    "createExpense": {
+      "successMessage": "Expense created successfully",
+      "errorMessage": "Unexpected error while creating expense. Please try again later"
+    },
+    "updateFunnelStage": {
+      "successMessage": "Funnel updated successfully",
+      "errorMessage": "Unexpected error while updating funnel. Please try again later"
+    },
+    "createWebsite": {
+      "successMessage": "Website created successfully",
+      "errorMessage": "Unexpected error while creating website. Please try again later"
+    },
+    "uploadWebsiteImage": {
+      "successMessage": "Website image uploaded successfully",
+      "errorMessage": "Unexpected error while uploading website image. Please try again later"
+    },
+    "deleteWebsiteImage": {
+      "successMessage": "Website image deleted successfully",
+      "errorMessage": "Unexpected error while deleting website image. Please try again later"
+    },
+    "uploadUserImage": {
+      "successMessage": "User image uploaded successfully",
+      "errorMessage": "Unexpected error while uploading user image. Please try again later"
+    },
+    "deleteUserImage": {
+      "successMessage": "User image deleted successfully",
+      "errorMessage": "Unexpected error while deleting user image. Please try again later"
+    },
+    "uploadOrganizationImage": {
+      "successMessage": "Organization image uploaded successfully",
+      "errorMessage": "Unexpected error while uploading organization image. Please try again later"
+    },
+    "deleteOrganizationImage": {
+      "successMessage": "Organization image deleted successfully",
+      "errorMessage": "Unexpected error while deleting organization image. Please try again later"
+    },
+    "updateCustomerFunnelStage": {
+      "successMessage": "Stage Rules updated successfully",
+      "errorMessage": "Unexpected error while updating Stage Rules. Please try again later."
+    },
+    "getCustomerFunnelStage": {
+      "successMessage": "Stage Rules found",
+      "errorMessage": "Unexpected error while fetching stage. Please try again later."
+    },
+    "updateWebsiteName": {
+      "successMessage": "Website name updated successfully",
+      "errorMessage": "Unexpected error while updating the website name. Please try again later."
+    },
+    "updateWebsiteUrl": {
+      "successMessage": "Website URL updated successfully",
+      "errorMessage": "Unexpected error while updating the website url. Please try again later."
+    },
+    "updateWebsite": {
+      "successMessage": "Website updated successfully",
+      "errorMessage": "Unexpected error while updating Website. Please try again later."
+    },
+    "updateDashboardName": {
+      "successMessage": "Dashboard name updated successfully",
+      "errorMessage": "Unexpected error while updating the dashboard name. Please try again later."
+    },
+    "createOrganization": {
+      "successMessage": "Organization created successfully",
+      "errorMessage": "Unexpected error while creating Organization. Please try again later."
+    },
+    "updateOrganization": {
+      "successMessage": "Organization updated successfully",
+      "errorMessage": "Unexpected error while updating Organization. Please try again later."
+    },
+    "getWebsites": {
+      "errorMessage": "There is no website associated to your account. Please create one first"
+    },
+    "createDashboard": {
+      "successMessage": "Dashboard created successfully",
+      "errorMessage": "Unexpected error while creating Dashboard. Please try again later."
+    },
+    "getSnippet": {
+      "errorMessage": "Unexpected error while fetching snippet. Please try again later."
+    },
+    "generatePixelScript": {
+      "successMessage": "Pixel script generated successfully",
+      "errorMessage": "Unexpected error while generating pixel script. Please try again later."
+    },
+    "inviteTeamMembers": {
+      "successMessage": "Invite sent!",
+      "errorMessage": "User {userEmail} already belongs to an organization",
+      "errorMessageUserBelongsToOrganization": "Apologies, but it seems that some users are already affiliated with an organization. Please review the following user(s) who are currently associated: {users}"
+    },
+    "removePermissions": {
+      "successMessage": "Team member removed!",
+      "errorMessage": "Unable to continue. Please verify your internet connection."
+    },
+    "editPermissions": {
+      "successMessage": "Permissions changed!",
+      "errorMessage": "Unable to continue. Please verify your internet connection."
+    },
+    "resendVerificationEmailJob": {
+      "successMessage": "Verification email sent successfully!",
+      "errorMessage": "Unexpected error while sending verification email. Please try again later."
+    },
+    "upsertSelector": {
+      "successMessage": "Connect your forms request submitted successfully!",
+      "errorMessage": "Unexpected error while sending the connect your forms request. Please try again later"
+    }
+  },
+  "validation": {
+    "somethingWentWrong": "Something went wrong, please try again later",
+    "imageTooBig": "Image must be 2MB or less",
+    "firstName": "First name should be at least 3 characters long",
+    "lastName": "Last name should be at least 3 characters long",
+    "company": "Company should be at least 3 characters long",
+    "role": "Role is required",
+    "industry": "Industry is required",
+    "amount": "Amount is required",
+    "dashboardName": "Must have more than 3 characters",
+    "requiredField": "{fieldName} is required",
+    "invalidFormat": "Invalid format - must be XXX-XXX-XXXX",
+    "requiredFieldPlural": "{fieldName} are required",
+    "category": "Category is required",
+    "dashboardId": "Dashboard ID is required",
+    "funnelName": "Funnel name is required",
+    "positiveNumber": "Must be 1 or greater",
+    "maxValue": "Must be 99,999,999 or lower",
+    "lessThan50Characters": "Must be less than 50 characters",
+    "mustBeNumber": "Must be a number",
+    "numberOfEvents": "Number of events is required",
+    "budget": "Budget is required",
+    "websiteName": "Website name should be at least 2 characters long",
+    "fileType": "Only .jpg, .jpeg, .webp and .webp formats are supported.",
+    "fileSize": "Max image size is 800KB.",
+    "eventName": "Event name is required",
+    "startingUrl": "Starting URL is required when Destination URL is provided",
+    "destinationUrl": "Destination URL is required when Starting URL is provided",
+    "email": "Invalid email address",
+    "url": "Page URL is required"
+  }
+}

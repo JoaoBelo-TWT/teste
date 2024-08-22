@@ -1,0 +1,8 @@
+.dashboard-goals-settings {
+  margin-bottom: var(--mantine-spacing-xl);
+  margin-top: var(--mantine-spacing-xl);
+
+  &__description {
+    margin-bottom: var(--mantine-spacing-md);
+  }
+}

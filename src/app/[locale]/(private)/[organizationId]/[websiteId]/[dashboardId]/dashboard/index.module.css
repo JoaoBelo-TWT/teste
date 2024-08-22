@@ -1,0 +1,49 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-sm);
+  margin-top: var(--dashboard-margin-top);
+
+  &__top-bar {
+    align-items: center;
+    background-color: var(--mantine-color-dark-2);
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    height: 80px;
+    justify-content: space-between;
+    left: var(--side-bar-width);
+    padding: 0 54px;
+    position: fixed;
+    top: 0;
+    width: calc(100% - var(--side-bar-width));
+    z-index: var(--mantine-z-index-app);
+  }
+
+  &__card-group-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--mantine-spacing-sm);
+    justify-content: space-between;
+    min-height: 550px;
+
+    @media (max-width: $mantine-breakpoint-m) {
+      flex-direction: column;
+    }
+  }
+
+  &__welcome-card-container {
+    flex: 1;
+    width: 100%;
+  }
+
+  &__goals-container {
+    background: var(--mantine-color-white);
+    border-radius: var(--mantine-radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-sm);
+    overflow: hiiden;
+    position: relative;
+  }
+}

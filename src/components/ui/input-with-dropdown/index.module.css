@@ -1,0 +1,28 @@
+.input-with-dropdown {
+  &__input {
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 400;
+    height: 48px;
+    padding: 10px var(--mantine-spacing-sm) 10px 103px;
+
+    &[data-error] {
+      color: var(--mantine-color-dark-9);
+      padding-right: var(--mantine-spacing-lg);
+
+      &::placeholder {
+        color: var(--mantine-color-dark-4);
+      }
+    }
+  }
+
+  &__label {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--mantine-spacing-xs);
+  }
+
+  &__left-section {
+    width: 103px;
+  }
+}

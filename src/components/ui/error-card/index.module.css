@@ -1,0 +1,26 @@
+.error-card {
+  &__root {
+    align-items: center;
+    border-radius: var(--mantine-radius-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__image {
+    border-radius: var(--mantine-radius-lg);
+    left: 0;
+    object-fit: fill;
+    position: absolute;
+    top: 0%;
+    z-index: -1;
+  }
+}

@@ -1,0 +1,8 @@
+.domain-form {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-xl);
+  justify-content: center;
+  width: 100%;
+}

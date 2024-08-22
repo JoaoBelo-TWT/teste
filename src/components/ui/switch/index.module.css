@@ -1,0 +1,40 @@
+/* stylelint-disable*/
+.root {
+  --switch-height: var(--mantine-spacing-md);
+  --switch-radius: 100px;
+  --switch-width: 34px;
+  --switch-thumb-size: 16px;
+  --switch-track-label-padding: 4px;
+}
+
+.track {
+  background: var(--mantine-color-dark-3);
+  border-color: var(--mantine-color-dark-5);
+
+  &::before {
+    position: absolute;
+    content: '';
+    inset: 0;
+    background: var(--gradient-green-horizontal);
+    z-index: -1;
+    transition: opacity 0.15s ease-in-out;
+    opacity: 0;
+  }
+}
+
+.thumb {
+  background-color: var(--mantine-color-dark-0);
+  border-color: var(--mantine-color-dark-0);
+  box-shadow: var(--shadow);
+}
+
+.input {
+  &:checked + .track {
+    border-color: var(--system-green-600-color);
+  }
+
+  &:checked + .track::before {
+    opacity: 1;
+  }
+}
+/* stylelint-enable*/

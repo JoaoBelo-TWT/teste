@@ -1,0 +1,47 @@
+.status-chip {
+  &__container {
+    align-items: center;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+
+    &[data-dot='false'] {
+      padding: 4px var(--mantine-spacing-xs);
+    }
+
+    &--default {
+      border: 1px solid var(--mantine-color-dark-8);
+      padding: 4px 8px;
+    }
+  }
+
+  &__dot {
+    border-radius: var(--mantine-radius-sm);
+    display: block;
+    height: 6px;
+    margin: 9px;
+    width: 6px;
+
+    &--undefined {
+      display: none;
+    }
+
+    &--default {
+      background-color: var(--mantine-color-dark-8);
+    }
+
+    &--active {
+      background-color: var(--mantine-color-green-5);
+    }
+
+    &--outOfSync {
+      background-color: var(--mantine-color-yellow-5);
+    }
+
+    &--disabled,
+    &--inactive {
+      background-color: var(--mantine-color-red-5);
+    }
+  }
+}

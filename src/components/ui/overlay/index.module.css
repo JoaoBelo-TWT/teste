@@ -1,0 +1,28 @@
+.overlay {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-lg);
+  height: 100%;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: calc(var(--mantine-z-index-app) - 1);
+
+  &__text {
+    max-width: 480px;
+    z-index: calc(var(--mantine-z-index-app) - 1);
+  }
+
+  &__background {
+    background-color: var(--mantine-color-dark-0);
+    height: 100%;
+    inset: 0;
+    opacity: 0.85;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+  }
+}

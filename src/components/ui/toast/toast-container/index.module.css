@@ -1,0 +1,39 @@
+.toast-container {
+  bottom: var(--mantine-spacing-lg);
+  left: var(--mantine-spacing-lg);
+  max-width: 450px;
+  min-width: 200px;
+  padding: 0;
+  transition: left 100ms;
+
+  &--with-side-bar {
+    left: calc(var(--side-bar-width) + var(--mantine-spacing-sm));
+  }
+
+  @media only screen and (width <= 480px) {
+    bottom: 0;
+    left: 0;
+    max-width: initial;
+    min-width: initial;
+    padding: var(--mantine-spacing-sm);
+    width: 100%;
+  }
+
+  &__item {
+    display: block;
+    margin: 0;
+    max-height: initial;
+    min-height: auto;
+    padding: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__body {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+}

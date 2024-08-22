@@ -1,0 +1,39 @@
+.edit-activity-goal-form {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  row-gap: var(--mantine-spacing-lg);
+  width: 656px;
+
+  &__row {
+    align-items: flex-start;
+    column-gap: var(--mantine-spacing-sm);
+    display: flex;
+    height: 100px;
+    place-content: center flex-start;
+    width: 100%;
+
+    &--text {
+      flex: 3 1 auto;
+    }
+
+    &--select {
+      flex: 2 1 auto;
+    }
+
+    &--delete-button {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      width: var(--mantine-spacing-xl);
+    }
+  }
+
+  &__submit-container {
+    align-items: flex-start;
+    display: flex;
+    gap: var(--mantine-spacing-xs);
+    justify-content: center;
+  }
+}

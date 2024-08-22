@@ -1,0 +1,59 @@
+.button {
+  &__root {
+    &[data-variant='filled']:not([data-disabled]) {
+      --button-color: var(--mantine-color-dark-1);
+      --button-bg: var(--mantine-color-dark-9) !important;
+
+      &:hover {
+        --button-bg: var(--mantine-color-dark-8) !important;
+      }
+    }
+
+    &[data-variant='danger']:not([data-disabled]) {
+      color: white;
+
+      --button-color: var(--mantine-color-dark-1);
+      --button-bg: var(--system-red-color);
+
+      &:hover {
+        background-color: var(--mantine-color-red-9);
+
+        --button-bg: var(--chart-color-soft-gold);
+      }
+    }
+
+    &:not([data-variant='filled'], [data-disabled]) {
+      color: var(--mantine-color-dark-9);
+    }
+
+    /* Styles for small size */
+    &[data-size='small'] {
+      height: 36px;
+
+      --button-height: 36px !important;
+    }
+
+    /* Styles for medium size */
+    &[data-size='medium'] {
+      font-size: 14px;
+      gap: 6px;
+      height: 44px;
+      line-height: 17px;
+      padding: 10px var(--mantine-spacing-md);
+
+      --button-height: 44px !important;
+    }
+
+    /* Styles for large size */
+    &[data-size='large'] {
+      font-size: 16px;
+      gap: 6px;
+      height: 56px;
+      line-height: 19px;
+      min-width: 180px;
+      padding: 10px var(--mantine-spacing-md);
+
+      --button-height: 56px !important;
+    }
+  }
+}

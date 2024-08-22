@@ -1,0 +1,10 @@
+/* stylelint-disable plugin/selector-bem-pattern */
+.campaign-details-table {
+  table-layout: fixed;
+
+  tr {
+    th:nth-child(1) {
+      width: 60%;
+    }
+  }
+}

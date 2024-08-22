@@ -1,0 +1,20 @@
+.funnel-details-table {
+  table-layout: fixed;
+  /* stylelint-disable-next-line plugin/selector-bem-pattern */
+  tr {
+    /* stylelint-disable-next-line plugin/selector-bem-pattern */
+    th:nth-child(1) {
+      width: 60%;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

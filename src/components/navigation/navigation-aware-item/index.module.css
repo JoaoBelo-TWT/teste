@@ -1,0 +1,13 @@
+.navigation-aware-item {
+  &__root {
+    &[data-variant='subtle'] {
+      /* stylelint-disable */
+      --ai-hover: var(--mantine-color-dark-2) !important;
+      /* stylelint-enable */
+    }
+
+    &--disable-click {
+      pointer-events: none;
+    }
+  }
+}

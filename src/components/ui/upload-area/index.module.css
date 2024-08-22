@@ -1,0 +1,31 @@
+.upload-area {
+  border: var(--mantine-color-dark-7) 1px dashed;
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: var(--mantine-spacing-md);
+    justify-content: center;
+    padding: var(--mantine-spacing-md);
+    pointer-events: none;
+  }
+
+  &__text-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xs);
+    text-align: start;
+  }
+
+  &__image-container {
+    min-width: 50px;
+  }
+
+  &__image-preview {
+    object-fit: cover;
+  }
+}

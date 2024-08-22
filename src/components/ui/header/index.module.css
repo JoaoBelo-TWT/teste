@@ -1,0 +1,8 @@
+.header {
+  &__container {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

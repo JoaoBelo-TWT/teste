@@ -1,0 +1,17 @@
+.progress-icon {
+  &__container {
+    border: 1px solid;
+    border-color: var(--mantine-color-gray-9);
+    border-radius: 50%;
+    height: var(--mantine-spacing-md);
+    width: var(--mantine-spacing-md);
+
+    &--is-complete {
+      align-items: center;
+      background: var(--gradient-green-horizontal);
+      border-color: var(--system-green-600-color);
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

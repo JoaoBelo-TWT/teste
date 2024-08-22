@@ -1,0 +1,32 @@
+.toggle-group {
+  &__root {
+    /* stylelint-disable */
+    --sc-color: var(--mantine-color-dark-9);
+    --sc-shadow: none;
+    --sc-padding: 14px var(--mantine-spacing-sm);
+    --sc-radius: 100px;
+    --switch-label-font-size: rem(14px);
+    /* stylelint-enable */
+    background-color: transparent;
+    border: 1.25px solid var(--mantine-color-dark-6);
+    gap: var(--mantine-spacing-xs);
+  }
+
+  &__label {
+    line-height: 120%;
+
+    &[data-active] {
+      color: var(--mantine-color-dark-0);
+    }
+  }
+
+  &__indicator {
+    color: var(--mantine-color-dark-0);
+  }
+
+  &__control {
+    &::before {
+      display: none;
+    }
+  }
+}

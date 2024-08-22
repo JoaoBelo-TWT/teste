@@ -1,0 +1,32 @@
+.all-set-card-horizontal {
+  border-radius: var(--mantine-radius-lg);
+  height: 180px;
+  overflow: hidden;
+  width: 100%;
+
+  &__image {
+    margin-bottom: -50px;
+    object-fit: contain;
+  }
+
+  &__image-container {
+    background: var(--color-yellow-soft);
+    height: 100%;
+    margin-bottom: -25px;
+    padding-top: var(--mantine-spacing-sm);
+    position: relative;
+    width: 100%;
+  }
+
+  &__text-container {
+    align-items: center;
+    background-color: var(--mantine-color-dark-2);
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--mantine-spacing-md);
+    width: 100%;
+    z-index: 10;
+  }
+}

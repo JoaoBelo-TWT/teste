@@ -1,0 +1,5 @@
+next.config.js
+postcss.config.js
+src/__generated__
+**/*.stories.ts
+**/*.stories.tsx

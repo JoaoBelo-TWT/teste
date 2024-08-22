@@ -1,0 +1,8 @@
+.avatar {
+  &__placeholder {
+    --avatar-color: var(--mantine-color-dark-9);
+
+    font-size: 12px;
+    font-weight: 400;
+  }
+}

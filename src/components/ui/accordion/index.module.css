@@ -1,0 +1,23 @@
+.accordion {
+  &__chevron {
+    align-items: center;
+    background: var(--mantine-color-dark-2);
+    border-radius: 100%;
+    display: flex;
+    height: var(--mantine-spacing-lg);
+    justify-content: center;
+    width: var(--mantine-spacing-lg);
+  }
+
+  &__item {
+    background-color: white;
+  }
+
+  &__content {
+    padding: 24px 40px;
+  }
+
+  &__control {
+    box-shadow: var(--shadow);
+  }
+}

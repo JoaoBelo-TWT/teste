@@ -1,0 +1,8 @@
+.header-buttons {
+  &__container {
+    align-items: center;
+    display: flex;
+    gap: var(--mantine-spacing-xs);
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,50 @@
+.stage-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-md);
+  width: 100%;
+
+  &__submit-button {
+    align-self: center;
+  }
+
+  &__card-root {
+    border: 1px solid var(--mantine-color-dark-4);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--shadow);
+  }
+
+  &__header-input-container {
+    padding: var(--mantine-spacing-lg) 40px var(--mantine-spacing-sm);
+  }
+
+  &__header-input {
+    font-size: rem(56px);
+    font-weight: 300;
+    height: rem(56px);
+    line-height: rem(56px);
+    padding-bottom: 10px;
+
+    &::placeholder {
+      color: var(--mantine-color-dark-4);
+    }
+
+    &[data-error] {
+      color: var(--mantine-color-dark-9);
+      padding-right: var(--mantine-spacing-lg);
+
+      &::placeholder {
+        color: var(--mantine-color-dark-4);
+      }
+    }
+  }
+
+  &__tabs-list {
+    border-bottom: 1px solid var(--mantine-color-dark-3);
+    padding: 0 40px;
+  }
+
+  &__tabs-tab {
+    padding: var(--mantine-spacing-md);
+  }
+}

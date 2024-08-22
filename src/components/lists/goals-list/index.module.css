@@ -1,0 +1,13 @@
+.goals-list {
+  &__item {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &--labels-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.action-tab {
+  &__panel {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-md);
+    padding: 40px;
+    padding-top: var(--mantine-spacing-lg);
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__input-container {
+    width: 100%;
+  }
+
+  &__delete-button {
+    display: flex;
+    height: 100%;
+    margin-top: var(--mantine-spacing-md);
+    width: 40px;
+  }
+
+  &__stepper-container {
+    align-self: stretch;
+    padding-bottom: 12px;
+    padding-top: 38px;
+
+    &--error {
+      padding-bottom: var(--mantine-spacing-lg);
+    }
+  }
+
+  &__input-group {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: var(--mantine-spacing-sm);
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: var(--mantine-spacing-md);
+    }
+  }
+
+  &__append-button-container {
+    margin-left: 40px;
+  }
+}

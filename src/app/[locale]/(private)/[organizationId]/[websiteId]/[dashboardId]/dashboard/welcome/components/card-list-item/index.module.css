@@ -1,0 +1,16 @@
+.card-list-item {
+  &:not(:last-child) {
+    border-right: 1px solid var(--mantine-color-dark-9);
+  }
+
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1 0 0;
+  flex-flow: column wrap;
+  gap: var(--mantine-spacing-sm);
+  justify-content: space-between;
+  max-height: 136px;
+  padding: var(--mantine-spacing-md) var(--mantine-spacing-sm) var(--mantine-spacing-md) var(--mantine-spacing-md);
+  z-index: 2;
+}

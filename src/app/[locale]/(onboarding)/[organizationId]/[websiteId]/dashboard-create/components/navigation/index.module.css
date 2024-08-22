@@ -1,0 +1,23 @@
+.navigation {
+  &__container {
+    align-items: center;
+    background-color: transparent;
+    display: flex;
+    flex-shrink: 0;
+    height: 82px;
+    justify-content: space-between;
+    padding: var(--mantine-spacing-md) var(--mantine-spacing-sm);
+    padding-bottom: 12px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
+    &[data-solid='true'] {
+      background-color: var(--mantine-color-dark-0);
+    }
+  }
+
+  &__placeholder {
+    height: 82px;
+  }
+}

@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Universal Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/Universal-Sans-Display-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Universal Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: url('/fonts/Universal-Sans-Display-300Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Universal Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Universal-Sans-Display-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Universal Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/Universal-Sans-Display-400Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Universal Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/Universal-Sans-Display-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Universal Sans';
+  font-style: italic;
+  font-weight: 500;
+  src: url('/fonts/Universal-Sans-Display-500Italic.woff2') format('woff2');
+}

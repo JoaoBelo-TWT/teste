@@ -1,0 +1,41 @@
+.customer-funnel {
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-xl);
+    height: auto;
+    justify-content: center;
+    max-width: 500px;
+    padding-block: var(--mantine-spacing-lg);
+    padding-inline: var(--mantine-spacing-md);
+  }
+
+  &__title-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-sm);
+    width: 100%;
+  }
+
+  &__description-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mantine-spacing-sm);
+  }
+
+  &__buttons-container {
+    display: flex;
+    gap: var(--mantine-spacing-sm);
+    justify-items: flex-start;
+    width: 100%;
+  }
+
+  @media (max-width: $mantine-breakpoint-m) {
+    &__container {
+      &--content {
+        padding: var(--mantine-spacing-xl);
+      }
+    }
+  }
+}

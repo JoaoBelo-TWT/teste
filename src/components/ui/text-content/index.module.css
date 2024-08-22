@@ -1,0 +1,6 @@
+.text-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-sm);
+  text-align: start;
+}

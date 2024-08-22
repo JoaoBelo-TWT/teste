@@ -1,0 +1,20 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-stylus/standard"],
+  "plugins": ["stylelint-selector-bem-pattern", "stylelint-order", "stylelint-stylus"],
+  "rules": {
+    "media-query-no-invalid": null,
+    "order/properties-alphabetical-order": true,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "max-nesting-depth": 3,
+    "stylus/no-eol-whitespace": true,
+    "plugin/selector-bem-pattern": {
+      "preset": "bem",
+      "implicitComponents": ["src/components/**/*.css", "src/app/**/*.css"]
+    }
+  }
+}

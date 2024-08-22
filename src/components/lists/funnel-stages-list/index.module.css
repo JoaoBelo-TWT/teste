@@ -1,0 +1,40 @@
+.funnel-stages-list {
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__button-container {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: var(--mantine-spacing-sm) 0;
+    width: 100%;
+  }
+
+  &__confirm-buttons-container {
+    animation: fade-in 0.1s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    gap: var(--mantine-spacing-xs);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

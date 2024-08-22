@@ -1,0 +1,12 @@
+.team-members-table {
+  &__status-cell {
+    align-items: center;
+    display: flex;
+  }
+
+  &__resent-container {
+    display: flex;
+    gap: var(--mantine-spacing-sm);
+    margin-left: var(--mantine-spacing-sm);
+  }
+}

@@ -1,0 +1,92 @@
+:root {
+  --brand-navy-color: #2b2039;
+  --color-purple-600: #8489fe;
+  --color-purple-soft: #e6e7ff;
+  --color-dark-blue-soft: #4289b1;
+  --color-brown-soft: #b8944e;
+  --color-orange-soft: #ffdf6c;
+  --color-yellow-soft: #ffdc5e;
+  --color-pink-flamingo: #ff57d9;
+  --color-electric-violet: #8d34ff;
+  --color-pacific-blue: #00a5bc;
+  --color-egg-blue: #00dec3;
+  --color-light-aqua: #b6ffe7;
+  --color-green-soft: #52ef81;
+  --color-pale-blue: #a6eeed;
+  --color-maya-blue: #71ccff;
+
+  /** Flat **/
+  --flat-green-color: #aedece;
+  --flat-pink-color: #f19de9;
+  --flat-blue-color: #9ac9eb;
+  --flat-orange-color: #f9c99c;
+
+  /** Flat 100 */
+  --flat-green-100-color: #95f0a9;
+  --flat-pink-100-color: #fdc4f0;
+  --flat-blue-100-color: #9aeffa;
+  --flat-orange-100-color: #ffd493;
+
+  /** System Colors **/
+  --system-green-500-color: #12d031;
+  --system-green-600-color: #01bc41;
+  --system-blue-600-color: #00a5bc;
+  --system-red-color: #f22121;
+
+  /** Gradient vertical */
+  --gradient-green-vertical: linear-gradient(180deg, #a8ff5f 0%, #5cff83 50.52%, #2df6e3 100%);
+  --gradient-pink-vertical: linear-gradient(180deg, #ff3f9b -36.01%, #f36fff 59.59%, #a77dff 140.49%);
+  --gradient-blue-vertical: linear-gradient(180.02deg, #0ff0e3 -1.46%, #37c3ff 43.08%, #4541ff 99.98%);
+  --gradient-orange-vertical: linear-gradient(360deg, #f24851 -5.93%, #f1ae4f 80.86%, #ffd600 103.7%);
+
+  /** Gradient horizontal */
+  --gradient-green-horizontal: linear-gradient(270deg, #a8ff5f 0%, #5cff83 48.65%, #2df6e3 100%);
+  --gradient-pink-horizontal: linear-gradient(270deg, #ff3f9b -29.58%, #f36fff 56.41%, #a77dff 129.17%);
+  --gradient-blue-horizontal: linear-gradient(270.1deg, #0ff0e3 3.3%, #37c3ff 47.14%, #4541ff 94.4%, #48469b 103.13%);
+  --gradient-orange-horizontal: linear-gradient(90deg, #f24851 0%, #f1ae4f 79.17%, #ffd600 100%);
+  --gradient-orange-flipped-horizontal: linear-gradient(270deg, #f24851 0%, #f1ae4f 79.17%, #ffd600 100%);
+
+  /** Gradient data */
+  --gradient-green-bold-data: linear-gradient(180deg, var(--color-green-soft) 0%, var(--color-light-aqua) 100%);
+  --gradient-pink-bold-data: linear-gradient(180deg, #d478ff 0%, #ffd5f1 100%);
+  --gradient-blue-bold-data: linear-gradient(0deg, #a6eeed 0%, #71ccff 100%);
+  --gradient-orange-bold-data: linear-gradient(0deg, #ffe248 0%, #ffb94d 100%);
+  --gradient-green-soft-data: linear-gradient(180deg, #e6e7ff 0%, rgb(255 255 255 / 0%) 100%);
+  --gradient-pink-soft-data: linear-gradient(180deg, #d95ebe -55.17%, #d95ebe00 100%);
+  --gradient-blue-soft-data: linear-gradient(180deg, #ccedf2 0%, rgb(255 255 255 / 0%) 100%);
+  --gradient-orange-soft-data: linear-gradient(180deg, #fff3e8 0%, rgb(255 255 255 / 0%) 100%);
+  --gradient-purple-soft-data: linear-gradient(180deg, var(--color-purple-soft) 0%, rgb(255 255 255 / 0%) 100%);
+  --gradient-gold-soft-data: linear-gradient(180deg, #f2ecd2 0%, rgb(255 255 255 / 0%) 100%);
+  --gradient-green-hero-data: linear-gradient(180deg, #1fffbb 0%, rgb(165 231 97 / 0%) 100.35%);
+
+  /** Stats Cards gradients */
+  --gradient-blue-card: linear-gradient(90deg, #a6eeed 33.23%, #45bcff 143.87%);
+  --gradient-pink-card: linear-gradient(270deg, #d16eff -48.6%, #ffc0ea 68.27%);
+  --gradient-gold-card: linear-gradient(90deg, #ffe248, 30%, #ffb94d 124.82%);
+  --gradient-green-card: linear-gradient(270deg, var(--color-green-soft) -4.01%, var(--color-light-aqua) 90.54%);
+  --gradient-bronze-card: linear-gradient(270deg, #bea432 -43.13%, #fed391 92.63%);
+  --gradient-silver-card: linear-gradient(270deg, #e6e6e6 -20%, var(--mantine-color-dark-4) 50%, #f2f2f2 120%);
+
+  /** Shadows */
+  --shadow: 0px 8px 12px 0px #08006405;
+
+  /** Donut chart colors */
+
+  --chart-color-soft-blue: #45bcff;
+  --chart-color-soft-pink: #ffc0ea;
+  --chart-color-soft-gold: #ffe248;
+  --chart-color-soft-green: var(--color-green-soft);
+  --chart-color-soft-bronze: #bea432;
+
+  /** Funnel chart **/
+  --gradient-funnel-falmingo-pink: linear-gradient(0deg, #d4a8ff 0%, #fc7aff 100%);
+  --gradient-funnel-eletric-violet: linear-gradient(0deg, #b0e4ff 0%, #9e62ff 100%);
+  --gradient-funnel-pacific-blue: linear-gradient(0deg, #aeffed 0%, #71ccff 100%);
+  --gradient-funnel-egg-blue: linear-gradient(0deg, #95f7f7 0%, #48ffd3 100%);
+  --gradient-verdant-glow: linear-gradient(0deg, #c7fc57 -29.23%, #00cb82 145.59%);
+
+  /** Toast **/
+  --toast-icon-info-background: #89e6ff;
+  --toast-icon-success-background: linear-gradient(180deg, #a8ff5f 0%, #5cff83 50.52%, #2df6e3 100%);
+  --toast-icon-error-background: var(--system-red-color);
+}

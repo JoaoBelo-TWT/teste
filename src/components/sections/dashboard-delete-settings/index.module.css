@@ -1,0 +1,10 @@
+.dashboard-delete-settings {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--mantine-spacing-xl);
+
+  &__description {
+    margin-bottom: var(--mantine-spacing-md);
+  }
+}

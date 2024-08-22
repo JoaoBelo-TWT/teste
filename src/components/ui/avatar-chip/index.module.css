@@ -1,0 +1,44 @@
+.avatar-chip {
+  align-items: center;
+  background-color: var(--mantine-color-dark-1);
+  border: 1px solid var(--mantine-color-dark-1);
+  border-radius: 58px;
+  display: inline-flex;
+  max-width: 100%;
+  padding: 1px;
+  padding-right: 14px;
+
+  &--outlined {
+    border-color: var(--mantine-color-dark-8);
+  }
+
+  &[data-image='false'] {
+    padding-left: 14px;
+  }
+
+  &__image-container {
+    border-radius: 100%;
+    display: block;
+    height: var(--mantine-spacing-lg);
+    margin-right: var(--mantine-spacing-xs);
+    overflow: hidden;
+    position: relative;
+    width: var(--mantine-spacing-lg);
+
+    &--filled {
+      &::after {
+        background-color: transparent;
+        border: 1px solid var(--mantine-color-dark-3);
+        border-radius: 100%;
+        content: '';
+        display: block;
+        inset: 0;
+        position: absolute;
+      }
+    }
+  }
+
+  &__image {
+    border-radius: 100%;
+  }
+}

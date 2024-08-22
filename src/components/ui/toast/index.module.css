@@ -1,0 +1,21 @@
+.toast {
+  background-color: var(--mantine-color-dark-9);
+  border-radius: var(--mantine-radius-sm);
+  box-shadow: var(--shadow);
+  padding: 4px;
+  padding-right: 5px;
+  width: 100%;
+
+  &__icon-container {
+    border-radius: var(--mantine-radius-xs);
+    padding: 6px;
+  }
+
+  &__icon {
+    display: block;
+  }
+
+  &__info {
+    width: 100%;
+  }
+}

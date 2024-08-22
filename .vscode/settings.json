@@ -1,0 +1,48 @@
+{
+  "cSpell.words": [
+    "autodocs",
+    "Autosize",
+    "callees",
+    "clsx",
+    "Codegen",
+    "Combobox",
+    "commitlint",
+    "Dasharray",
+    "embla",
+    "hookform",
+    "hubspot",
+    "imask",
+    "jackspeak",
+    "mantine",
+    "mqls",
+    "nextjs",
+    "NOSONAR",
+    "nprogress",
+    "nuqs",
+    "pangea",
+    "signin",
+    "signup",
+    "sqls",
+    "stylelint",
+    "tabler",
+    "tailwindcss",
+    "tanstack",
+    "Timeframe",
+    "tiptap",
+    "toastify",
+    "topbar",
+    "Turbopack",
+    "Upsert",
+    "Wainer",
+    "zustand"
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "CodeGPT.apiKey": "CodeGPT Plus Beta",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

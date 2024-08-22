@@ -1,0 +1,31 @@
+.select {
+  &__input {
+    border: var(--mantine-color-dark-7) 1px solid;
+    border-radius: 0;
+    height: 48px;
+    padding: 10px 48px 10px var(--mantine-spacing-sm);
+
+    &[data-error] {
+      border: var(--system-red-color) 1px solid;
+      color: var(--mantine-color-dark-9);
+      padding-right: 72px;
+    }
+
+    &::placeholder {
+      color: var(--mantine-color-dark-5);
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  &__dropdown {
+    border: var(--mantine-color-dark-7) 1px solid;
+    border-radius: 0;
+    border-top: 0;
+  }
+
+  &__option {
+    height: 48px;
+    padding: 10px var(--mantine-spacing-sm);
+  }
+}

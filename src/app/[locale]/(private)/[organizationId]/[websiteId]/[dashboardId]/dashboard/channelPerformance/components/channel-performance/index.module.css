@@ -1,0 +1,107 @@
+.channel-performance {
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    max-height: 100%;
+    max-width: 100%;
+    padding-top: 48px;
+    position: relative;
+  }
+
+  &__chart-container {
+    height: 400px;
+    width: 400px;
+  }
+
+  &__grid-container {
+    width: 57%;
+  }
+
+  &__figure {
+    transition: font-size 0.3s ease;
+
+    &--small {
+      font-size: var(--mantine-spacing-lg);
+      font-weight: 700;
+      line-height: 120%;
+    }
+
+    &--large {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 120%;
+    }
+  }
+
+  &__caption {
+    font-size: rem(12px);
+    font-weight: 400;
+    line-height: 120%;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: $mantine-breakpoint-m) {
+    &__container {
+      justify-content: center;
+      padding-top: var(--mantine-spacing-sm);
+    }
+
+    &__chart-container {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      max-height: 400px;
+      max-width: 400px;
+    }
+
+    &__grid-container {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: $mantine-breakpoint-lg) {
+    &__container {
+      justify-content: center;
+      padding-top: var(--mantine-spacing-sm);
+    }
+
+    &__chart-container {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      max-height: 400px;
+      max-width: 400px;
+    }
+
+    &__grid-container {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: $mantine-breakpoint-md) {
+    &__container {
+      justify-content: center;
+      padding-top: var(--mantine-spacing-sm);
+    }
+
+    &__chart-container {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      max-height: 300px;
+      max-width: 300px;
+    }
+
+    &__chart-section {
+      gap: 20px;
+      padding-bottom: 12px;
+    }
+
+    &__grid-container {
+      width: 100%;
+    }
+  }
+}

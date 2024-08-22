@@ -1,0 +1,7 @@
+.dashboard-funnel-settings {
+  margin-top: var(--mantine-spacing-xl);
+
+  &__description {
+    margin-bottom: var(--mantine-spacing-md);
+  }
+}

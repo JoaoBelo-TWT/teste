@@ -1,0 +1,57 @@
+.pre-boarding-modal {
+  &__content {
+    display: flex;
+    height: rem(502px);
+    max-width: rem(960px);
+  }
+
+  &__section {
+    display: flex;
+    flex: 50%;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.2s linear;
+
+    &--left {
+      padding: rem(56px);
+    }
+  }
+
+  &__title {
+    color: var(--mantine-color-dark-9);
+    font-family: 'Chroma ST', sans-serif;
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-title);
+    line-height: 120%;
+    margin-bottom: var(--mantine-spacing-sm);
+  }
+
+  &__description {
+    color: var(--mantine-color-dark-7);
+    margin-bottom: var(--mantine-spacing-md);
+  }
+
+  @media (max-width: $mantine-breakpoint-m) {
+    &__content {
+      flex-direction: column;
+      flex-direction: column-reverse;
+      height: auto;
+      min-height: 100svh;
+    }
+
+    &__section {
+      flex: 0 1 auto;
+
+      &--left {
+        flex: 1;
+        padding: var(--mantine-spacing-md);
+      }
+
+      &--right {
+        height: rem(200px);
+        min-height: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.hero-control {
+  &__input {
+    border: none;
+    font-size: rem(56px);
+    font-weight: 400;
+    height: auto;
+    line-height: 120%;
+
+    &::placeholder {
+      color: var(--mantine-color-dark-4);
+      font-weight: 450;
+    }
+
+    &[data-error] {
+      border: none;
+      color: var(--mantine-color-dark-9);
+      padding-right: var(--mantine-spacing-lg);
+
+      &::placeholder {
+        color: var(--mantine-color-dark-4);
+      }
+    }
+  }
+}

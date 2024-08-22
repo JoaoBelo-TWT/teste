@@ -1,0 +1,11 @@
+.list {
+  &__container {
+    border: 1px solid;
+    border-color: var(--mantine-color-dark-4);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--shadow);
+    height: auto;
+    min-width: 100px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+.truncate-text {
+  &__tooltip {
+    background-color: var(--mantine-color-dark-1);
+    border-radius: var(--mantine-spacing-sm);
+    cursor: pointer;
+    min-width: var(--mantine-spacing-md);
+    text-align: center;
+  }
+
+  &__text-container {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

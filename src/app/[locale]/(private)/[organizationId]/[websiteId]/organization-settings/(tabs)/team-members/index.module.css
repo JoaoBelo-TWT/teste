@@ -1,0 +1,11 @@
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-sm);
+  width: 100%;
+
+  &__team-members-container {
+    margin-top: var(--mantine-spacing-md);
+    width: 100%;
+  }
+}

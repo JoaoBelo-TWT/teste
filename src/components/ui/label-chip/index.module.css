@@ -1,0 +1,7 @@
+.label-chip {
+  &__container {
+    border-radius: var(--mantine-radius-xs);
+    display: inline-block;
+    padding: var(--mantine-spacing-xs);
+  }
+}

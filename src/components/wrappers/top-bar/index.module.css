@@ -1,0 +1,19 @@
+.top-bar {
+  align-items: center;
+  background-color: var(--mantine-color-dark-2);
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  height: 80px;
+  justify-content: space-between;
+  left: var(--side-bar-width);
+  padding: 0 54px;
+  position: fixed;
+  top: 0;
+  width: calc(100% - var(--side-bar-width));
+  z-index: var(--mantine-z-index-app);
+
+  &--no-start-padding {
+    padding-left: var(--mantine-spacing-sm);
+  }
+}

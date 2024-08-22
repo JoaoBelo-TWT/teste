@@ -1,0 +1,35 @@
+.connections {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    gap: var(--mantine-spacing-xs);
+    height: 48px;
+    justify-content: flex-start;
+    padding: 0 var(--mantine-spacing-sm);
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    height: var(--mantine-spacing-xl);
+    justify-content: space-between;
+    width: 100%;
+
+    &--content {
+      align-items: center;
+      display: flex;
+      gap: var(--mantine-spacing-xs);
+    }
+  }
+
+  &__dropdown {
+    cursor: pointer;
+    margin-left: auto;
+    max-width: var(--mantine-spacing-lg);
+    position: relative;
+  }
+}

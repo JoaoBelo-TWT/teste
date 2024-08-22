@@ -1,0 +1,6 @@
+.content {
+  box-sizing: border-box;
+  margin: var(--mantine-spacing-sm);
+  overflow-x: hidden;
+  width: 100%;
+}

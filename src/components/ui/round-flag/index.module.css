@@ -1,0 +1,9 @@
+.round-flag {
+  border-radius: 50%;
+  display: flex;
+  flex: 1;
+  height: var(--mantine-spacing-lg);
+  max-width: var(--mantine-spacing-lg);
+  min-width: var(--mantine-spacing-lg);
+  overflow: hidden;
+}

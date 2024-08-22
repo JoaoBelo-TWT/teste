@@ -1,0 +1,4 @@
+.structure {
+  background-color: var(--mantine-color-dark-2);
+  display: flex;
+}

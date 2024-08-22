@@ -1,0 +1,23 @@
+.modal-base {
+  &__root {
+    background-color: var(--mantine-color-dark-0);
+    border-radius: var(--mantine-spacing-xl);
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    gap: var(--mantine-spacing-md);
+    justify-content: space-between;
+    min-width: 300px;
+    padding: var(--mantine-spacing-md);
+  }
+
+  &__child-wrapper {
+    padding: var(--mantine-spacing-md) 40px var(--mantine-spacing-lg);
+
+    @media (min-width: $mantine-breakpoint-m) {
+      min-width: 650px;
+    }
+  }
+}

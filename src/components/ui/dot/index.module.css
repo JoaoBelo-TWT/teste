@@ -1,0 +1,22 @@
+.dot {
+  align-items: center;
+  display: flex;
+  height: var(--mantine-spacing-md);
+  justify-content: center;
+  width: var(--mantine-spacing-md);
+
+  &::before {
+    border-radius: 50%;
+    content: '';
+    height: 10px;
+    width: 10px;
+  }
+
+  &--green::before {
+    background: var(--gradient-verdant-glow);
+  }
+
+  &--orange::before {
+    background: var(--gradient-orange-vertical);
+  }
+}
