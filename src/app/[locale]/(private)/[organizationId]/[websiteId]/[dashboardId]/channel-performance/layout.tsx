@@ -7,7 +7,7 @@ import TopBarWrapper from '@/components/wrappers/top-bar';
 import { SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 
-import DashboardFilters from '../dashboard/topbar/components/dashboard-filters';
+import DashboardFilters from '../dashboard/@topbar/components/dashboard-filters';
 
 export default async function DeepDiveLayout({
   params,

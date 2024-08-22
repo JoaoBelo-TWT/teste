@@ -1,0 +1,60 @@
+.figures-card {
+  &__root {
+    align-items: flex-start;
+    align-self: stretch;
+    background: var(--mantine-color-dark-0);
+    border: 1px solid var(--mantine-color-dark-4);
+    border-radius: var(--mantine-radius-md);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+
+    &--with-hover {
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.015);
+      }
+    }
+  }
+
+  &__header {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: var(--mantine-spacing-xxl);
+    padding: var(--mantine-spacing-lg);
+    position: relative;
+    width: 100%;
+
+    &--title-container {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: var(--mantine-spacing-xs);
+      max-width: 75%;
+    }
+
+    &--avatars-container {
+      align-items: center;
+      display: flex;
+      gap: var(--mantine-spacing-xs);
+    }
+
+    &--status-container {
+      align-items: center;
+      display: flex;
+      gap: 4px;
+    }
+  }
+
+  &__figures-container {
+    padding: var(--mantine-spacing-lg) var(--mantine-spacing-md);
+    position: relative;
+    width: 100%;
+  }
+}

@@ -1,0 +1,7 @@
+.header-buttons {
+  &__container {
+    display: flex;
+    gap: var(--mantine-spacing-xs);
+    max-width: 100%;
+  }
+}

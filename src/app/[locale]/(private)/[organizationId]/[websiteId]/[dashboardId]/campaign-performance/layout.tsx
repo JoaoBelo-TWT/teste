@@ -6,7 +6,7 @@ import TopBarWrapper from '@/components/wrappers/top-bar';
 import { fetchCampaigns } from '@/lib/fetch-campaigns';
 import { SPACING } from '@/resources/constants';
 
-import DashboardFilters from '../dashboard/topbar/components/dashboard-filters';
+import DashboardFilters from '../dashboard/@topbar/components/dashboard-filters';
 
 import CampaignTabsClient from './tabs-client';
 

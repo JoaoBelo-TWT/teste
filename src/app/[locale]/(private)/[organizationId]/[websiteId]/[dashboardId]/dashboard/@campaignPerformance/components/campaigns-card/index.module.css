@@ -1,0 +1,18 @@
+.campaigns-card {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    height: 100%;
+    margin-top: 48px;
+    position: relative;
+    width: 100%;
+  }
+
+  &__button-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
