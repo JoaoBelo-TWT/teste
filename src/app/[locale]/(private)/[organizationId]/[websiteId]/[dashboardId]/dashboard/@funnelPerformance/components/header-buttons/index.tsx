@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import { Dropdown } from '@/components/ui/dropdown';
-import { useSetQueryParamClient } from '@/hooks/query-params/set-query-params-client';
+import { useSetQueryParam } from '@/hooks/use-set-query-params/set-query-params-client';
 import { SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { DashboardQueryParams } from '@/types/constants/dashboard-query-params';
@@ -19,7 +19,7 @@ export function HeaderButtons() {
   const t = useTranslations();
   const comboboxFirstTouch = useCombobox();
   const searchParams = useSearchParams();
-  const { setQueryParam } = useSetQueryParamClient();
+  const { setQueryParam } = useSetQueryParam();
   const { organizationId, dashboardId, websiteId } = useParams<{
     organizationId: string;
     dashboardId: string;

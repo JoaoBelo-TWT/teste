@@ -2,6 +2,8 @@
 
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client';
 import { MantineProvider } from '@mantine/core';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
 import postHog from 'posthog-js';
 import { PostHogProvider, usePostHog } from 'posthog-js/react';
 import { useEffect } from 'react';
@@ -9,6 +11,7 @@ import { useEffect } from 'react';
 import { ToastContainer } from '@/components/ui/toast';
 import { AuthLoadingWrapper } from '@/components/wrappers/loading-wrapper';
 import { ModalsProvider } from '@/context/modal/modal';
+import getQueryClient from '@/lib/react-query/client';
 
 import { theme } from '../../theme';
 
@@ -37,16 +40,22 @@ export const PostHogSessionSetter = () => {
 };
 
 export function Providers({ children }: Readonly<{ children: React.ReactNode }>) {
+  const queryClient = getQueryClient();
+
   return (
     <UserProvider>
-      <PostHogProvider client={postHog}>
-        <MantineProvider theme={theme}>
-          <ToastContainer />
-          <ModalsProvider />
-          <PostHogSessionSetter />
-          <AuthLoadingWrapper>{children}</AuthLoadingWrapper>
-        </MantineProvider>
-      </PostHogProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryStreamedHydration>
+          <PostHogProvider client={postHog}>
+            <MantineProvider theme={theme}>
+              <ToastContainer />
+              <ModalsProvider />
+              <PostHogSessionSetter />
+              <AuthLoadingWrapper>{children}</AuthLoadingWrapper>
+            </MantineProvider>
+          </PostHogProvider>
+        </ReactQueryStreamedHydration>
+      </QueryClientProvider>
     </UserProvider>
   );
 }

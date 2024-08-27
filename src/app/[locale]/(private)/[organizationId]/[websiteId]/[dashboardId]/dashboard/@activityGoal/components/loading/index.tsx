@@ -1,6 +1,4 @@
-import { Paper, Skeleton } from '@mantine/core';
-
-import { SPACING } from '@/resources/constants';
+import { Box, Paper, Skeleton } from '@mantine/core';
 
 import activityGoalCardClasses from '../activity-goal-card/index.module.css';
 
@@ -14,7 +12,9 @@ export function ActivityGoalSkeleton() {
           <Skeleton height={18} />
         </div>
       </div>
-      <Skeleton height={'70%'} width={'100%'} radius="lg" opacity={'50%'} mt={SPACING.md} />
+      <Box px={24} py={24} w="100%" h="100%">
+        <Skeleton height={'100%'} width={'100%'} radius="lg" opacity={'50%'} />
+      </Box>
     </Paper>
   );
 }

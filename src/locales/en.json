@@ -1,69 +1,72 @@
 {
   "title": "Tracking with Source",
   "common": {
-    "showMore": "Show More",
-    "justNow": "Just now",
-    "minutesAgo": "minutes ago",
-    "hoursAgo": "hours ago",
-    "notApplicable": "n/a",
-    "sortBy": "Sort By",
-    "finish": "Finish",
-    "ok": "Ok",
-    "continue": "Continue",
-    "cancel": "Cancel",
-    "settings": "Settings",
-    "comingSoon": "Coming Soon",
-    "display": "Display",
-    "suggested": "Suggested",
-    "skipForNow": "Skip for now",
-    "add": "Add",
-    "remove": "Remove",
-    "reload": "Reload",
-    "rename": "Rename",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete",
-    "nothingFound": "Nothing found",
-    "logout": "Logout",
+    "today": "Today",
     "account": "Account",
-    "websites": "Your websites",
-    "addWebsite": "Add new website",
-    "organizations": "Your organizations",
-    "success": "Success",
-    "error": "Error",
-    "addGoals": "Add goals",
-    "goals": "Goals",
+    "add": "Add",
     "addCustomerFunnels": "Add customer funnels",
-    "customerFunnel": "Customer Funnel",
-    "connectWebsite": "Connect to your website",
-    "noData": "No data available, yet. Wait a couple minutes.",
-    "noDataSimple": "No data available, yet.",
-    "noGoals": "You still don't have any goals setup.",
-    "noCustomerFunnels": "You still don't have any customer funnels setup.",
-    "noWebsiteConnected": "You still don't have any website connected.",
-    "join": "Join",
-    "noChannel": "No selected channel",
+    "addGoals": "Add goals",
+    "addWebsite": "Add new website",
     "billing": "Billing",
-    "personalSettings": "Personal Details",
-    "organizationSettings": "Organization Settings",
-    "inviteMembers": "Invite Members",
-    "user": "User",
-    "errorGeneral": "An error occurred, please try again later",
-    "loadingText": "Loading...",
-    "goToDashboard": "Go to dashboard",
-    "leave": "Leave",
-    "upload": "Upload",
-    "image": "Image",
-    "deleteDashboard": "Delete dashboard",
+    "campaignPerformance": "campaign-performance",
+    "cancel": "Cancel",
     "cantBeUndone": "This action is permanent and cannot be undone.",
-    "eventName": "Event Name",
-    "events": "Events",
+    "comingSoon": "Coming Soon",
+    "connect": "Connect",
+    "connectWebsite": "Connect to your website",
+    "contacts": "Contacts",
+    "continue": "Continue",
     "conversions": "Conversions",
     "conversionsByName": "{channel} Conversions",
     "costPerByName": "Cost Per {channel}",
-    "campaignPerformance": "campaign-performance",
+    "customerFunnel": "Customer Funnel",
+    "delete": "Delete",
+    "deleteDashboard": "Delete dashboard",
+    "display": "Display",
+    "edit": "Edit",
+    "error": "Error",
+    "errorGeneral": "An error occurred, please try again later",
+    "eventName": "Event Name",
+    "events": "Events",
+    "finish": "Finish",
+    "goals": "Goals",
+    "goToDashboard": "Go to dashboard",
+    "hoursAgo": "hours ago",
+    "image": "Image",
+    "inviteMembers": "Invite Members",
+    "join": "Join",
+    "justNow": "Just now",
+    "leave": "Leave",
+    "loadingText": "Loading...",
+    "logout": "Logout",
+    "minutesAgo": "minutes ago",
+    "noChannel": "No selected channel",
+    "noCustomerFunnels": "You still don't have any customer funnels setup.",
+    "noData": "No data available, yet. Wait a couple minutes.",
+    "noDataSimple": "No data available, yet.",
+    "noGoals": "You still don't have any goals setup.",
     "noNotifications": "You don’t have notifications yet.",
-    "connect": "Connect"
+    "notApplicable": "n/a",
+    "nothingFound": "Nothing found",
+    "noWebsiteConnected": "You still don't have any website connected.",
+    "ok": "Ok",
+    "organizations": "Your organizations",
+    "organizationSettings": "Organization Settings",
+    "personalSettings": "Personal Details",
+    "reload": "Reload",
+    "remove": "Remove",
+    "rename": "Rename",
+    "save": "Save",
+    "settings": "Settings",
+    "showMore": "Show More",
+    "skipForNow": "Skip for now",
+    "sortBy": "Sort By",
+    "success": "Success",
+    "suggested": "Suggested",
+    "unknown": "Unknown",
+    "upload": "Upload",
+    "user": "User",
+    "websites": "Your websites"
   },
   "general": {
     "navigation": {
@@ -647,6 +650,7 @@
         "error": "An error occurred while fetching customer journey data."
       },
       "activityGoalCard": {
+        "goal": "Website Activity | Goal:",
         "title": "Activity Goal",
         "empty": "No activity goals set",
         "addButton": "Add Activity Goal",
@@ -655,13 +659,14 @@
         "noFunnels": "To setup this goal, you first need to define a customer funnel."
       },
       "budgetGoalCard": {
+        "goal": "Budget | Goal:",
         "title": "Budget Goal",
         "empty": "No budget goals set",
         "addButton": "Add Budget Goal",
         "renewsIn": "Renews in {days, plural, =1 {# day} other {# days}}",
         "error": "An error occurred while fetching budget goal data.",
         "edit": "Edit",
-        "goals": "Goals"
+        "goals": "Monthly Goals"
       },
       "campaignsCard": {
         "title": "Campaign Performance",
@@ -698,8 +703,8 @@
         "title": "Website Performance",
         "error": "An error occurred while fetching website activity data.",
         "websiteVisitsCard": {
-          "title": "Total Web Visits",
-          "visits": "Visits"
+          "title": "Total Web Views",
+          "views": "Views"
         },
         "topPagesCard": {
           "title": "Top Pages",
@@ -711,7 +716,7 @@
             "pagesViewsSorting": {
               "dropdownOptions": {
                 "mostViews": "Most Views",
-                "mostConversions": "Most Conversions"
+                "mostConversions": "Most Visitors"
               }
             }
           }
@@ -723,8 +728,8 @@
           "title": "Conversion Rate"
         },
         "trafficCard": {
-          "title": "Website Visits",
-          "tooltip": "website visits"
+          "title": "Website Visitors",
+          "tooltip": "website visitors"
         }
       }
     },
@@ -1032,6 +1037,9 @@
     }
   },
   "validation": {
+    "invalidUrl": "Invalid URL",
+    "missingHttps": "URL must start with \"https://\".",
+    "missingWWW": "URL must include \"www.\"",
     "somethingWentWrong": "Something went wrong, please try again later",
     "imageTooBig": "Image must be 2MB or less",
     "firstName": "First name should be at least 3 characters long",

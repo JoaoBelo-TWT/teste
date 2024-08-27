@@ -35,8 +35,15 @@ export default function NavigationTabs({
     return str;
   }
 
+  function removeDetailSuffix(url: string) {
+    if (url.endsWith('/detail')) {
+      return url.slice(0, -7);
+    }
+    return url;
+  }
+
   return (
-    <Tabs value={currentPath} variant="header">
+    <Tabs value={removeDetailSuffix(currentPath)} variant="header">
       <Tabs.List>
         {tabs.map((tab) => (
           <Link

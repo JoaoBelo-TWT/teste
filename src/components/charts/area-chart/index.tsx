@@ -52,7 +52,7 @@ const defaultProps: Partial<CustomAreaChartProps> = {
   orientation: 'horizontal',
   areaChartProps: {
     width: 250,
-    margin: { left: 0, bottom: 0, right: 15 },
+    margin: { left: 0, bottom: 0, right: 0, top: 5 },
     innerRadius: '24px'
   }
 };

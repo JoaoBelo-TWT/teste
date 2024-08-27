@@ -13,13 +13,13 @@ import { SelectControl } from '@/components/controls/select-control';
 import { SwitchControl } from '@/components/controls/switch-control';
 import { ButtonForm } from '@/components/ui/button-form';
 import { TextInput } from '@/components/ui/text-input';
+import { toaster } from '@/components/ui/toast';
 import { useModal } from '@/context/modal';
+import { useMutationCreateExpense } from '@/lib/react-query/expense/use-mutation-create-expense';
 import { SPACING } from '@/resources/constants';
-import { showResponseToast } from '@/utils/server-actions/show-response-toast';
 
 import { AddExpenseFormData, AddExpenseSchema } from '../schemas';
 
-import { CreateExpense } from './action';
 import classes from './index.module.css';
 import { AddExpenseFormProps } from './types';
 
@@ -46,19 +46,24 @@ export function AddExpenseForm({ dashboardId }: Readonly<AddExpenseFormProps>) {
     }
   });
 
-  const formAction: () => Promise<void> = handleSubmit(async (formData) => {
+  const mutation = useMutationCreateExpense({
+    onSuccess: () =>
+      toaster.success({
+        title: t('modals.createExpense.successToastMessage')
+      }),
+    onError: (error) =>
+      toaster.success({
+        title: error.message
+      }),
+    onMutate: destroyModal
+  });
+
+  const formAction: () => Promise<void> = handleSubmit((formData) => {
     const { recurring, ...remainingData } = formData;
     const { recurringRepeat, ...coreData } = remainingData;
     const data = recurring ? { ...coreData, recurringRepeat } : coreData;
 
-    const response = await CreateExpense({ ...data, dashboardId });
-
-    showResponseToast({
-      response,
-      showSuccessMessages: true,
-      successMessage: t('modals.createExpense.successToastMessage')
-    });
-    destroyModal();
+    mutation.mutate({ ...data, dashboardId });
   });
 
   const categoryOptions: ComboboxData = useMemo(

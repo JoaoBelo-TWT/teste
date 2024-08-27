@@ -13,7 +13,7 @@ import {
   SortingOrder
 } from '@/__generated__/graphql';
 import { Table } from '@/components/ui/table';
-import { useSorting } from '@/hooks/table-sorting';
+import { useSorting } from '@/hooks/use-sorting';
 import { removeSpaces } from '@/utils/strings/remove-spaces';
 
 import { PermissionsDropdown } from '../permissions-dropdown';

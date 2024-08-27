@@ -1,6 +1,7 @@
 'use client';
 
 import { Flex, Text, Title } from '@mantine/core';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
@@ -11,18 +12,15 @@ import { MODALS, SPACING } from '@/resources/constants';
 
 import { DashboardPathParams } from '../../../types';
 
-export default function BudgetGoalEmptyState({
-  params
-}: Readonly<{
-  params: DashboardPathParams;
-}>) {
+export default function BudgetGoalEmptyState() {
   const t = useTranslations('dashboard.overview.budgetGoalCard');
   const { setModal, setData } = useModal();
+  const { dashboardId } = useParams<DashboardPathParams>();
 
   const handleClick = useCallback(() => {
-    setData(params.dashboardId);
+    setData(dashboardId);
     setModal(MODALS.CREATE_BUDGET_GOAL);
-  }, [params.dashboardId, setData, setModal]);
+  }, [dashboardId, setData, setModal]);
 
   return (
     <BaseCard paperProps={{ shadow: '0' }}>

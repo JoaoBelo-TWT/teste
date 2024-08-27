@@ -1,10 +1,11 @@
 /* eslint-disable i18next/no-literal-string */
 export const nextCacheTags = {
-  notificationsQuery: 'notificationsQuery', 
+  notificationsQuery: 'notificationsQuery',
   dashboardQuery: 'dashboardQuery',
   dashboardsQuery: 'dashboardsQuery',
   dashboardOverviewQuery: 'dashboardOverviewQuery',
-  dashboardGoalQuery: 'dashboardGoalQuery',
+  dashboardBudgetGoalQuery: 'dashboardBudgetGoalQuery',
+  dashboardActivityGoalQuery: 'dashboardActivityGoalQuery',
   dashboardCustomerJourneyQuery: 'dashboardCustomerJourneyQuery',
   dashboardWebsiteActivityQuery: 'dashboardWebsiteActivityQuery',
   dashboardChannelPerformanceQuery: 'dashboardChannelPerformanceQuery',

@@ -1,4 +1,4 @@
-import { Paper, Skeleton } from '@mantine/core';
+import { Box, Paper, Skeleton } from '@mantine/core';
 
 import budgetGoalCardClasses from '../budget-goal-card/index.module.css';
 
@@ -12,7 +12,9 @@ export function BudgetGoalSkeleton() {
           <Skeleton height={18} />
         </div>
       </div>
-      <Skeleton height={'70%'} width={'100%'} radius="lg" opacity={'50%'} />
+      <Box px={24} pt={24} w="100%" h="100%">
+        <Skeleton height={'100%'} width={'100%'} radius="lg" opacity={'50%'} />
+      </Box>
     </Paper>
   );
 }

@@ -12,7 +12,10 @@ export const STAT_VARIANT = {
 };
 
 export const DATE_FORMATS = {
-  COMPACT: 'MMM D'
+  FULL: 'MMM D, YYYY',
+  HOUR: 'h:mm A',
+  COMPACT: 'MMM D',
+  COMPACT_WEEKDAY: 'ddd MMM D'
 };
 
 export const BREAKPOINTS = {

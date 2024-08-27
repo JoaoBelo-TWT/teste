@@ -85,6 +85,7 @@
         "mode": "all",
         "jsx-attributes": {
           "exclude": [
+            "dataKey",
             "td",
             "fz",
             "miw",
@@ -183,6 +184,7 @@
         },
         "callees": {
           "exclude": [
+            "section",
             "useTranslations",
             "getTranslations",
             "t",

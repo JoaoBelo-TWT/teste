@@ -1,11 +1,14 @@
 'use client';
 
+import { Flex, Text } from '@mantine/core';
+import { QuestionMark } from '@phosphor-icons/react/dist/ssr';
 import { ColumnDef, PaginationState } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useMemo, useCallback, useState } from 'react';
 
 import { FunnelPerformanceDeepDive } from '@/__generated__/graphql';
+import { Avatar } from '@/components/ui/avatar';
 import { AvatarWithLabel } from '@/components/ui/avatar-label';
 import { Table } from '@/components/ui/table';
 import { useSetSearchParams } from '@/components/ui/table/useSetSearchParams';
@@ -73,8 +76,23 @@ export function FunnelDetailsTable({
         accessorKey: 'sourceUrl',
         enableSorting: false,
         header: t('deepDives.table.columns.sourceUrl'),
-        cell: ({ row }) =>
-          provideAvatar(row.original.urlSourceImage || '', row.original.sourceUrl || '', row.original.firstPageVisited)
+        cell: ({ row }) => {
+          if (!row.original.firstPageVisited) {
+            return (
+              <Flex align="center" gap={SPACING.xs}>
+                <Avatar variant="outline" size={32}>
+                  <QuestionMark size={16} />
+                </Avatar>
+                <Text fz="sm">{t('common.unknown')}</Text>
+              </Flex>
+            );
+          }
+          return provideAvatar(
+            row.original.urlSourceImage || '',
+            row.original.sourceUrl || '',
+            row.original.firstPageVisited
+          );
+        }
       },
       {
         accessorKey: 'firstPageVisited',

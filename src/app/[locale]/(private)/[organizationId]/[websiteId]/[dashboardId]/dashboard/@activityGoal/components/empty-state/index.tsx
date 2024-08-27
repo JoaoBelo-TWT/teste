@@ -1,7 +1,7 @@
 'use client';
 
 import { ComboboxData, Flex, Text, Title } from '@mantine/core';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
@@ -12,45 +12,39 @@ import { MODALS, SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { OnboardingFlowType } from '@/types/enums/new-dashboard-query-params';
 
-import { DashboardPathParams } from '../../../types';
-
 export default function ActivityGoalEmptyState({
-  params,
   customerFunnelStages
 }: Readonly<{
-  params: DashboardPathParams;
   customerFunnelStages: ComboboxData | undefined;
 }>) {
   const t = useTranslations();
   const { setModal, setData } = useModal();
   const router = useRouter();
+
+  const { dashboardId, websiteId, organizationId } = useParams<{
+    dashboardId: string;
+    websiteId: string;
+    organizationId: string;
+  }>();
+
   const noFunnels = customerFunnelStages && customerFunnelStages?.length <= 0;
 
   const handleClick = useCallback(() => {
     if (noFunnels) {
       router.push(
         routes.dashboard.dashboardCreate.customerFunnel.path(
-          params.organizationId,
-          params.websiteId,
-          params.dashboardId,
+          organizationId,
+          websiteId,
+          dashboardId,
           // TODO: SA-635 - When we have multiple dashboard types we can fetch this from the API
           OnboardingFlowType.EXECUTIVE
         )
       );
     } else {
-      setData({ dashboardId: params.dashboardId, customerFunnelStages });
+      setData({ dashboardId, customerFunnelStages });
       setModal(MODALS.CREATE_ACTIVITY_GOAL);
     }
-  }, [
-    customerFunnelStages,
-    params.dashboardId,
-    setData,
-    setModal,
-    noFunnels,
-    params.websiteId,
-    params.organizationId,
-    router
-  ]);
+  }, [customerFunnelStages, dashboardId, setData, setModal, noFunnels, websiteId, organizationId, router]);
 
   return (
     <BaseCard paperProps={{ shadow: '0' }}>

@@ -6,9 +6,10 @@ import { useTranslations } from 'next-intl';
 import { useMemo, useCallback, useState } from 'react';
 
 import { FunnelPerformanceConversionDetails } from '@/__generated__/graphql';
-import { AvatarWithLabel } from '@/components/ui/avatar-label';
+import { RoundFlag } from '@/components/ui/round-flag';
 import { Table } from '@/components/ui/table';
-import { SPACING } from '@/resources/constants';
+import { DATE_FORMATS, SPACING } from '@/resources/constants';
+import { splitByComma } from '@/utils/strings/split-by-coma';
 
 import { mockData } from '../../funnel-performance/[funnelId]/detail/mock';
 
@@ -25,9 +26,12 @@ export function SourceDetailsTable({
 
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>(pagination);
 
-  const provideAvatar = useCallback(
-    (imageSource: string, source: string) => (
-      <AvatarWithLabel imageSrc={imageSource} label={source || t('common.notApplicable')} />
+  const provideRegion = useCallback(
+    (region: string) => (
+      <RoundFlag
+        countryCode={splitByComma(region).length > 1 ? splitByComma(region)[1] : null}
+        label={region ?? t('common.notApplicable')}
+      />
     ),
     [t]
   );
@@ -52,7 +56,7 @@ export function SourceDetailsTable({
         accessorKey: 'source',
         enableSorting: false,
         header: t('deepDives.table.columns.region'),
-        cell: ({ row }) => provideAvatar(row.original.regionImage || '', row.original.region || '')
+        cell: ({ row }) => provideRegion(row.original.region)
       },
       {
         accessorKey: 'email',
@@ -82,10 +86,10 @@ export function SourceDetailsTable({
         accessorKey: 'date',
         enableSorting: false,
         header: t('deepDives.table.columns.date'),
-        cell: ({ row }) => dayjs(row.original.date).format('DD-MM-YYYY HH:mm')
+        cell: ({ row }) => dayjs(row.original.date).format(DATE_FORMATS.FULL)
       }
     ],
-    [t, provideAvatar]
+    [t, provideRegion]
   );
 
   return (

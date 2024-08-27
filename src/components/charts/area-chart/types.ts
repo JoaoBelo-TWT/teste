@@ -87,6 +87,9 @@ export interface CustomAreaChartProps
 
   /** Determines whether points with `null` values should be connected, `true` by default */
   connectNulls?: boolean;
+
+  xAxisStartLabel?: string;
+  xAxisEndLabel?: string;
 }
 
 export type CustomAreaChartFactory = Factory<{

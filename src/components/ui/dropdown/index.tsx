@@ -55,7 +55,7 @@ export function Dropdown({
             onClick: OnClickOption,
             rightContent,
             leftContent,
-            preFetch = true
+            preFetch
           },
           index
         ) =>

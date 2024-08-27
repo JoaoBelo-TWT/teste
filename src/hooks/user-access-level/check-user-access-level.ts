@@ -1,5 +1,5 @@
 import { AccessLevel } from '@/__generated__/graphql';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/get-query-fetch-me';
 
 interface UserAccessLevelProps {
   organizationId: string;
@@ -7,7 +7,7 @@ interface UserAccessLevelProps {
 
 export async function useUserAccessLevel({ organizationId }: UserAccessLevelProps): Promise<AccessLevel | undefined> {
   try {
-    const user = await fetchMeData();
+    const user = await getMe();
 
     const result = user.me?.permissions
       ?.find((entry) => entry.organizationId === organizationId)

@@ -109,6 +109,7 @@ export function ConnectFormsForm({
             {...register(`forms.${index}.url` as const)}
           />
           <TextInput
+            maw={200}
             label={
               index < 1 && (
                 <Flex w={'100%'}>

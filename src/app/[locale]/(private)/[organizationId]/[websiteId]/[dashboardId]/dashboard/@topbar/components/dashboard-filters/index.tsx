@@ -3,8 +3,9 @@
 import { Divider, Flex, Text, useCombobox } from '@mantine/core';
 import { CalendarBlank } from '@phosphor-icons/react';
 import dayjs from 'dayjs';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { DashboardTimeframe } from '@/__generated__/graphql';
 import { Button } from '@/components/ui/button';
@@ -28,8 +29,14 @@ const yearGap = `${startOfYear.format(DATE_FORMATS.COMPACT)} - ${yesterday.forma
 export default function DashboardFilters() {
   const t = useTranslations();
   const comboboxTimeframe = useCombobox();
-
+  const searchParams = useSearchParams();
   const { filters, setFilters } = useNavigationStore();
+  const queryTimeframe = searchParams.get(DashboardQueryParams.timeframe.key);
+
+  useEffect(() => {
+    if (queryTimeframe) setFilters({ [DashboardQueryParams.timeframe.key]: queryTimeframe as DashboardTimeframe });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const timeframeOptions = useMemo(
     () => [

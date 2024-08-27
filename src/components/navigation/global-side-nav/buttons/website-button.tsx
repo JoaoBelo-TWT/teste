@@ -51,7 +51,8 @@ export function WebsiteButton({
         </div>
         {edge.node.id === activeWebsiteId && <Check size={16} />}
       </>
-    )
+    ),
+    preFetch: false
   }));
 
   const connectWebsiteOption = {

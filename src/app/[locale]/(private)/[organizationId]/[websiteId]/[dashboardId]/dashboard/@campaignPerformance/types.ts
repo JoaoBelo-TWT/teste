@@ -1,1 +1,1 @@
-export type ShowMoreButtonProps = { campaignsLength?: number };
+export type ShowMoreButtonProps = { campaignsLength?: number; onClick: () => void; isLoading: boolean };

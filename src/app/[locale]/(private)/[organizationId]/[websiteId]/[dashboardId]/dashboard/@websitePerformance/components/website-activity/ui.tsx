@@ -23,7 +23,6 @@ export function WebSiteActivityUI({
   websiteUrl
 }: Readonly<WebSiteActivityUIProps>) {
   const t = useTranslations('dashboard.overview.activityCard.trafficCard');
-
   return (
     <BaseCard
       headerProps={{

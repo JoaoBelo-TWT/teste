@@ -1,26 +1,23 @@
 'use client';
 
-import { useSuspenseQuery } from '@apollo/client';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
+import { HubspotIntegrationStatus, SalesforceIntegrationStatus } from '@/__generated__/graphql';
 import { getCardRadius, getGradientRadius } from '@/components/charts/funnel-chart';
 import { FunnelChartProps } from '@/components/charts/funnel-chart/types';
 import { useNavigationStore } from '@/context/navigation/store';
-import { getDashboardCustomerJourneyQuery } from '@/lib/apollo/queries/dashboard-customer-journey';
+import { useQueryFunnelPerformance } from '@/lib/react-query/dashboard/executive/use-query-funnel-performance';
+import { useQueryWebsite } from '@/lib/react-query/website/use-query-website';
 
 import { TitleWithTooltip } from '../../../components/title-with-tooltip';
 import { HeaderButtons } from '../header-buttons';
 
 import { CustomerJourneyEmpty } from './empty';
-import { JourneyProps } from './types';
 import { CustomerJourneyUI } from './ui';
 
-export default function CustomerJourney({
-  viewOnly = false,
-  dashboardJourneyData: dashboardJourneyDataServer
-}: Readonly<JourneyProps>) {
+export default function CustomerJourney() {
   const t = useTranslations('dashboard');
 
   const { dashboardId, websiteId, organizationId } = useParams<{
@@ -29,24 +26,22 @@ export default function CustomerJourney({
     organizationId: string;
   }>();
 
-  const { filters, triggers } = useNavigationStore();
+  const { filters } = useNavigationStore();
 
-  const { data: dashboardJourneyDataClient } = useSuspenseQuery(getDashboardCustomerJourneyQuery, {
-    variables: {
-      dashboardId,
-      dashboardTimeframe: filters.timeframe
-    },
-    skip: !triggers.journeys
+  const { data: funnelPerformance } = useQueryFunnelPerformance({
+    dashboardId,
+    dashboardTimeframe: filters.timeframe
   });
+  const { data: website } = useQueryWebsite(websiteId);
 
-  const customerJourneys = useMemo(
-    () => dashboardJourneyDataClient?.dashboardCustomerJourney ?? dashboardJourneyDataServer,
-    [dashboardJourneyDataClient, dashboardJourneyDataServer]
-  );
+  const connectedToCRM =
+    website?.website.salesforceIntegrationStatus === SalesforceIntegrationStatus.Active ||
+    website?.website.hubspotIntegrationStatus === HubspotIntegrationStatus.Active;
+
   const data: FunnelChartProps[] = useMemo(() => {
     let firstChanelValue = 0;
     return (
-      customerJourneys?.journeys?.map((item, index, array) => {
+      funnelPerformance.dashboardCustomerJourney?.journeys?.map((item, index, array) => {
         const value = array.slice(index).reduce((sum, currentItem) => sum + (currentItem?.conversionEvents || 0), 0);
 
         if (index === 0) {
@@ -64,17 +59,17 @@ export default function CustomerJourney({
           percentageChange,
           isPercentageVisible: index !== 0,
           rootStyles: {
-            ...getCardRadius({ index, totalItems: customerJourneys.journeys?.length })
+            ...getCardRadius({ index, totalItems: funnelPerformance.dashboardCustomerJourney.journeys?.length })
           },
           gradientStyles: {
-            ...getGradientRadius({ index, totalItems: customerJourneys.journeys?.length })
+            ...getGradientRadius({ index, totalItems: funnelPerformance.dashboardCustomerJourney.journeys?.length })
           }
         };
       }) ?? []
     );
-  }, [customerJourneys, t]);
+  }, [funnelPerformance.dashboardCustomerJourney, t]);
 
-  if (!customerJourneys.isSetup) {
+  if (!funnelPerformance.dashboardCustomerJourney.isSetup) {
     return (
       <CustomerJourneyEmpty
         variant="no-goals"
@@ -85,7 +80,7 @@ export default function CustomerJourney({
     );
   }
 
-  if (!customerJourneys.hasEvents) {
+  if (!funnelPerformance.dashboardCustomerJourney.hasEvents) {
     return (
       <CustomerJourneyEmpty
         variant="no-data"
@@ -98,7 +93,7 @@ export default function CustomerJourney({
 
   return (
     <CustomerJourneyUI
-      viewOnly={viewOnly}
+      viewOnly={!connectedToCRM}
       headerTitle={
         <TitleWithTooltip title={t('overview.customerJourneyCard.title')} tooltip={t('tooltips.funnelPerformance')} />
       }

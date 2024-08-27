@@ -1,9 +1,6 @@
 import { ReactNode } from 'react';
 
-import { GetDashboardOverviewQuery } from '@/__generated__/graphql';
-
 export interface WelcomeCardProps {
-  dashboardOverview: GetDashboardOverviewQuery['dashboardOverview'];
   name: string;
 }
 

@@ -1,13 +1,13 @@
 'use client';
 
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { useParams } from 'next/navigation';
 import { useFormatter, useTranslations } from 'next-intl';
 import { useCallback, useMemo } from 'react';
 
-import { Channels } from '@/__generated__/graphql';
+import { Channels, HubspotIntegrationStatus, SalesforceIntegrationStatus } from '@/__generated__/graphql';
 import { useNavigationStore } from '@/context/navigation/store';
-import { getDashboardChanelPerformanceQuery } from '@/lib/apollo/queries/dashboard-channel-performance';
+import { useQueryChannelPerformance } from '@/lib/react-query/dashboard/executive/use-query-channel-performance';
+import { useQueryWebsite } from '@/lib/react-query/website/use-query-website';
 import { formatNumber } from '@/utils/formatters/numbers';
 import { getAcronymOrAbbreviateString } from '@/utils/strings/abbreviate-strings';
 
@@ -15,13 +15,9 @@ import { TitleWithTooltip } from '../../../components/title-with-tooltip';
 import { HeaderButtons } from '../header-buttons';
 
 import ChannelPerformanceEmpty from './empty';
-import { ChannelPerformanceProps } from './types';
 import { ChannelPerformanceUI } from './ui';
 
-export default function ChannelPerformance({
-  viewOnly = false,
-  channelPerformancesArray: channelPerformancesArrayServer
-}: Readonly<ChannelPerformanceProps>) {
+export default function ChannelPerformance() {
   const t = useTranslations();
   const format = useFormatter();
 
@@ -30,23 +26,22 @@ export default function ChannelPerformance({
     websiteId: string;
     organizationId: string;
   }>();
-  const { filters, triggers } = useNavigationStore();
+  const { filters } = useNavigationStore();
 
-  const { data } = useSuspenseQuery(getDashboardChanelPerformanceQuery, {
-    variables: {
-      dashboardId,
-      dashboardTimeframe: filters.timeframe,
-      channelPerformanceSorting: filters.channelSorting
-    },
-    skip: !triggers.channels
+  const { data } = useQueryChannelPerformance({
+    dashboardId,
+    dashboardTimeframe: filters.timeframe,
+    channelSorting: filters.channelSorting
   });
+
+  const { data: website } = useQueryWebsite(websiteId);
+  const connectedToCRM =
+    website?.website.salesforceIntegrationStatus === SalesforceIntegrationStatus.Active ||
+    website?.website.hubspotIntegrationStatus === HubspotIntegrationStatus.Active;
 
   const channelPerformancesArrayClient = useMemo(() => data?.dashboardChannelPerformance, [data]);
 
-  const channelPerformancesArray = useMemo(
-    () => channelPerformancesArrayClient ?? channelPerformancesArrayServer,
-    [channelPerformancesArrayClient, channelPerformancesArrayServer]
-  );
+  const channelPerformancesArray = useMemo(() => channelPerformancesArrayClient, [channelPerformancesArrayClient]);
 
   const channelColors = useMemo(
     () => ({
@@ -133,7 +128,7 @@ export default function ChannelPerformance({
   );
 
   const sortedSectionsData = useMemo(() => sectionsData?.sort((a, b) => b.count - a.count), [sectionsData]);
-  if (!channelPerformancesArray.isSetup) {
+  if (!channelPerformancesArray?.isSetup) {
     return (
       <ChannelPerformanceEmpty
         variant="no-goals"
@@ -193,7 +188,7 @@ export default function ChannelPerformance({
           options: { style: 'currency', currency: section.currency, notation: 'compact', maximumFractionDigits: 0 }
         }),
         href:
-          typeof section.name === 'string' && section.name.toLowerCase() !== 'other' && !viewOnly
+          typeof section.name === 'string' && section.name.toLowerCase() !== 'other' && connectedToCRM
             ? `channel-performance/${section.name.toLowerCase()}?timeframe=${filters.timeframe}`
             : undefined
       }))}

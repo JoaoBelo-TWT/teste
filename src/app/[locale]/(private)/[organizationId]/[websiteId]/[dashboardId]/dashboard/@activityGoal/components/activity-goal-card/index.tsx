@@ -1,29 +1,54 @@
 'use client';
 
-import { Paper, Text } from '@mantine/core';
+import { ComboboxData, Paper, Text } from '@mantine/core';
 import dayjs from 'dayjs';
+import { useParams } from 'next/navigation';
 import { useFormatter, useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import { AreaChart } from '@/components/charts/area-chart';
+import { useQueryActivity } from '@/lib/react-query/dashboard/executive/use-query-activity';
+import { useQueryFunnelStages } from '@/lib/react-query/dashboard/use-query-funnel-stages';
+import { DATE_FORMATS } from '@/resources/constants';
 import { formatNumber } from '@/utils/formatters/numbers';
 
-import classes from './index.module.css';
-import { ActivityGoalCardProps } from './types';
+import ActivityGoalEmptyState from '../empty-state';
 
-export default function ActivityGoalCard({ dashboardActivityGoal }: Readonly<ActivityGoalCardProps>) {
-  const t = useTranslations('dashboard.overview.activityGoalCard');
+import classes from './index.module.css';
+
+interface DashboardActivityType {
+  date: number;
+  activityGoalProgress: number;
+  name?: string;
+}
+
+export default function ActivityGoalCard() {
+  const t = useTranslations();
   const format = useFormatter();
+
+  const { dashboardId } = useParams<{
+    dashboardId: string;
+    websiteId: string;
+    organizationId: string;
+  }>();
+
+  const { data: activity } = useQueryActivity(dashboardId);
+  const { data: funnels } = useQueryFunnelStages(dashboardId);
+
+  const customerFunnelStages: ComboboxData | undefined = funnels?.customerFunnelStages.edges.map((edge) => ({
+    value: edge.node.id,
+    label: edge.node.name
+  }));
 
   const [numberOfEvents, setNumberOfEvents] = useState<number | undefined>(undefined);
 
   const currentNumberOfEvents = useMemo(
-    () => numberOfEvents ?? dashboardActivityGoal?.currentNumberOfEvents ?? 0,
-    [dashboardActivityGoal?.currentNumberOfEvents, numberOfEvents]
+    () => numberOfEvents ?? activity.dashboardActivityGoal?.currentNumberOfEvents ?? 0,
+    [activity.dashboardActivityGoal?.currentNumberOfEvents, numberOfEvents]
   );
   const totalEventsAmount = useMemo(
-    () => dashboardActivityGoal?.totalNumberOfEvents,
-    [dashboardActivityGoal?.totalNumberOfEvents]
+    () => activity.dashboardActivityGoal?.totalNumberOfEvents,
+    [activity.dashboardActivityGoal?.totalNumberOfEvents]
   );
 
   const abbreviatedTotalEventsAmount = useMemo(
@@ -37,8 +62,10 @@ export default function ActivityGoalCard({ dashboardActivityGoal }: Readonly<Act
   );
 
   const figureLabel = useMemo(
-    () => `${abbreviatedTotalEventsAmount} ${dashboardActivityGoal.customerFunnelStageName}`,
-    [abbreviatedTotalEventsAmount, dashboardActivityGoal.customerFunnelStageName]
+    () =>
+      `${t('dashboard.overview.activityGoalCard.goal')} 
+    ${abbreviatedTotalEventsAmount} ${activity.dashboardActivityGoal.customerFunnelStageName} ${t('common.events')}`,
+    [abbreviatedTotalEventsAmount, activity.dashboardActivityGoal.customerFunnelStageName, t]
   );
 
   const figure = useMemo(
@@ -52,30 +79,50 @@ export default function ActivityGoalCard({ dashboardActivityGoal }: Readonly<Act
   );
 
   const additionalInfo = useMemo(
-    () => t('completesIn', { days: dashboardActivityGoal?.completesInDays }),
-    [dashboardActivityGoal?.completesInDays, t]
+    () =>
+      t('dashboard.overview.activityGoalCard.completesIn', { days: activity.dashboardActivityGoal.completesInDays }),
+    [activity.dashboardActivityGoal, t]
   );
 
-  const chartData = useMemo(
-    () =>
-      dashboardActivityGoal?.activityGoalProgress.map((agp) => ({
-        date: dayjs(agp.date).unix(),
-        activityGoalProgress: agp.value
-      })) ?? [],
-    [dashboardActivityGoal?.activityGoalProgress]
-  );
+  const chartData = useMemo(() => {
+    const data =
+      activity.dashboardActivityGoal.activityGoalProgress
+        .map(
+          (agp) =>
+            ({
+              date: dayjs(agp.date).unix(),
+              activityGoalProgress: agp.value,
+              name: undefined
+            }) as DashboardActivityType
+        )
+        .filter((item) => item.activityGoalProgress !== null) ?? [];
+
+    if (data.length > 0) {
+      data[0].name = dayjs(data[0].date).format(DATE_FORMATS.COMPACT_WEEKDAY).toString();
+    }
+
+    if (data.length > 1) {
+      data[data.length - 1].name = t('common.today');
+    }
+
+    return data;
+  }, [activity.dashboardActivityGoal, t]);
 
   const chartXMin = useMemo(() => chartData.at(0)?.date ?? dayjs().unix(), [chartData]);
   const chartXMax = useMemo(() => chartData.at(-1)?.date ?? dayjs().unix(), [chartData]);
   // 20% more than the max value to have some space at the top of the chart
   const maxYValueInData = useMemo(
-    () => Math.max(...(dashboardActivityGoal?.activityGoalProgress.map((agp) => agp.value ?? 0) ?? [0])),
-    [dashboardActivityGoal?.activityGoalProgress]
+    () => Math.max(...(activity.dashboardActivityGoal.activityGoalProgress.map((agp) => agp.value ?? 0) ?? [0])),
+    [activity.dashboardActivityGoal]
   );
   const chartYMax = useMemo(
     () => 1.2 * (maxYValueInData > totalEventsAmount ? maxYValueInData : totalEventsAmount),
     [maxYValueInData, totalEventsAmount]
   );
+
+  if (!activity?.dashboardActivityGoal?.isSetup) {
+    return <ActivityGoalEmptyState customerFunnelStages={customerFunnelStages} />;
+  }
 
   return (
     <Paper classNames={{ root: classes['activity-goal-card__root'] }}>
@@ -97,9 +144,12 @@ export default function ActivityGoalCard({ dashboardActivityGoal }: Readonly<Act
         </div>
       </div>
       <AreaChart
-        w={'100%'}
-        h={'100%'}
-        withXAxis={false}
+        w={'calc(100% - 70px)'}
+        h={100}
+        ml={35}
+        mr={35}
+        mb={15}
+        withXAxis={true}
         withYAxis={false}
         gridAxis={'none'}
         withTooltip={false}
@@ -114,8 +164,8 @@ export default function ActivityGoalCard({ dashboardActivityGoal }: Readonly<Act
         xAxisProps={{
           display: 'hidden',
           domain: [chartXMin, chartXMax],
-          scale: 'time',
-          type: 'number'
+          // eslint-disable-next-line i18next/no-literal-string
+          dataKey: 'name'
         }}
         yAxisProps={{
           display: 'hidden',
@@ -130,17 +180,17 @@ export default function ActivityGoalCard({ dashboardActivityGoal }: Readonly<Act
             name: 'activityGoalProgress',
             gradientStops: [
               {
-                color: 'var(--color-pale-blue)',
+                color: 'var(--color-maya-blue)',
                 offset: '0%', // Start of the gradient
                 opacity: 1 // Full opacity
               },
               {
-                color: 'var(--color-maya-blue)',
+                color: 'var(--color-pale-blue)',
+
                 offset: '100%', // End of the gradient
                 opacity: 1 // Full opacity
               }
             ],
-            radius: 24,
             color: 'var(--system-blue-600-color)'
           }
         ]}

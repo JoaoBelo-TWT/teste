@@ -1606,6 +1606,7 @@ export type QueryDashboardCampaignsListArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
+  isOrganic?: Scalars['Boolean']['input'];
   skip?: Scalars['Int']['input'];
   sorting: CampaignSorting;
   status: CampaignStatusInput;
@@ -1618,6 +1619,7 @@ export type QueryDashboardChannelPerformanceArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
+  isOrganic?: Scalars['Boolean']['input'];
 };
 
 
@@ -1625,12 +1627,14 @@ export type QueryDashboardCustomerJourneyArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
+  isOrganic?: Scalars['Boolean']['input'];
 };
 
 
 export type QueryDashboardOverviewArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
+  isOrganic?: Scalars['Boolean']['input'];
 };
 
 
@@ -1638,6 +1642,7 @@ export type QueryDashboardWebsiteActivityArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
+  isOrganic?: Scalars['Boolean']['input'];
   pageViewsSorting: PageViewsSorting;
   skip?: Scalars['Int']['input'];
   take?: InputMaybe<Scalars['Int']['input']>;

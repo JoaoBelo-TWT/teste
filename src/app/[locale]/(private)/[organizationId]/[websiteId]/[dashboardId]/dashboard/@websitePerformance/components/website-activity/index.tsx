@@ -1,6 +1,5 @@
 'use client';
 
-import { useSuspenseQuery } from '@apollo/client';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { useParams } from 'next/navigation';
@@ -10,86 +9,62 @@ import { useMemo } from 'react';
 import { DashboardTimeframe } from '@/__generated__/graphql';
 import { AvatarChip } from '@/components/ui/avatar-chip';
 import { useNavigationStore } from '@/context/navigation/store';
-import { getDashboardWebsiteActivityQuery } from '@/lib/apollo/queries/dashboard-website-activity';
+import { useQueryWebsitePerformance } from '@/lib/react-query/dashboard/executive/use-query-website-performance';
 import { beautifyUrl } from '@/utils/formatters/beutify-url';
 import { formatNumber } from '@/utils/formatters/numbers';
 
 import { TitleWithTooltip } from '../../../components/title-with-tooltip';
 
 import { WebSiteActivityEmpty } from './empty';
-import { WebSiteActivityProps } from './types';
 import { WebSiteActivityUI } from './ui';
 
 dayjs.extend(utc);
 
-export default function WebSiteActivity({
-  dashboardWebsiteActivityData: dashboardWebsiteActivityDataServer
-}: Readonly<WebSiteActivityProps>) {
+export default function WebSiteActivity() {
   const t = useTranslations('dashboard');
   const format = useFormatter();
 
   const { dashboardId } = useParams<{ dashboardId: string }>();
-  const { filters, triggers } = useNavigationStore();
+  const { filters } = useNavigationStore();
 
-  const { data: dashboardWebsiteActivityDataClient } = useSuspenseQuery(getDashboardWebsiteActivityQuery, {
-    variables: {
-      dashboardId,
-      dashboardTimeframe: filters.timeframe,
-      pageViewsSorting: filters.pagesSorting
-    },
-    skip: !triggers.activity
+  const { data } = useQueryWebsitePerformance({
+    dashboardId,
+    dashboardTimeframe: filters.timeframe,
+    pageViewsSorting: filters.pagesSorting,
+    take: 5
   });
-
-  const dashboardWebsiteActivity = useMemo(
-    () => dashboardWebsiteActivityDataClient?.dashboardWebsiteActivity ?? dashboardWebsiteActivityDataServer,
-    [dashboardWebsiteActivityDataClient?.dashboardWebsiteActivity, dashboardWebsiteActivityDataServer]
-  );
-
-  const websiteImageSrc = useMemo(
-    () => dashboardWebsiteActivity?.websiteImageUrl,
-    [dashboardWebsiteActivity?.websiteImageUrl]
-  );
-
-  const headers = useMemo(
-    () => [
-      t('overview.activityCard.topPagesCard.page'),
-      t('overview.activityCard.topPagesCard.views'),
-      t('overview.activityCard.topPagesCard.conversions')
-    ],
-    [t]
-  );
 
   const tableData = useMemo(
     () =>
-      dashboardWebsiteActivity?.pageViews.slice(0, 5).map((pageView) => ({
+      data.dashboardWebsiteActivity?.pageViews.slice(0, 5).map((pageView) => ({
         page: {
           text: pageView.page,
-          imageSrc: websiteImageSrc
+          imageSrc: data.dashboardWebsiteActivity?.websiteImageUrl
         },
         views: pageView.views,
         conversions: pageView.conversions
       })) ?? [],
-    [dashboardWebsiteActivity?.pageViews, websiteImageSrc]
+    [data]
   );
 
   const topSources = useMemo(
-    () => dashboardWebsiteActivity?.sources.slice(0, 4).map((source) => source.imageUrl) ?? [],
-    [dashboardWebsiteActivity]
+    () => data.dashboardWebsiteActivity?.sources.slice(0, 4).map((source) => source.imageUrl) ?? [],
+    [data.dashboardWebsiteActivity]
   );
 
   const additionalSources = useMemo(
-    () => (dashboardWebsiteActivity?.totalSources ?? topSources.length) - topSources.length,
-    [dashboardWebsiteActivity, topSources]
+    () => (data.dashboardWebsiteActivity?.totalSources ?? topSources.length) - topSources.length,
+    [data.dashboardWebsiteActivity, topSources]
   );
 
   const conversionRate = useMemo(
     () =>
       formatNumber({
-        value: dashboardWebsiteActivity?.conversionRate ?? 0,
+        value: data.dashboardWebsiteActivity?.conversionRate ?? 0,
         nextIntlFormatter: format,
         options: { style: 'percent' }
       }),
-    [dashboardWebsiteActivity?.conversionRate, format]
+    [data.dashboardWebsiteActivity?.conversionRate, format]
   );
 
   const getChartDate = useMemo(
@@ -111,29 +86,29 @@ export default function WebSiteActivity({
   );
 
   const lastDataPointIndexWithValue = useMemo(
-    () => dashboardWebsiteActivity?.traffic.findLastIndex((traffic) => traffic.pageViews) ?? 0,
-    [dashboardWebsiteActivity]
+    () => data.dashboardWebsiteActivity?.traffic.findLastIndex((traffic) => traffic.pageViews) ?? 0,
+    [data.dashboardWebsiteActivity?.traffic]
   );
 
   const chartData = useMemo(
     () =>
-      dashboardWebsiteActivity?.traffic.map((traffic, index) => ({
+      data.dashboardWebsiteActivity?.traffic.map((traffic, index) => ({
         traffic: traffic.pageViews,
         date: getChartDate(traffic.date),
         hideDot: index !== lastDataPointIndexWithValue
       })) ?? [],
-    [dashboardWebsiteActivity?.traffic, getChartDate, lastDataPointIndexWithValue]
+    [data.dashboardWebsiteActivity?.traffic, getChartDate, lastDataPointIndexWithValue]
   );
 
-  const chartYMax = useMemo(() => 1.2 * Math.max(...chartData.map((data) => data.traffic ?? 0)), [chartData]);
-  const chartXMin = useMemo(() => Math.min(...chartData.map((data) => data.traffic ?? 0)), [chartData]);
-  const chartXMax = useMemo(() => Math.max(...chartData.map((data) => data.traffic ?? 0)), [chartData]);
+  const chartYMax = useMemo(() => 1.2 * Math.max(...chartData.map((val) => val.traffic ?? 0)), [chartData]);
+  const chartXMin = useMemo(() => Math.min(...chartData.map((val) => val.traffic ?? 0)), [chartData]);
+  const chartXMax = useMemo(() => Math.max(...chartData.map((val) => val.traffic ?? 0)), [chartData]);
 
-  if (!dashboardWebsiteActivity?.hasEvents) {
+  if (!data.dashboardWebsiteActivity?.hasEvents) {
     return <WebSiteActivityEmpty />;
   }
 
-  const websiteVisits: number = dashboardWebsiteActivity.traffic.reduce(
+  const websiteVisits: number = data.dashboardWebsiteActivity.traffic.reduce(
     (sum: number, obj) => sum + (obj.pageViews ?? 0),
     0
   );
@@ -144,20 +119,27 @@ export default function WebSiteActivity({
         <TitleWithTooltip title={t('overview.activityCard.title')} tooltip={t('tooltips.websitePerformance')} />
       }
       headerChildren={
-        dashboardWebsiteActivity?.domain ? (
+        data.dashboardWebsiteActivity?.domain ? (
           <AvatarChip
             variant="outlined"
-            label={beautifyUrl(dashboardWebsiteActivity?.domain)}
-            image={websiteImageSrc}
+            label={beautifyUrl(data.dashboardWebsiteActivity?.domain)}
+            image={data.dashboardWebsiteActivity?.websiteImageUrl}
           />
         ) : undefined
       }
-      table={{ headers, data: tableData }}
+      table={{
+        headers: [
+          t('overview.activityCard.topPagesCard.page'),
+          t('overview.activityCard.topPagesCard.views'),
+          t('overview.activityCard.topPagesCard.conversions')
+        ],
+        data: tableData
+      }}
       websiteVisits={websiteVisits}
       topSources={{ additionalSources, data: topSources }}
       conversionRate={{ figure: conversionRate, src: topSources.at(0) ?? '' }}
       chart={{ data: chartData, XMax: chartXMax, YMax: chartYMax, XMin: chartXMin }}
-      websiteUrl={beautifyUrl(dashboardWebsiteActivity?.domain)}
+      websiteUrl={beautifyUrl(data.dashboardWebsiteActivity?.domain)}
     />
   );
 }

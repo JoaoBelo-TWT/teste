@@ -2,7 +2,7 @@
 
 import { Plus } from '@phosphor-icons/react';
 import Link from 'next/link';
-import { useFormatter, useTranslations } from 'use-intl';
+import { useFormatter, useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import { Overlay } from '@/components/ui/overlay';

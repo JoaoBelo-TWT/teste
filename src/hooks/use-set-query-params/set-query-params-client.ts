@@ -5,7 +5,7 @@ interface SetQueryParamParams {
   value?: string | number | null;
 }
 
-export function useSetQueryParamClient() {
+export function useSetQueryParam() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

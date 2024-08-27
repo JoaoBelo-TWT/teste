@@ -146,7 +146,7 @@ export default async function FunnelPerformancePage({
           mt={SPACING.lg}
           list={[
             {
-              label: t('onboarding.funnels.leads'),
+              label: `${data.funnelPerformanceDeepDiveConversionDetails.funnelName} ${t('common.contacts')}`,
               value: data.funnelPerformanceDeepDiveConversionDetails.totalFunnelPerformanceConversionEvents
             },
             {

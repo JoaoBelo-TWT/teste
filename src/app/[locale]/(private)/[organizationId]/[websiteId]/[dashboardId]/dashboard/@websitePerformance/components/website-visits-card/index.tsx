@@ -41,7 +41,7 @@ export function WebsiteVisitsCard({ visits }: { visits: number }) {
             })}
           </Text>
           <Text fz={12} c="dark.7">
-            {t('visits')}
+            {t('views')}
           </Text>
         </Box>
       </Flex>

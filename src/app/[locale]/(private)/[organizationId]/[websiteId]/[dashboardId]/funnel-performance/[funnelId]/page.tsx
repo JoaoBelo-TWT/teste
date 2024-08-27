@@ -98,10 +98,6 @@ export default async function FunnelPerformancePage({
           mt={SPACING.lg}
           list={[
             {
-              label: t('common.events'),
-              value: data.funnelPerformanceDeepDive.totalEvents
-            },
-            {
               label: t('common.conversions'),
               value: data.funnelPerformanceDeepDive.totalConversions
             }

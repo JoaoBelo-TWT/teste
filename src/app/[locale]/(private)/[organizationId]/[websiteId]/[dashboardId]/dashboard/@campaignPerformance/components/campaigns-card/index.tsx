@@ -1,16 +1,17 @@
 'use client';
 
-import { useSuspenseQuery } from '@apollo/client';
 import { SimpleGrid } from '@mantine/core';
 import dayjs from 'dayjs';
 import { useParams } from 'next/navigation';
 import { useFormatter, useTranslations } from 'next-intl';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
+import { HubspotIntegrationStatus, SalesforceIntegrationStatus } from '@/__generated__/graphql';
 import { BaseCard } from '@/components/ui/base-card';
 import { StatsList } from '@/components/ui/stats-list';
 import { useNavigationStore } from '@/context/navigation/store';
-import { getDashboardCampaignsQuery } from '@/lib/apollo/queries/dashboard-campaigns';
+import { useQueryPaginatedCampaigns } from '@/lib/react-query/dashboard/executive/use-query-paginated-campaigns';
+import { useQueryWebsite } from '@/lib/react-query/website/use-query-website';
 import { SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { formatNumber } from '@/utils/formatters/numbers';
@@ -24,46 +25,33 @@ import { ShowMoreButton } from '../show-more-button';
 
 import { CampaignsCardEmpty } from './empty';
 import classes from './index.module.css';
-import { CampaignsProps } from './types';
 
-export default function CampaignsCard({
-  viewOnly,
-  dashboardCampaignsData: dashboardCampaignsDataServer
-}: Readonly<CampaignsProps>) {
+export default function CampaignsCard() {
   const t = useTranslations();
   const format = useFormatter();
 
   const { websiteId, organizationId, dashboardId } = useParams<DashboardPathParams>();
 
-  const { filters, triggers } = useNavigationStore();
+  const { filters } = useNavigationStore();
 
-  const { data: dashboardCampaignsDataClient, fetchMore } = useSuspenseQuery(getDashboardCampaignsQuery, {
-    variables: {
-      dashboardId,
-      dashboardTimeframe: filters.timeframe,
-      status: filters.campaignStatus,
-      sorting: filters.campaignSorting,
-      take: filters.campaignCards || 4
-    },
-    skip: !triggers.campaigns
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useQueryPaginatedCampaigns({
+    dashboardId,
+    dashboardTimeframe: filters.timeframe,
+    status: filters.campaignStatus,
+    sorting: filters.campaignSorting,
+    take: 4
   });
+  const { data: website } = useQueryWebsite(websiteId);
 
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        take: filters.campaignCards
-      }
-    });
-  }, [filters.campaignCards, fetchMore]);
+  const connectedToCRM =
+    website?.website.salesforceIntegrationStatus === SalesforceIntegrationStatus.Active ||
+    website?.website.hubspotIntegrationStatus === HubspotIntegrationStatus.Active;
 
-  const dashboardCampaigns = useMemo(
-    () => dashboardCampaignsDataClient?.dashboardCampaignsList ?? dashboardCampaignsDataServer,
-    [dashboardCampaignsDataClient?.dashboardCampaignsList, dashboardCampaignsDataServer]
-  );
+  const campaigns = useMemo(() => data.pages.map((value) => value.dashboardCampaignsList.campaigns).flat(), [data]);
 
   const cards = useMemo(
     () =>
-      dashboardCampaigns?.campaigns.map((campaign, index) => {
+      campaigns.map((campaign, index) => {
         const leadsFunnelName =
           getAcronymOrAbbreviateString({ value: campaign?.leads?.name }) ??
           t('dashboard.overview.campaignsCard.figuresCard.leads');
@@ -122,35 +110,27 @@ export default function CampaignsCard({
               }
             ]}
             href={
-              viewOnly
-                ? undefined
-                : routes.dashboard.campaignPerformance.path(
+              connectedToCRM
+                ? routes.dashboard.campaignPerformance.path(
                     organizationId,
                     websiteId,
                     dashboardId,
                     campaign.name,
                     filters.timeframe
                   )
+                : undefined
             }
           />
         );
       }),
-    [dashboardCampaigns?.campaigns, format, t, dashboardId, organizationId, websiteId, filters.timeframe, viewOnly]
+    [campaigns, t, format, connectedToCRM, organizationId, websiteId, dashboardId, filters.timeframe]
   );
 
-  const showCardsNumber = useMemo(() => filters.campaignCards, [filters.campaignCards]);
+  const showCardsNumber = filters.campaignCards;
+  const lastPage = data.pages[data.pages.length - 1]?.dashboardCampaignsList;
+  const showMoreCount = (lastPage?.totalCampaigns ?? 0) - +4;
 
-  const showMoreCount = useMemo(
-    () => (dashboardCampaigns?.totalCampaigns ?? 0) - +showCardsNumber,
-    [dashboardCampaigns?.totalCampaigns, showCardsNumber]
-  );
-
-  const showMoreButton = useMemo(
-    () => showCardsNumber < (dashboardCampaigns?.totalCampaigns ?? Infinity),
-    [dashboardCampaigns?.totalCampaigns, showCardsNumber]
-  );
-
-  if (!dashboardCampaigns?.hasEvents || dashboardCampaigns.campaigns.length === 0) {
+  if (!lastPage?.hasEvents || campaigns.length === 0) {
     return <CampaignsCardEmpty />;
   }
 
@@ -174,7 +154,7 @@ export default function CampaignsCard({
             {
               label: t('dashboard.overview.campaignsCard.totalVisits'),
               value: formatNumber({
-                value: dashboardCampaigns?.totalVisits ?? 0,
+                value: lastPage?.totalVisits ?? 0,
                 nextIntlFormatter: format,
                 options: { notation: 'compact' }
               })
@@ -182,7 +162,7 @@ export default function CampaignsCard({
             {
               label: t('dashboard.overview.campaignsCard.totalConversions'),
               value: formatNumber({
-                value: dashboardCampaigns?.totalConversions ?? 0,
+                value: lastPage?.totalConversions ?? 0,
                 nextIntlFormatter: format,
                 options: { notation: 'compact' }
               })
@@ -195,9 +175,9 @@ export default function CampaignsCard({
         <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={{ base: 8, md: 16 }} verticalSpacing={{ base: 8, md: 16 }}>
           {cards?.slice(0, +showCardsNumber)}
         </SimpleGrid>
-        {showMoreButton && (
+        {hasNextPage && (
           <div className={classes['campaigns-card__button-container']}>
-            <ShowMoreButton campaignsLength={showMoreCount} />
+            <ShowMoreButton campaignsLength={showMoreCount} onClick={fetchNextPage} isLoading={isFetchingNextPage} />
           </div>
         )}
       </div>
