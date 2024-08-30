@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { LogoutButton } from '@/components/navigation/logout-button';
 import { GoogleAddsSetupCard } from '@/components/sections/google-adds-setup';
 import { ProgressContainer } from '@/components/wrappers/progress-container';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 
 import { WebsiteCreateCloseButton } from '../../components/close-button';
 
@@ -11,7 +11,7 @@ export default async function GoogleAddsConfigPageOnboarding({
   params
 }: Readonly<{ params: { websiteId: string; organizationId: string } }>) {
   const t = await getTranslations();
-  const user = await fetchMeData();
+  const user = await getMe();
 
   const steps = [
     { label: t('onboarding.setup.step2.stepper') },

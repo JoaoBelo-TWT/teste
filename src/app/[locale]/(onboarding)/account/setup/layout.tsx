@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 
 import { SplitContentContainer } from '../../components/container';
 
@@ -9,7 +9,7 @@ import classes from './index.module.css';
 export const dynamic = 'force-dynamic';
 
 export default async function AccountSectionLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const user = await fetchMeData();
+  const user = await getMe();
 
   return (
     <SplitContentContainer isOnboarding={user.me.currentOnboardingPath !== undefined}>

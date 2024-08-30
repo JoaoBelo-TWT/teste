@@ -44,7 +44,6 @@ const defaultProps: Partial<CustomAreaChartProps> = {
   tooltipAnimationDuration: 0,
   fillOpacity: 0.2,
   tickLine: 'y',
-  strokeDasharray: '5 5',
   curveType: 'monotone',
   gridAxis: 'x',
   type: 'default',
@@ -88,7 +87,7 @@ export const AreaChart = factory<CustomAreaChartFactory>((_props, ref) => {
     gridProps,
     withDots,
     tickLine,
-    strokeDasharray,
+    strokeDasharray = null,
     gridAxis,
     unit,
     yAxisProps,
@@ -113,6 +112,8 @@ export const AreaChart = factory<CustomAreaChartFactory>((_props, ref) => {
     dir,
     valueFormatter,
     setHoveredValue,
+    tooltipVariant,
+    tooltipLabel,
     ...others
   } = props;
 
@@ -217,13 +218,9 @@ export const AreaChart = factory<CustomAreaChartFactory>((_props, ref) => {
             />
           )}
 
-          <CartesianGrid
-            strokeDasharray={strokeDasharray}
-            vertical={gridAxis === 'y' || gridAxis === 'xy'}
-            horizontal={gridAxis === 'x' || gridAxis === 'xy'}
-            {...getStyles('grid')}
-            {...gridProps}
-          />
+          {strokeDasharray && (
+            <CartesianGrid vertical={false} strokeDasharray={strokeDasharray} {...getStyles('grid')} {...gridProps} />
+          )}
 
           <XAxis
             hide={!withXAxis}
@@ -257,11 +254,11 @@ export const AreaChart = factory<CustomAreaChartFactory>((_props, ref) => {
               position={{ y: 0 }}
               cursor={{
                 stroke: 'var(--chart-grid-color)',
-                strokeWidth: 1,
-                strokeDasharray
+                strokeWidth: 1
               }}
               content={({ payload }) => (
                 <ChartTooltip
+                  variant={tooltipVariant}
                   type="area"
                   valueFormatter={(value) =>
                     valueFormatter
@@ -277,6 +274,7 @@ export const AreaChart = factory<CustomAreaChartFactory>((_props, ref) => {
                   classNames={resolvedClassNames}
                   styles={resolvedStyles}
                   series={series}
+                  label={tooltipLabel}
                 />
               )}
               {...tooltipProps}

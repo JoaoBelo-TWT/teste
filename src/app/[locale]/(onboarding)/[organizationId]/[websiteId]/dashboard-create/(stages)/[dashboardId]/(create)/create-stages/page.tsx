@@ -3,7 +3,7 @@ import { Box } from '@mantine/core';
 import { FunnelStagesList } from '@/components/lists/funnel-stages-list';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
 import { fetchFunnelStages } from '@/lib/fetch-funnel-stages';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { SPACING } from '@/resources/constants';
 import { OnboardingQueryParamsProps } from '@/types/constants/onboarding-query-params';
 
@@ -18,7 +18,7 @@ export default async function CreateStagesPage({
 }>) {
   const { flow } = searchParams;
   const data = await fetchFunnelStages(params.dashboardId);
-  const user = await fetchMeData();
+  const user = await getMe();
 
   return (
     <LeftRightWrapper

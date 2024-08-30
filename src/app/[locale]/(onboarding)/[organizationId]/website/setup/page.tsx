@@ -4,8 +4,8 @@ import { getTranslations } from 'next-intl/server';
 import { TextContent } from '@/components/ui/text-content';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
 import { ProgressContainer } from '@/components/wrappers/progress-container';
-import { fetchMeData } from '@/lib/fetch-me-data';
-import { fetchWebsitesData } from '@/lib/fetch-websites';
+import { getMe } from '@/lib/react-query/user/query-me';
+import { getQueryPaginatedWebsites } from '@/lib/react-query/website/query-paginated-websites';
 import { SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { OnboardingFlowType } from '@/types/enums/new-dashboard-query-params';
@@ -17,9 +17,18 @@ import { WebsiteCreateCloseButton } from './components/close-button';
 
 export default async function SetupPage({ params: { organizationId } }: { params: { organizationId: string } }) {
   const t = await getTranslations();
-  const user = await fetchMeData();
-  const data = await fetchWebsitesData(organizationId);
-  const isOnboarding = user.me.currentOnboardingPath === null && data?.websites.edges.length === 0;
+  const user = await getMe();
+  const data = await getQueryPaginatedWebsites({
+    first: 100,
+    filters: {
+      organizationId: {
+        eq: organizationId
+      }
+    }
+  });
+  const isOnboarding =
+    user.me.currentOnboardingPath === null && data.pages.flatMap((page) => page.websites.edges).length === 0;
+
   const steps = [
     { label: t('onboarding.setup.step2.stepper') },
     { label: t('onboarding.setup.step3.stepper') },

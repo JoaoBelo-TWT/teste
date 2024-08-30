@@ -8,7 +8,7 @@ import { GetWebsiteQuery, HubspotIntegrationStatus, SalesforceIntegrationStatus 
 import { Button } from '@/components/ui/button';
 import { ItemCard } from '@/components/ui/item-card';
 import { fetchFunnelStages } from '@/lib/fetch-funnel-stages';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { CRM, SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { OnboardingFlowType } from '@/types/enums/new-dashboard-query-params';
@@ -26,7 +26,7 @@ export async function ConnectedSourceItem({
   label?: string;
   isOnboarding?: boolean;
 }) {
-  const websiteData = await fetchWebsiteData(websiteId);
+  const websiteData = await getQueryWebsite(websiteId);
   const data = await fetchFunnelStages(dashboardId);
   const noFunnels = data?.customerFunnelStages?.edges && data?.customerFunnelStages.edges.length <= 0;
   const t = await getTranslations();

@@ -5,8 +5,8 @@ import type { ReactNode } from 'react';
 import { Me } from '@/__generated__/graphql';
 import { getClient } from '@/lib/apollo/apollo-client';
 import { getOrganizationQuery } from '@/lib/apollo/queries/dashboard-organization';
-import { fetchMeData } from '@/lib/fetch-me-data';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getMe } from '@/lib/react-query/user/query-me';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { routes } from '@/routes/routes';
 import { captureError } from '@/utils/errors/capture-error';
 import { errorHasMessage } from '@/utils/errors/error-has-message';
@@ -26,7 +26,7 @@ async function getOrganizationWebsiteRedirectRoute(me: Me) {
     }
 
     if (organization.defaultWebsiteId) {
-      const websiteData = await fetchWebsiteData(organization.defaultWebsiteId);
+      const websiteData = await getQueryWebsite(organization.defaultWebsiteId);
 
       if (!websiteData?.website) {
         return routes.website.setup.start.path(organization.id);
@@ -42,7 +42,7 @@ async function getOnboardingRedirectRoute() {
     const session = await getSession();
 
     if (session) {
-      const user = await fetchMeData();
+      const user = await getMe();
       const { me } = user;
 
       if (me?.currentOnboardingPath) {

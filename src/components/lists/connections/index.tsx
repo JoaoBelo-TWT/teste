@@ -4,8 +4,8 @@ import {
   MetaAdsIntegrationStatus,
   SalesforceIntegrationStatus
 } from '@/__generated__/graphql';
-import { fetchSourceConnectionStatus } from '@/lib/fetch-connection-status';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryConnectionStatus } from '@/lib/react-query/website/query-connection-status';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { ConnectionStatus } from '@/types/connection';
 
 import { ConnectionsListClient } from './client';
@@ -17,8 +17,8 @@ export async function ConnectionsList({
   organizationId,
   onboarding = true
 }: Readonly<ConnectionsListProps>) {
-  const isSourceConnected = await fetchSourceConnectionStatus(websiteId);
-  const data = await fetchWebsiteData(websiteId);
+  const { isWebsiteConnected } = await getQueryConnectionStatus(websiteId);
+  const data = await getQueryWebsite(websiteId);
 
   return (
     <ConnectionsListClient
@@ -27,7 +27,7 @@ export async function ConnectionsList({
       websiteId={websiteId}
       onboarding={onboarding}
       websiteImage={data?.website.imageUrl}
-      isSourceConnected={isSourceConnected ? ConnectionStatus.Active : ConnectionStatus.Disabled}
+      isSourceConnected={isWebsiteConnected ? ConnectionStatus.Active : ConnectionStatus.Disabled}
       hubspotConnectionStatus={data?.website.hubspotIntegrationStatus as HubspotIntegrationStatus}
       salesforceConnectionStatus={data?.website.salesforceIntegrationStatus as SalesforceIntegrationStatus}
       metaAdsConnectionStatus={data?.website.metaAdsIntegrationStatus as MetaAdsIntegrationStatus}

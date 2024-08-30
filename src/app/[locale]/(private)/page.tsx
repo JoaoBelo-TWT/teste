@@ -1,9 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
 
-import { getQueryDashboard } from '@/lib/react-query/dashboard/get-query-dashboard';
-import { getMe } from '@/lib/react-query/get-query-fetch-me';
-import { getQueryOrganization } from '@/lib/react-query/organization/get-query-organization';
-import { getQueryWebsite } from '@/lib/react-query/website/get-query-website';
+import { getQueryDashboard } from '@/lib/react-query/dashboard/query-dashboard';
+import { getQueryOrganization } from '@/lib/react-query/organization/query-organization';
+import { getMe } from '@/lib/react-query/user/query-me';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { routes } from '@/routes/routes';
 
 export default async function HomePage() {

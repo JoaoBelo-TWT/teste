@@ -3,8 +3,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { LogoutButton } from '@/components/navigation/logout-button';
 import { TextContent } from '@/components/ui/text-content';
-import { fetchMeData } from '@/lib/fetch-me-data';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getMe } from '@/lib/react-query/user/query-me';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 
 import { ProgressContainer } from '../../../../../../../../components/wrappers/progress-container';
 import { WebsiteCreateCloseButton } from '../../components/close-button';
@@ -15,10 +15,10 @@ export default async function DomainPage({
   params
 }: Readonly<{ params: { organizationId: string; websiteId: string } }>) {
   const t = await getTranslations();
-  const user = await fetchMeData();
+  const user = await getMe();
 
   const { websiteId, organizationId } = params;
-  const data = await fetchWebsiteData(websiteId);
+  const data = await getQueryWebsite(websiteId);
 
   const steps = [
     { label: t('onboarding.setup.step2.stepper') },

@@ -12,6 +12,7 @@ export type DashboardModalType = 'expenses';
 
 export type DashboardQueryParamsProps = {
   timeframe: DashboardTimeframe;
+  acquisitionChannel: string | undefined;
   channel: string;
   channelSorting: ChannelPerformanceSorting;
   attributionModel: string;
@@ -27,6 +28,11 @@ export const DashboardQueryParams: QueryParamsObject<DashboardQueryParamsProps> 
   timeframe: {
     key: 'timeframe',
     default: DashboardTimeframe.LastDay
+  },
+  acquisitionChannel: {
+    key: 'acquisitionChannel',
+    /* eslint-disable i18next/no-literal-string */
+    default: undefined
   },
   channel: {
     key: 'channel',

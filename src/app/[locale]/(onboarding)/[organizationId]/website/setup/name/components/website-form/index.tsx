@@ -13,7 +13,7 @@ import { SelectControl } from '@/components/controls/select-control';
 import { Button } from '@/components/ui/button';
 import { TextInput } from '@/components/ui/text-input';
 import { UploadArea } from '@/components/ui/upload-area';
-import { updateWebsiteImage } from '@/lib/mutations/update-website-image';
+import { useMutationUpdateWebsiteImage } from '@/lib/react-query/website/mutation-update-website-image';
 import { routes } from '@/routes/routes';
 import { fileToBase64 } from '@/utils/files/file-to-base64';
 import { showResponseToast } from '@/utils/server-actions/show-response-toast';
@@ -35,6 +35,7 @@ export function WebsiteForm({
 }>) {
   const t = useTranslations();
   const router = useRouter();
+  const mutate = useMutationUpdateWebsiteImage();
 
   const {
     control,
@@ -77,9 +78,7 @@ export function WebsiteForm({
 
     if (websiteId && image) {
       const imageBase64 = await fileToBase64(image);
-      const fileUploadResponse = await updateWebsiteImage({ websiteId, imageBase64 });
-
-      showResponseToast({ response: fileUploadResponse });
+      await mutate.mutateAsync({ websiteId, imageBase64 });
     }
 
     if (websiteId) {

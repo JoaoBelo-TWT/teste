@@ -1,5 +1,5 @@
 import { AccessLevel } from '@/__generated__/graphql';
-import { getMe } from '@/lib/react-query/get-query-fetch-me';
+import { getMe } from '@/lib/react-query/user/query-me';
 
 interface UserAccessLevelProps {
   organizationId: string;

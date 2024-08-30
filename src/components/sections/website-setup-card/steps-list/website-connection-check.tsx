@@ -3,13 +3,13 @@
 import { Flex, Loader, Text, Tooltip } from '@mantine/core';
 import { CheckCircle, Info, XCircle } from '@phosphor-icons/react';
 import { useTranslations } from 'next-intl';
-import { useCallback, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { toaster } from '@/components/ui/toast';
+import { useQueryConnectionStatus } from '@/lib/react-query/website/query-connection-status';
 import { SPACING } from '@/resources/constants';
 
-import { getSourceConnectionStatus } from './action';
 import classes from './index.module.css';
 
 export function WebsiteConnectionCheck({
@@ -26,35 +26,35 @@ export function WebsiteConnectionCheck({
   onWebsiteCheck?: (verified?: boolean) => void;
 }>) {
   const t = useTranslations();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [verified, setIsVerified] = useState<boolean | null | undefined>(null);
+  const { data, refetch, isLoading, isRefetching } = useQueryConnectionStatus(websiteId);
+  const [enabled, setEnabled] = useState<boolean>(false);
 
-  const onCheck = useCallback(async () => {
-    setIsLoading(true);
-    await getSourceConnectionStatus(websiteId).then((status) => {
-      if (status === true) {
-        toaster.success({
-          title: t('onboarding.setup.websiteConnected')
-        });
-      } else if (status === false) {
-        toaster.error({
-          title: t('onboarding.setup.websiteNotConnected')
-        });
-      }
-      setIsVerified(status);
-      if (onWebsiteCheck) {
-        onWebsiteCheck(status);
-      }
+  useEffect(() => {
+    if (isRefetching || !enabled) return;
+    if (data.isWebsiteConnected === true) {
+      toaster.success({
+        title: t('onboarding.setup.websiteConnected')
+      });
+    }
+    if (data.isWebsiteConnected === false) {
+      toaster.error({
+        title: t('onboarding.setup.websiteNotConnected')
+      });
+    }
+    onWebsiteCheck?.(data.isWebsiteConnected);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.isWebsiteConnected, isRefetching, enabled]);
 
-      setIsLoading(false);
-    });
-  }, [setIsLoading, websiteId, t, onWebsiteCheck]);
+  const handleClick = () => {
+    refetch();
+    setEnabled(true);
+  };
 
   const getCheckIcon = useMemo(() => {
-    if (verified === true) {
+    if (data.isWebsiteConnected === true) {
       return <CheckCircle size={20} color="green" />;
     }
-    if (verified === false) {
+    if (data.isWebsiteConnected === false) {
       return <XCircle size={20} color="red" />;
     }
 
@@ -63,7 +63,7 @@ export function WebsiteConnectionCheck({
     }
 
     return null;
-  }, [verified, isLoading]);
+  }, [data.isWebsiteConnected, isLoading]);
 
   return (
     <Flex justify="space-between" align="center" w="100%" mih={44}>
@@ -86,8 +86,8 @@ export function WebsiteConnectionCheck({
           </Flex>
         )}
       </Flex>
-      {!verified && (
-        <Button size="medium" variant="light" onClick={onCheck} miw={120} disabled={isLoading}>
+      {!data.isWebsiteConnected && (
+        <Button size="medium" variant="light" onClick={handleClick} miw={120} disabled={isLoading}>
           {isLoading ? t('onboarding.setup.testingButton') : t('onboarding.setup.testButton')}
         </Button>
       )}

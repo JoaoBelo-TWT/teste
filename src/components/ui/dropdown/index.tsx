@@ -62,12 +62,17 @@ export function Dropdown({
           href ? (
             <Link
               href={href}
-              key={value + index}
+              key={value ?? `${index}`}
               style={{ color: 'inherit', textDecoration: 'inherit' }}
               prefetch={preFetch}
               passHref
             >
-              <ComboboxOption disabled={disabled} value={value} data-light-mode={isLightMode} {...comboboxOptions}>
+              <ComboboxOption
+                disabled={disabled}
+                value={value ?? ''}
+                data-light-mode={isLightMode}
+                {...comboboxOptions}
+              >
                 <Flex align="center" justify="space-between" w="100%">
                   <Flex align="center" gap={SPACING.sm}>
                     {leftContent}
@@ -80,8 +85,8 @@ export function Dropdown({
           ) : (
             <ComboboxOption
               disabled={disabled}
-              value={value}
-              key={value + index}
+              value={value ?? ''}
+              key={value ?? `${index}`}
               data-light-mode={isLightMode}
               onClick={OnClickOption}
             >

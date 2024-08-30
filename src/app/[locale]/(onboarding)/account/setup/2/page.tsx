@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { getClient } from '@/lib/apollo/apollo-client';
 import { getAccountSetupOptionsQuery } from '@/lib/apollo/queries/account-setup-options';
 import { getOrganizationsQuery } from '@/lib/apollo/queries/onboarding-organizations';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { SPACING } from '@/resources/constants';
 import { nextCacheTags } from '@/types/constants/next-cache-tags';
 
@@ -13,7 +13,7 @@ import { mapToLabelValue } from './utils';
 
 export default async function Step2() {
   const t = await getTranslations('onboarding.account');
-  const user = await fetchMeData();
+  const user = await getMe();
 
   const { data: organizationData } = await getClient().query({
     query: getOrganizationsQuery,

@@ -9,7 +9,7 @@ import { TextContent } from '@/components/ui/text-content';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
 import { getClient } from '@/lib/apollo/apollo-client';
 import { getStageQuery } from '@/lib/apollo/queries/onboarding-stage';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { SPACING } from '@/resources/constants';
 import { nextCacheTags } from '@/types/constants/next-cache-tags';
 import { transformStageData } from '@/utils/formatters/funnel-stage-data';
@@ -24,7 +24,7 @@ export async function StageTabPanel({
   flow
 }: Readonly<StageTabPanelProps>) {
   const t = await getTranslations('onboarding');
-  const user = await fetchMeData();
+  const user = await getMe();
   const isOnboarding = !!user.me.currentOnboardingPath;
   const { data } = await getClient().query({
     query: getStageQuery,

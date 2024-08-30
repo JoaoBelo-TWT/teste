@@ -54,15 +54,6 @@ export default async function NewDashboard({
       title: t('dashboard.new.cards.campaign.title'),
       description: t('dashboard.new.cards.campaign.description')
       // href: { pathname: routes.dashboard.onboarding.create.path, query: { flow: OnboardingFlowType.CAMPAIGN } }
-    },
-    {
-      color: 'var(--flat-blue-100-color)',
-      imageAlt: 'Chat',
-      imageSrc: `${process.env.NEXT_PUBLIC_IMAGES_HOST_URL}cards/chat.webp`,
-      widgets: t('common.comingSoon'),
-      title: t('dashboard.new.cards.organic.title'),
-      description: t('dashboard.new.cards.organic.description')
-      // href: { pathname: routes.dashboard.onboarding.create.path, query: { flow: OnboardingFlowType.CHAT } }
     }
   ];
 

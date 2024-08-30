@@ -1,12 +1,12 @@
-import { Title, Text, Flex } from '@mantine/core';
+import { Flex, Text, Title } from '@mantine/core';
 import { getTranslations } from 'next-intl/server';
 
 import { ActivityGoal, BudgetGoal } from '@/__generated__/graphql';
 import { OnboardingContinueButton } from '@/app/[locale]/(onboarding)/components/onboarding-continue-button';
 import { GoalsList } from '@/components/lists/goals-list';
 import { ProgressContainer } from '@/components/wrappers/progress-container';
-import { fetchDashboardGoals } from '@/lib/fetch-dashboard-goals';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getQueryGoals } from '@/lib/react-query/goals/query-goals';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { OnboardingQueryParamsProps } from '@/types/constants/onboarding-query-params';
@@ -24,12 +24,12 @@ export default async function GoalsPage({
   const t = await getTranslations();
   const { dashboardId } = params;
   const { flow } = searchParams;
-  const user = await fetchMeData();
+  const user = await getMe();
   const isOnboarding = !!user.me.currentOnboardingPath;
-  const data = await fetchDashboardGoals(dashboardId);
+  const { budgetGoals, activityGoals } = await getQueryGoals(dashboardId);
 
-  const budget = data?.budgetGoals.edges.find((edge) => !!edge)?.node;
-  const activity = data?.activityGoals.edges.find((edge) => !!edge)?.node;
+  const budget = budgetGoals.edges.find((edge) => !!edge)?.node;
+  const activity = activityGoals.edges.find((edge) => !!edge)?.node;
 
   const steps = [
     { label: t('onboarding.dashboard.stepper') },

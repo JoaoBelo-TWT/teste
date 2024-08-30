@@ -3,17 +3,17 @@ import { getTranslations } from 'next-intl/server';
 
 import { ActivityGoal, BudgetGoal } from '@/__generated__/graphql';
 import { GoalsList } from '@/components/lists/goals-list';
-import { fetchDashboardGoals } from '@/lib/fetch-dashboard-goals';
+import { getQueryGoals } from '@/lib/react-query/goals/query-goals';
 import { SPACING } from '@/resources/constants';
 
 import classes from './index.module.css';
 
 export async function DashboardGoalsSettings({ dashboardId, viewOnly }: { dashboardId: string; viewOnly?: boolean }) {
   const t = await getTranslations();
-  const data = await fetchDashboardGoals(dashboardId);
+  const { activityGoals, budgetGoals } = await getQueryGoals(dashboardId);
 
-  const budget = data?.budgetGoals.edges.find((edge) => !!edge)?.node;
-  const activity = data?.activityGoals.edges.find((edge) => !!edge)?.node;
+  const budget = budgetGoals.edges.find((edge) => !!edge)?.node;
+  const activity = activityGoals.edges.find((edge) => !!edge)?.node;
 
   return (
     <Box id={`goals-${dashboardId}`} className={classes['dashboard-goals-settings']}>

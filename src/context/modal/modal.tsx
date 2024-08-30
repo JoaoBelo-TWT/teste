@@ -5,10 +5,10 @@ import React from 'react';
 /* eslint-disable max-len */
 import { WebsiteCreationCloseModal } from '@/app/[locale]/(onboarding)/[organizationId]/website/setup/components/close-modal';
 import { DashboardCreateCloseModal } from '@/app/[locale]/(onboarding)/components/dashboard-create-close-button/close-modal';
-import { AddExpenseModal } from '@/app/[locale]/(private)/[organizationId]/[websiteId]/[dashboardId]/dashboard/components/add-expenses-modal';
 import { EditPermissionsModal } from '@/app/[locale]/(private)/[organizationId]/[websiteId]/organization-settings/components/edit-permissions-modal';
 import { InviteTeamMembersModal } from '@/app/[locale]/(private)/[organizationId]/[websiteId]/organization-settings/components/invite-team-members-modal';
 import { RemoveTeamMemberModal } from '@/app/[locale]/(private)/[organizationId]/[websiteId]/organization-settings/components/remove-member-modal';
+import { AddExpenseModal } from '@/components/modals/add-expenses-modal';
 /* eslint-enable max-len */
 import { ConfirmConnectionModal } from '@/components/modals/confirm-connection';
 import { CreateActivityGoalModal } from '@/components/modals/create-activity-goal';

@@ -85,6 +85,7 @@
         "mode": "all",
         "jsx-attributes": {
           "exclude": [
+            "tooltipVariant",
             "dataKey",
             "td",
             "fz",

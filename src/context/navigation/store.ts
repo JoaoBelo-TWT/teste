@@ -24,7 +24,8 @@ const initializeFilters = (): DashboardQueryParamsProps => ({
   campaignStatus: DashboardQueryParams.campaignStatus.default,
   campaignSorting: DashboardQueryParams.campaignSorting.default,
   campaignCards: DashboardQueryParams.campaignCards.default,
-  notifications: DashboardQueryParams.notifications.default
+  notifications: DashboardQueryParams.notifications.default,
+  acquisitionChannel: DashboardQueryParams.acquisitionChannel.default
 });
 
 const shouldUpdateTrigger = (newFilters: Partial<DashboardQueryParamsProps>, keys: string[]): boolean =>
@@ -38,7 +39,7 @@ const useNavigationStore = create<NavigationStoreState>((set) => ({
     journeys: false,
     activity: false,
     welcome: false,
-    notifications: false,
+    notifications: false
   },
   setFilters: (newFilters) => {
     set((state) => {

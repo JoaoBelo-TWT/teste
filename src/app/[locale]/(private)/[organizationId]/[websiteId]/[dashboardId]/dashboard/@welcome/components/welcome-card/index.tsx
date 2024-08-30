@@ -11,9 +11,9 @@ import { DashboardOverviewStatus, PixelScriptGenerationStatus } from '@/__genera
 import conversionCoralGradient from '@/assets/images/gradients/Conversion_Coral.svg';
 import marketingMintGradient from '@/assets/images/gradients/Marketing_Mint.svg';
 import { useNavigationStore } from '@/context/navigation/store';
-import { useQueryWelcomeCard } from '@/lib/react-query/dashboard/executive/use-query-welcome-card';
-import { useMe } from '@/lib/react-query/use-query-fetch-me';
-import { useQueryWebsite } from '@/lib/react-query/website/use-query-website';
+import { useQueryWelcomeCard } from '@/lib/react-query/dashboard/executive/query-welcome-card';
+import { useMe } from '@/lib/react-query/user/query-me';
+import { useQueryWebsite } from '@/lib/react-query/website/query-website';
 import { DATE_FORMATS } from '@/resources/constants';
 import { formatNumber } from '@/utils/formatters/numbers';
 

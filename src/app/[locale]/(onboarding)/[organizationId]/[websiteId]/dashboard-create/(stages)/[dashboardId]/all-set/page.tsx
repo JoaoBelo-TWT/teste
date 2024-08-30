@@ -6,7 +6,7 @@ import { AllSetCard } from '@/components/ui/all-set-card';
 import { ConnectedSourceItem } from '@/components/ui/connected-source-item';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
 import { fetchFunnelStages } from '@/lib/fetch-funnel-stages';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { routes } from '@/routes/routes';
 import { OnboardingQueryParamsProps } from '@/types/constants/onboarding-query-params';
 
@@ -20,7 +20,7 @@ export default async function CreateStagesAllSetPage({
   const { flow } = searchParams;
   const data = await fetchFunnelStages(params.dashboardId);
   const t = await getTranslations();
-  const websiteData = await fetchWebsiteData(params.websiteId);
+  const websiteData = await getQueryWebsite(params.websiteId);
 
   const connectedToCRM =
     websiteData?.website.hubspotIntegrationStatus === HubspotIntegrationStatus.Active ||

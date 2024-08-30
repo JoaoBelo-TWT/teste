@@ -6,7 +6,7 @@ import { useUserAccessLevel } from '@/hooks/user-access-level/check-user-access-
 import { getClient } from '@/lib/apollo/apollo-client';
 import { getOrganizationQuery } from '@/lib/apollo/queries/dashboard-organization';
 import { getOrganizationPermissions } from '@/lib/apollo/queries/organization-settings-permissions';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { nextCacheTags } from '@/types/constants/next-cache-tags';
 
 import { InviteTeamMembersButton } from '../../components/invite-team-members-button';
@@ -30,7 +30,7 @@ export default async function OrganizationSettingsTeamMembers({
   const currentPageSize = Number(pageSize) || DEFAULT_PAGE_SIZE;
   const currentSortingField = sortingField ?? DEFAULT_SORTING_FIELD;
   const currentSortingDirection = sortingDirection ?? DEFAULT_SORTING_DIRECTION;
-  const user = await fetchMeData();
+  const user = await getMe();
 
   const { data: organizationData } = await getClient().query({
     query: getOrganizationQuery,

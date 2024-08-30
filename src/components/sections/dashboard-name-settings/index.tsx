@@ -2,11 +2,11 @@
 
 import { Text } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import { useMemo, useCallback } from 'react';
+import { useMemo } from 'react';
 
 import EditableDetailsList from '@/components/lists/editable-details';
-import { updateDashboardName } from '@/lib/mutations/update-dashboard-name';
-import { showResponseToast } from '@/utils/server-actions/show-response-toast';
+import { toaster } from '@/components/ui/toast';
+import { useMutationUpdateDashboard } from '@/lib/react-query/dashboard/mutation-update-dashboard';
 
 export function DashboardNameSettings({
   dashboardId,
@@ -19,17 +19,30 @@ export function DashboardNameSettings({
 }) {
   const t = useTranslations();
 
-  const updateWebsiteNameAction = useCallback(
-    async (name: string) => {
-      const response = await updateDashboardName({ id: dashboardId, name });
-      showResponseToast({ response, showSuccessMessages: true });
+  const mutate = useMutationUpdateDashboard(dashboardId, {
+    onSuccess: () => {
+      toaster.success({
+        title: t('actions.updateDashboardName.successMessage')
+      });
     },
-    [dashboardId]
-  );
+    onError: () => {
+      toaster.success({
+        title: t('actions.updateDashboardName.errorMessage')
+      });
+    }
+  });
 
   const memoizedDashboardDetails = useMemo(
-    () => [{ value: dashboardName, onSave: updateWebsiteNameAction }],
-    [dashboardName, updateWebsiteNameAction]
+    () => [
+      {
+        value: dashboardName,
+        // eslint-disable-next-line @typescript-eslint/require-await
+        onSave: async (name: string) => {
+          mutate.mutate({ id: dashboardId, name });
+        }
+      }
+    ],
+    [dashboardId, dashboardName, mutate]
   );
   return (
     <>

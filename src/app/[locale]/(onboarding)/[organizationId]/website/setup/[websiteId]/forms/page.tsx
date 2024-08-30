@@ -2,8 +2,8 @@ import { Flex } from '@mantine/core';
 import { getTranslations } from 'next-intl/server';
 
 import { TextContent } from '@/components/ui/text-content';
-import { fetchMeData } from '@/lib/fetch-me-data';
-import { fetchSelectors } from '@/lib/fetch-selectors';
+import { getMe } from '@/lib/react-query/user/query-me';
+import { getQueryWebsiteSelectors } from '@/lib/react-query/website/query-selectors';
 import { SPACING } from '@/resources/constants';
 
 import { ProgressContainer } from '../../../../../../../../components/wrappers/progress-container';
@@ -15,9 +15,9 @@ export default async function FormsPage({
   params
 }: Readonly<{ params: { organizationId: string; websiteId: string } }>) {
   const t = await getTranslations();
-  const user = await fetchMeData();
+  const user = await getMe();
   const { websiteId, organizationId } = params;
-  const data = await fetchSelectors(params.websiteId);
+  const data = await getQueryWebsiteSelectors(params.websiteId);
 
   const steps = [
     { label: t('onboarding.setup.step2.stepper') },

@@ -1,7 +1,6 @@
 {
   "title": "Tracking with Source",
   "common": {
-    "today": "Today",
     "account": "Account",
     "add": "Add",
     "addCustomerFunnels": "Add customer funnels",
@@ -11,6 +10,7 @@
     "campaignPerformance": "campaign-performance",
     "cancel": "Cancel",
     "cantBeUndone": "This action is permanent and cannot be undone.",
+    "channel": "Channel",
     "comingSoon": "Coming Soon",
     "connect": "Connect",
     "connectWebsite": "Connect to your website",
@@ -29,6 +29,7 @@
     "eventName": "Event Name",
     "events": "Events",
     "finish": "Finish",
+    "funnelStage": "Funnel Stage",
     "goals": "Goals",
     "goToDashboard": "Go to dashboard",
     "hoursAgo": "hours ago",
@@ -43,6 +44,7 @@
     "noChannel": "No selected channel",
     "noCustomerFunnels": "You still don't have any customer funnels setup.",
     "noData": "No data available, yet. Wait a couple minutes.",
+    "noDataGraph": "No data available for the selected filters",
     "noDataSimple": "No data available, yet.",
     "noGoals": "You still don't have any goals setup.",
     "noNotifications": "You don’t have notifications yet.",
@@ -63,9 +65,12 @@
     "sortBy": "Sort By",
     "success": "Success",
     "suggested": "Suggested",
+    "today": "Today",
     "unknown": "Unknown",
     "upload": "Upload",
     "user": "User",
+    "views": "Views",
+    "visits": "Visits",
     "websites": "Your websites"
   },
   "general": {
@@ -90,6 +95,7 @@
       }
     },
     "channels": {
+      "all": "All channels",
       "direct": "Direct",
       "email": "Email",
       "other": "Other",
@@ -441,7 +447,7 @@
         "title": "Identify your sign up forms",
         "description": "Please provide the URLs for the website pages that contain a sign up form that you would like to track. This information will help us customize your tracking pixel as a next step.",
         "queryPlaceholder": "querySelector",
-        "websitePlaceholder": "www.website.com",
+        "websitePlaceholder": "https://example.com",
         "urlLabel": "Page URL",
         "fieldLabel": "Field",
         "learnMore": "Learn More",
@@ -575,6 +581,7 @@
       "executive": "Executive"
     },
     "tooltips": {
+      "acquisitionPerformance": "Monitor performance across different funnel stages such as leads over various time periods. Visualize how your channels are converting leads into customers to optimize your acquisition strategies effectively.",
       "funnelPerformance": "Below is a complete view of your marketing and sales funnel for the date range specified.",
       "websitePerformance": "Your websites most visited and best converting web pages are displayed below.",
       "campaignPerformance": "Campaigns with UTM parameters are automatically displayed below.",
@@ -634,6 +641,18 @@
           }
         },
         "error": "An error occurred while fetching channel performance data."
+      },
+      "acquisitionPerformanceCard": {
+        "title": "Acquisition Performance",
+        "filters": {
+          "attributionModel": {
+            "dropdownHeader": "Attribution Model",
+            "dropdownOptions": {
+              "firstTouch": "First Touch"
+            }
+          }
+        },
+        "error": "An error occurred while fetching customer journey data."
       },
       "customerJourneyCard": {
         "title": "Funnel Performance",
@@ -728,8 +747,11 @@
           "title": "Conversion Rate"
         },
         "trafficCard": {
-          "title": "Website Visitors",
-          "tooltip": "website visitors"
+          "title": "Website Views",
+          "tooltip": "website views",
+          "previousHour": "from previous hour",
+          "previousDay": "from previous day",
+          "previousMonth": "from previous month"
         }
       }
     },

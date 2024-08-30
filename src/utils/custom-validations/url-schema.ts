@@ -12,7 +12,9 @@ export const UrlSchema = z
 export const RefinedUrlSchema = (t: TFunction) =>
   z
     .string()
-    .min(1, { message: t('validation.invalidUrl') }) // Ensure the string is not empty
+    .min(1, { message: t('validation.invalidUrl') })
     /* eslint-disable i18next/no-literal-string */
     .refine((url) => url.startsWith('https://'), { message: t('validation.missingHttps') })
-    .refine((url) => /^https:\/\/www\.[\w-]+(\.[\w-]+)+(\/[\w-./?%&=]*)?$/.test(url), { message: INVALID_URL });
+    .refine((url) => /^https:\/\/[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/.test(url), {
+      message: t('validation.invalidUrl')
+    });

@@ -87,6 +87,8 @@ export interface CustomAreaChartProps
 
   /** Determines whether points with `null` values should be connected, `true` by default */
   connectNulls?: boolean;
+  tooltipVariant?: 'default' | 'compare-past-period';
+  tooltipLabel?: string;
 
   xAxisStartLabel?: string;
   xAxisEndLabel?: string;

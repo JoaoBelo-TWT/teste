@@ -2,7 +2,7 @@ import { AccessLevel } from '@/__generated__/graphql';
 import { Tabs } from '@/components/ui/tabs';
 import TopBarWrapper from '@/components/wrappers/top-bar';
 import { useUserAccessLevel } from '@/hooks/user-access-level/check-user-access-level';
-import { getQueryDashboards } from '@/lib/react-query/dashboard/get-query-dashboards';
+import { getQueryDashboards } from '@/lib/react-query/dashboard/query-dashboards';
 
 import { DashboardPathParams } from '../types';
 

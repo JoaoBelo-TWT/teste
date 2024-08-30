@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import NavigationTabs from '@/components/navigation/tabs';
 import { AvatarChip } from '@/components/ui/avatar-chip';
 import TopBarWrapper from '@/components/wrappers/top-bar';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { beautifyUrl } from '@/utils/formatters/beutify-url';
@@ -19,7 +19,7 @@ export default async function WebsiteLayout({
   params: { organizationId: string; websiteId: string };
 }>) {
   const t = await getTranslations();
-  const websiteDetails = await fetchWebsiteData(params.websiteId);
+  const websiteDetails = await getQueryWebsite(params.websiteId);
   return (
     <>
       <TopBarWrapper

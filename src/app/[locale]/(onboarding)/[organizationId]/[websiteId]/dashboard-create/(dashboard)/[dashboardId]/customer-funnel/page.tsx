@@ -1,10 +1,10 @@
-import { Title, Text } from '@mantine/core';
+import { Text, Title } from '@mantine/core';
 import { getTranslations } from 'next-intl/server';
 
 import { OnboardingContinueButton } from '@/app/[locale]/(onboarding)/components/onboarding-continue-button';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
 import { ProgressContainer } from '@/components/wrappers/progress-container';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { routes } from '@/routes/routes';
 import { OnboardingQueryParamsProps } from '@/types/constants/onboarding-query-params';
 
@@ -21,7 +21,7 @@ export default async function DefineFunnelPage({
 }>) {
   const t = await getTranslations();
   const { flow } = searchParams;
-  const user = await fetchMeData();
+  const user = await getMe();
   const isOnboarding = !!user.me.currentOnboardingPath;
 
   const steps = [

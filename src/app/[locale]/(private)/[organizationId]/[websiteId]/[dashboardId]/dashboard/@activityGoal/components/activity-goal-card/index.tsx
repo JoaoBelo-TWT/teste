@@ -7,8 +7,8 @@ import { useFormatter, useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import { AreaChart } from '@/components/charts/area-chart';
-import { useQueryActivity } from '@/lib/react-query/dashboard/executive/use-query-activity';
-import { useQueryFunnelStages } from '@/lib/react-query/dashboard/use-query-funnel-stages';
+import { useQueryActivity } from '@/lib/react-query/dashboard/executive/query-activity';
+import { useQueryFunnelStages } from '@/lib/react-query/funnel/query-funnel-stages';
 import { DATE_FORMATS } from '@/resources/constants';
 import { formatNumber } from '@/utils/formatters/numbers';
 

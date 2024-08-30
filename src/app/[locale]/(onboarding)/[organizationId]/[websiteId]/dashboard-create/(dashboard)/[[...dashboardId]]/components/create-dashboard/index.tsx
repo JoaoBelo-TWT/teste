@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
+import { DashboardType } from '@/__generated__/graphql';
 import { saveCurrentOnboardingPath } from '@/app/[locale]/(onboarding)/actions/save-current-onboarding-path';
 import { ButtonForm } from '@/components/ui/button-form';
 import { TextInput } from '@/components/ui/text-input';
@@ -38,7 +39,7 @@ export function CreateDashboardForm({
   });
 
   const formAction: () => Promise<void> = handleSubmit(async ({ name }) => {
-    const response = await createDashboard({ name, websiteId });
+    const response = await createDashboard({ name, websiteId, dashboardType: DashboardType.Executive });
 
     showResponseToast({ response });
 

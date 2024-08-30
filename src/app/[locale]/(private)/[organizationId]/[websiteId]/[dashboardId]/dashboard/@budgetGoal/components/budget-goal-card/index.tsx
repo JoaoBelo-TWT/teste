@@ -11,8 +11,8 @@ import { useMemo, useState } from 'react';
 import { AccessLevel } from '@/__generated__/graphql';
 import { AreaChart } from '@/components/charts/area-chart';
 import { Button } from '@/components/ui/button';
-import { useQueryBudgetGoal } from '@/lib/react-query/dashboard/executive/use-query-budget-goal';
-import { useMe } from '@/lib/react-query/use-query-fetch-me';
+import { useQueryBudgetGoal } from '@/lib/react-query/dashboard/executive/query-budget-goal';
+import { useMe } from '@/lib/react-query/user/query-me';
 import { DATE_FORMATS, SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 import { formatNumber } from '@/utils/formatters/numbers';
@@ -43,7 +43,7 @@ export default function BudgetGoalCard() {
     () =>
       debounce((newBudget) => {
         setBudget(newBudget as number | undefined);
-      }, 100),
+      }, 5),
     []
   );
 

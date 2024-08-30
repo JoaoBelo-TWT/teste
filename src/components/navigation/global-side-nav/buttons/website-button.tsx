@@ -1,26 +1,33 @@
 'use client';
 
-import { useCombobox, Text } from '@mantine/core';
+import { Text, useCombobox } from '@mantine/core';
 import { Plus } from '@phosphor-icons/react';
 import { Check } from '@phosphor-icons/react/dist/ssr';
 import { useTranslations } from 'next-intl';
 
-import { GetWebsitesQuery } from '@/__generated__/graphql';
 import { Avatar } from '@/components/ui/avatar';
 import { Dropdown } from '@/components/ui/dropdown';
 import { DropdownData } from '@/components/ui/dropdown/types';
 import { IconButton } from '@/components/ui/icon-button';
+import { useQueryPaginatedWebsites } from '@/lib/react-query/website/query-paginated-websites';
 import { DATA_TEST_IDS, SPACING } from '@/resources/constants';
 import { routes } from '@/routes/routes';
 
 import classes from '../index.module.css';
 
 export function WebsiteButton({
-  data,
   organizationId,
   activeWebsiteId
-}: Readonly<{ data: GetWebsitesQuery; organizationId: string; activeWebsiteId: string }>) {
+}: Readonly<{ organizationId: string; activeWebsiteId: string }>) {
   const t = useTranslations('common');
+  const { data, isLoading } = useQueryPaginatedWebsites({
+    first: 100,
+    filters: {
+      organizationId: {
+        eq: organizationId
+      }
+    }
+  });
   const combobox = useCombobox({
     onDropdownOpen: (eventSource) => {
       if (eventSource === 'keyboard') {
@@ -31,9 +38,13 @@ export function WebsiteButton({
     }
   });
 
-  const activeWebsite = data.websites.edges.find((edge) => edge.node.id === activeWebsiteId);
+  if (!data.pages.length || isLoading) {
+    return null;
+  }
 
-  const dropdownData: DropdownData = data.websites.edges.map((edge) => ({
+  const activeWebsite = data.pages.find((edge) => edge.node.id === activeWebsiteId);
+
+  const dropdownData: DropdownData = data.pages.map((edge) => ({
     value: edge.node.id,
     comboboxOptions: {
       active: edge.node.id === activeWebsiteId

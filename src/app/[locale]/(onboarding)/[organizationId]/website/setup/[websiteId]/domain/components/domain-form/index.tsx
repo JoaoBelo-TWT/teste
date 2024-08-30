@@ -9,9 +9,9 @@ import { GetWebsiteQuery } from '@/__generated__/graphql';
 import { saveCurrentOnboardingPath } from '@/app/[locale]/(onboarding)/actions/save-current-onboarding-path';
 import { Button } from '@/components/ui/button';
 import { TextInput } from '@/components/ui/text-input';
-import { updateWebsiteDomain } from '@/lib/mutations/update-website-domain';
+import { toaster } from '@/components/ui/toast';
+import { useMutationUpdateWebsite } from '@/lib/react-query/website/mutation-update-website';
 import { routes } from '@/routes/routes';
-import { showResponseToast } from '@/utils/server-actions/show-response-toast';
 
 import classes from './index.module.css';
 import { DomainFormData, DomainFormSchema } from './schema';
@@ -37,18 +37,21 @@ export function DomainForm({
     resolver: zodResolver(DomainFormSchema)
   });
 
-  const formAction: () => Promise<void> = handleSubmit(async ({ domain, id }) => {
-    const response = await updateWebsiteDomain({ id, domain });
-    showResponseToast({ response });
-
-    if (response?.successMessage) {
+  const mutate = useMutationUpdateWebsite(data.website.id, {
+    onSuccess: () => {
+      toaster.success({ title: t('common.success') });
       const route = routes.website.setup.forms.path(organizationId, data.website.id);
       if (isOnboarding) {
         saveCurrentOnboardingPath(route);
       }
 
       router.push(route);
-    }
+    },
+    onError: () => toaster.error({ title: t('common.success') })
+  });
+
+  const formAction: () => Promise<void> = handleSubmit(({ domain, id }) => {
+    mutate.mutate({ id, domain });
   });
 
   return (

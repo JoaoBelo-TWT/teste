@@ -8,7 +8,21 @@ export const meKeys = {
 export const websiteKeys = {
   all: ['website'],
 
-  single: (websiteId: string) => [...websiteKeys.all, 'single', websiteId]
+  single: (websiteId: string) => [...websiteKeys.all, 'single', websiteId],
+
+  connectionStatus: (websiteId: string) => [...websiteKeys.single(websiteId), 'connection-status'],
+
+  selectors: (websiteId: string) => [...websiteKeys.single(websiteId), 'selectors'],
+
+  paginated: (filters: unknown) => [...websiteKeys.all, 'paginated', filters]
+};
+
+export const notificationKeys = {
+  all: ['notification'],
+
+  single: (websiteId: string) => [...websiteKeys.all, 'single', websiteId],
+
+  paginated: (websiteId: string, take: number) => [...notificationKeys.single(websiteId), 'paginated', take]
 };
 
 export const dashboardKeys = {
@@ -17,6 +31,8 @@ export const dashboardKeys = {
   single: (dashboardId: string) => [...dashboardKeys.all, 'single', dashboardId],
 
   funnels: (dashboardId: string) => [...dashboardKeys.single(dashboardId), 'funnel'],
+
+  goals: (dashboardId: string) => [...dashboardKeys.single(dashboardId), 'goals'],
 
   campaignPaginated: (
     dashboardId: string,
@@ -37,12 +53,9 @@ export const dashboardKeys = {
     sectionName: string,
     dashboardId: string,
     timeFrame: string | null = null,
-    channelSorting: string | null = null
-  ) => {
-    const baseKey = [...dashboardKeys.single(dashboardId), 'section', sectionName, timeFrame, channelSorting];
-
-    return baseKey;
-  }
+    channelSorting: string | null = null,
+    funnelSorting: string | null = null
+  ) => [...dashboardKeys.single(dashboardId), 'section', sectionName, timeFrame, channelSorting, funnelSorting]
 };
 
 export const organizationKeys = {

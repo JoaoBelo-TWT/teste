@@ -1,0 +1,41 @@
+.acquisition-performance {
+  text-decoration: none;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__link {
+    flex: 1;
+    text-decoration: none;
+  }
+
+  &__container {
+    align-items: flex-start;
+    border: 1px solid var(--mantine-color-dark-3);
+    border-radius: var(--mantine-radius-md);
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 48px;
+    overflow: auto hidden;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--mantine-color-dark-3);
+      background-clip: content-box;
+      border: 3px solid transparent;
+      border-radius: var(--mantine-radius-md);
+    }
+  }
+}

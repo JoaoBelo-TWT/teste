@@ -37,7 +37,8 @@ const config: CodegenConfig = {
         scalars: {
           UUID: 'string',
           DateTime: 'string',
-          JSON: 'Record<string, unknown>'
+          JSON: 'Record<string, unknown>',
+          Date: 'string'
         },
         strictScalars: true
       }

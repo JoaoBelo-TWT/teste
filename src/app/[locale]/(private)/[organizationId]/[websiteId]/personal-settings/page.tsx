@@ -2,13 +2,13 @@ import { Flex } from '@mantine/core';
 import { getTranslations } from 'next-intl/server';
 
 import { BaseCard } from '@/components/ui/base-card';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 
 import PersonalSettingsList from './personal-settings-list';
 
 export default async function PersonalSettingsPage() {
   const t = await getTranslations();
-  const meData = await fetchMeData();
+  const meData = await getMe();
 
   return (
     <Flex w="100%">

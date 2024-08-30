@@ -6,7 +6,7 @@ import { TextContent } from '@/components/ui/text-content';
 import { ProgressContainer } from '@/components/wrappers/progress-container';
 import { getClient } from '@/lib/apollo/apollo-client';
 import { getOrganizationsQuery } from '@/lib/apollo/queries/onboarding-organizations';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 
 import { WebsiteCreateCloseButton } from '../components/close-button';
 
@@ -16,7 +16,7 @@ export default async function websitePage({
   params: { organizationId }
 }: Readonly<{ params: { organizationId: string } }>) {
   const t = await getTranslations('onboarding.setup');
-  const user = await fetchMeData();
+  const user = await getMe();
 
   const { data } = await getClient().query({
     query: getOrganizationsQuery,

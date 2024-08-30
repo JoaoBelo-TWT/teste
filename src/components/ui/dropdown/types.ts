@@ -3,7 +3,7 @@ import { Url } from 'next/dist/shared/lib/router/router';
 import { ReactElement } from 'react';
 
 export type DropdownData = {
-  value: string;
+  value: string | undefined;
   label: string | React.ReactNode;
   href?: Url;
   preFetch?: boolean;

@@ -10,7 +10,7 @@ export default function DashboardsSettings({
   viewOnly
 }: {
   organizationId: string;
-  dashboard: Dashboard;
+  dashboard: Omit<Dashboard, 'dashboardType'>;
   viewOnly?: boolean;
 }) {
   return (

@@ -14,6 +14,8 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** Date custom scalar type */
+  Date: { input: string; output: string; }
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: { input: string; output: string; }
   /** JSON custom scalar type */
@@ -28,14 +30,20 @@ export enum AccessLevel {
   Write = 'WRITE'
 }
 
+export type AcquisitionPerformance = {
+  __typename?: 'AcquisitionPerformance';
+  count: Scalars['Int']['output'];
+  date: Scalars['Date']['output'];
+};
+
 export type ActivityGoal = {
   __typename?: 'ActivityGoal';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   customerFunnelStageId: Scalars['UUID']['output'];
   dashboardId: Scalars['UUID']['output'];
   id: Scalars['UUID']['output'];
   numberOfEvents: Scalars['Int']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type ActivityGoalConnection = {
@@ -69,13 +77,13 @@ export type ActivityInfo = {
 
 export type BudgetGoal = {
   __typename?: 'BudgetGoal';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   currency: Scalars['String']['output'];
   dashboardId: Scalars['UUID']['output'];
   id: Scalars['UUID']['output'];
   recurring: Scalars['Boolean']['output'];
   recurringRepeat?: Maybe<RecurringRepeat>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   value: Scalars['Float']['output'];
 };
 
@@ -105,7 +113,7 @@ export type BudgetUsage = {
   /** Budget used until this day */
   amount?: Maybe<Scalars['Float']['output']>;
   /** Day of the month */
-  date: Scalars['DateTime']['output'];
+  date: Scalars['Date']['output'];
 };
 
 export type CampaignPerformance = {
@@ -262,7 +270,7 @@ export enum Channels {
 
 export type ChartData = {
   __typename?: 'ChartData';
-  date: Scalars['DateTime']['output'];
+  date: Scalars['Date']['output'];
   value?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -275,10 +283,10 @@ export type CompanyIndustriesFiltersInput = {
 
 export type CompanyIndustry = {
   __typename?: 'CompanyIndustry';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type CompanyIndustryConnection = {
@@ -295,10 +303,10 @@ export type CompanyIndustryEdge = {
 
 export type CompanyRole = {
   __typename?: 'CompanyRole';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type CompanyRoleConnection = {
@@ -322,10 +330,10 @@ export type CompanyRolesFiltersInput = {
 
 export type CompanySize = {
   __typename?: 'CompanySize';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type CompanySizeConnection = {
@@ -390,6 +398,7 @@ export type CreateCustomerFunnelStageInput = {
 };
 
 export type CreateDashboardInput = {
+  dashboardType: DashboardType;
   name: Scalars['String']['input'];
   websiteId: Scalars['UUID']['input'];
 };
@@ -445,13 +454,13 @@ export type CustomerFunnelOverview = {
 
 export type CustomerFunnelStage = {
   __typename?: 'CustomerFunnelStage';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   customerFunnelStageEvents?: Maybe<Array<CustomerFunnelStageEvent>>;
   dashboardId: Scalars['UUID']['output'];
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
   previousStageId?: Maybe<Scalars['UUID']['output']>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   value: Scalars['String']['output'];
 };
 
@@ -469,18 +478,18 @@ export type CustomerFunnelStageEdge = {
 
 export type CustomerFunnelStageEvent = {
   __typename?: 'CustomerFunnelStageEvent';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   customerFunnelStageEventConditions?: Maybe<Array<CustomerFunnelStageEventCondition>>;
   customerFunnelStageId: Scalars['UUID']['output'];
   eventType: EventType;
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type CustomerFunnelStageEventCondition = {
   __typename?: 'CustomerFunnelStageEventCondition';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   customerFunnelStageEventId: Scalars['UUID']['output'];
   destinationUrl?: Maybe<Scalars['String']['output']>;
   destinationUrlCondition?: Maybe<UrlCondition>;
@@ -488,7 +497,7 @@ export type CustomerFunnelStageEventCondition = {
   pageUrl?: Maybe<Scalars['String']['output']>;
   startingUrl?: Maybe<Scalars['String']['output']>;
   startingUrlCondition?: Maybe<UrlCondition>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   visitorType?: Maybe<VisitorType>;
 };
 
@@ -503,11 +512,21 @@ export type CustomerFunnelStagesFiltersInput = {
 
 export type Dashboard = {
   __typename?: 'Dashboard';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
+  dashboardType: DashboardType;
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   websiteId: Scalars['UUID']['output'];
+};
+
+export type DashboardAcquisitionPerformance = {
+  __typename?: 'DashboardAcquisitionPerformance';
+  acquisitionPerformance: Array<AcquisitionPerformance>;
+  endDate: Scalars['Date']['output'];
+  /** Returns false if no funnels stages are present for the given dashboardId */
+  isSetup: Scalars['Boolean']['output'];
+  startDate: Scalars['Date']['output'];
 };
 
 export type DashboardActivityGoal = {
@@ -640,7 +659,7 @@ export type DashboardOverview = {
   conversion: Scalars['Float']['output'];
   dashboardId: Scalars['UUID']['output'];
   /** End date */
-  endDate: Scalars['DateTime']['output'];
+  endDate: Scalars['Date']['output'];
   /** Does dashboard has any events */
   hasEvents: Scalars['Boolean']['output'];
   /** Does channel has funnels */
@@ -652,7 +671,7 @@ export type DashboardOverview = {
   /** Period */
   period: DashboardTimeframe;
   /** Start date */
-  startDate: Scalars['DateTime']['output'];
+  startDate: Scalars['Date']['output'];
   /** Status of the current overview, if it is going well or not */
   status: DashboardOverviewStatus;
   websiteConversionRate: Scalars['Float']['output'];
@@ -665,9 +684,19 @@ export enum DashboardOverviewStatus {
 
 export enum DashboardTimeframe {
   LastDay = 'LastDay',
+  PreviousDay = 'PreviousDay',
+  PreviousMonth = 'PreviousMonth',
+  PreviousWeek = 'PreviousWeek',
+  PreviousYear = 'PreviousYear',
   ThisMonth = 'ThisMonth',
   ThisWeek = 'ThisWeek',
   ThisYear = 'ThisYear'
+}
+
+export enum DashboardType {
+  Executive = 'Executive',
+  Organic = 'Organic',
+  Paid = 'Paid'
 }
 
 export type DashboardWebsiteActivity = {
@@ -703,7 +732,7 @@ export type DashboardWebsiteActivitySources = {
 
 export type DashboardWebsiteActivityTraffic = {
   __typename?: 'DashboardWebsiteActivityTraffic';
-  date: Scalars['DateTime']['output'];
+  date: Scalars['Date']['output'];
   /** Page Views */
   pageViews?: Maybe<Scalars['Int']['output']>;
 };
@@ -731,6 +760,7 @@ export type DeleteWebsiteImageInput = {
 export type Event = {
   __typename?: 'Event';
   browser?: Maybe<Scalars['String']['output']>;
+  channel?: Maybe<Scalars['String']['output']>;
   colorDepth: Scalars['Int']['output'];
   documentEncoding: Scalars['String']['output'];
   documentLocation: Scalars['String']['output'];
@@ -738,14 +768,13 @@ export type Event = {
   domain?: Maybe<Scalars['String']['output']>;
   event: Scalars['String']['output'];
   eventData?: Maybe<Scalars['JSON']['output']>;
-  funnelStage?: Maybe<Scalars['String']['output']>;
   id: Scalars['UUID']['output'];
   identifier?: Maybe<Scalars['String']['output']>;
   isMobile: Scalars['String']['output'];
   referrerLocation?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
   screenResolution: Scalars['String']['output'];
-  timestamp: Scalars['DateTime']['output'];
+  timestamp: Scalars['Date']['output'];
   timezone: Scalars['Int']['output'];
   userAgent: Scalars['String']['output'];
   utmCampaign?: Maybe<Scalars['String']['output']>;
@@ -815,12 +844,12 @@ export type Expense = {
   amount: Scalars['Float']['output'];
   category?: Maybe<ExpensesCategory>;
   channels?: Maybe<Array<Channels>>;
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   dashboardId: Scalars['UUID']['output'];
   id: Scalars['UUID']['output'];
   name: Scalars['String']['output'];
   recurringRepeat?: Maybe<RecurringRepeat>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type ExpenseConnection = {
@@ -893,7 +922,7 @@ export type FunnelPerformanceConversionEvents = {
   firstPageVisited?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
   searchTerm?: Maybe<Scalars['String']['output']>;
-  timestamp?: Maybe<Scalars['DateTime']['output']>;
+  timestamp?: Maybe<Scalars['Date']['output']>;
 };
 
 export type FunnelPerformanceDeepDive = {
@@ -948,7 +977,7 @@ export type Me = {
   companyName?: Maybe<Scalars['String']['output']>;
   companyRoleId?: Maybe<Scalars['String']['output']>;
   companySizeId?: Maybe<Scalars['String']['output']>;
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   currentOnboardingPath?: Maybe<Scalars['String']['output']>;
   defaultOrganizationId?: Maybe<Scalars['UUID']['output']>;
   email: Scalars['String']['output'];
@@ -958,7 +987,7 @@ export type Me = {
   lastName?: Maybe<Scalars['String']['output']>;
   permissions?: Maybe<Array<MePermission>>;
   sub?: Maybe<Scalars['String']['output']>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type MePermission = {
@@ -1246,12 +1275,12 @@ export type MutationUpsertSelectorArgs = {
 
 export type Notification = {
   __typename?: 'Notification';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   id: Scalars['UUID']['output'];
   message: Scalars['String']['output'];
   notificationType: NotificationType;
   title: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   websiteId: Scalars['UUID']['output'];
 };
 
@@ -1287,12 +1316,12 @@ export type Organization = {
   __typename?: 'Organization';
   companyIndustryId?: Maybe<Scalars['String']['output']>;
   companySizeId?: Maybe<Scalars['String']['output']>;
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   defaultWebsiteId?: Maybe<Scalars['UUID']['output']>;
   id: Scalars['UUID']['output'];
   imageUrl: Scalars['String']['output'];
   name: Scalars['String']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   user: User;
   userId: Scalars['String']['output'];
   website?: Maybe<Website>;
@@ -1334,12 +1363,12 @@ export enum PageViewsSorting {
 export type Permission = {
   __typename?: 'Permission';
   accessLevel: Scalars['UUID']['output'];
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   dashboardId?: Maybe<Scalars['UUID']['output']>;
   id: Scalars['UUID']['output'];
   invitationStatus: MembersInvitationStatus;
   organizationId: Scalars['UUID']['output'];
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   user: User;
   userId: Scalars['UUID']['output'];
   websiteId?: Maybe<Scalars['UUID']['output']>;
@@ -1398,6 +1427,7 @@ export type Query = {
   customerFunnelStage: CustomerFunnelStage;
   customerFunnelStages: CustomerFunnelStageConnection;
   dashboard: Dashboard;
+  dashboardAcquisitionPerformance: DashboardAcquisitionPerformance;
   dashboardActivityGoal: DashboardActivityGoal;
   dashboardBudget: DashboardBudget;
   dashboardCampaignsList: DashboardCampaignsList;
@@ -1423,6 +1453,7 @@ export type Query = {
   organizations: OrganizationConnection;
   permission: Permission;
   permissions: PermissionConnection;
+  purgeAllCache: Scalars['String']['output'];
   regenerateCache: Scalars['String']['output'];
   selectors: Array<Selector>;
   user: User;
@@ -1590,6 +1621,14 @@ export type QueryDashboardArgs = {
 };
 
 
+export type QueryDashboardAcquisitionPerformanceArgs = {
+  channel?: InputMaybe<Channels>;
+  dashboardId: Scalars['UUID']['input'];
+  dashboardTimeframe: DashboardTimeframe;
+  funnelStageName?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 export type QueryDashboardActivityGoalArgs = {
   dashboardId: Scalars['UUID']['input'];
   isFromCache?: Scalars['Boolean']['input'];
@@ -1606,7 +1645,6 @@ export type QueryDashboardCampaignsListArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
-  isOrganic?: Scalars['Boolean']['input'];
   skip?: Scalars['Int']['input'];
   sorting: CampaignSorting;
   status: CampaignStatusInput;
@@ -1619,7 +1657,6 @@ export type QueryDashboardChannelPerformanceArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
-  isOrganic?: Scalars['Boolean']['input'];
 };
 
 
@@ -1627,14 +1664,12 @@ export type QueryDashboardCustomerJourneyArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
-  isOrganic?: Scalars['Boolean']['input'];
 };
 
 
 export type QueryDashboardOverviewArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
-  isOrganic?: Scalars['Boolean']['input'];
 };
 
 
@@ -1642,7 +1677,6 @@ export type QueryDashboardWebsiteActivityArgs = {
   dashboardId: Scalars['UUID']['input'];
   dashboardTimeframe: DashboardTimeframe;
   isFromCache?: Scalars['Boolean']['input'];
-  isOrganic?: Scalars['Boolean']['input'];
   pageViewsSorting: PageViewsSorting;
   skip?: Scalars['Int']['input'];
   take?: InputMaybe<Scalars['Int']['input']>;
@@ -1849,11 +1883,11 @@ export enum SalesforceIntegrationStatus {
 
 export type Selector = {
   __typename?: 'Selector';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   id: Scalars['UUID']['output'];
   link?: Maybe<Scalars['String']['output']>;
   querySelector?: Maybe<Scalars['String']['output']>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   websiteId: Scalars['UUID']['output'];
 };
 
@@ -2023,7 +2057,7 @@ export enum UrlCondition {
 export type User = {
   __typename?: 'User';
   companyRoleId?: Maybe<Scalars['String']['output']>;
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   currentOnboardingPath?: Maybe<Scalars['String']['output']>;
   defaultOrganizationId?: Maybe<Scalars['UUID']['output']>;
   email: Scalars['String']['output'];
@@ -2032,7 +2066,7 @@ export type User = {
   imageUrl?: Maybe<Scalars['String']['output']>;
   lastName?: Maybe<Scalars['String']['output']>;
   sub?: Maybe<Scalars['String']['output']>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
 };
 
 export type UserConnection = {
@@ -2068,7 +2102,7 @@ export enum VisitorType {
 
 export type Website = {
   __typename?: 'Website';
-  createdAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['Date']['output'];
   createdBy?: Maybe<Scalars['UUID']['output']>;
   defaultDashboardId?: Maybe<Scalars['UUID']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -2087,7 +2121,7 @@ export type Website = {
   salesforceIntegrationStatus?: Maybe<SalesforceIntegrationStatus>;
   scriptUrl?: Maybe<Scalars['String']['output']>;
   snippetUrl?: Maybe<Scalars['String']['output']>;
-  updatedAt: Scalars['DateTime']['output'];
+  updatedAt: Scalars['Date']['output'];
   user: User;
 };
 
@@ -2385,6 +2419,16 @@ export type GetChannelPerformanceDeepDiveOverviewQueryVariables = Exact<{
 
 export type GetChannelPerformanceDeepDiveOverviewQuery = { __typename?: 'Query', channelPerformanceDeepDiveOverview: { __typename?: 'ChannelPerformanceDeepDiveOverview', currency: string, spend: number, customerFunnelsOverView: Array<{ __typename?: 'CustomerFunnelOverview', name: string, organicCount?: number | null, paidCount?: number | null, totalCount: number, costPer: number, currency: string }> } };
 
+export type DashboardAcquisitionPerformanceQueryVariables = Exact<{
+  dashboardId: Scalars['UUID']['input'];
+  dashboardTimeframe: DashboardTimeframe;
+  funnelStageName?: InputMaybe<Scalars['String']['input']>;
+  channel?: InputMaybe<Channels>;
+}>;
+
+
+export type DashboardAcquisitionPerformanceQuery = { __typename?: 'Query', dashboardAcquisitionPerformance: { __typename?: 'DashboardAcquisitionPerformance', startDate: string, isSetup: boolean, endDate: string, acquisitionPerformance: Array<{ __typename?: 'AcquisitionPerformance', date: string, count: number }> } };
+
 export type GetDashboardActivityQueryVariables = Exact<{
   dashboardId: Scalars['UUID']['input'];
 }>;
@@ -2587,6 +2631,11 @@ export type IsHubspotConnectedQuery = { __typename?: 'Query', isHubspotConnected
 export type GetNotificationsQueryVariables = Exact<{
   websiteId: Scalars['String']['input'];
   take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -2651,6 +2700,7 @@ export const CampaignPerformanceDeepDiveOverviewDocument = {"kind":"Document","d
 export const GetChannelPerformanceDeepDiveActivityDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetChannelPerformanceDeepDiveActivityDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"channelName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ChannelFiltersDashboardEnum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DashboardTimeframe"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"channelPerformanceDeepDiveActivityDetails"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}},{"kind":"Argument","name":{"kind":"Name","value":"channelName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"channelName"}}},{"kind":"Argument","name":{"kind":"Name","value":"dashboardTimeframe"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"take"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalActivityDetails"}},{"kind":"Field","name":{"kind":"Name","value":"activityDetails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"pageUrl"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"searchTerm"}},{"kind":"Field","name":{"kind":"Name","value":"customerFunnelStageName"}}]}}]}}]}}]} as unknown as DocumentNode<GetChannelPerformanceDeepDiveActivityDetailsQuery, GetChannelPerformanceDeepDiveActivityDetailsQueryVariables>;
 export const GetChannelPerformanceDeepDiveCampaignsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetChannelPerformanceDeepDiveCampaigns"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"channelName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ChannelFiltersDashboardEnum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DashboardTimeframe"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"channelPerformanceDeepDiveCampaigns"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}},{"kind":"Argument","name":{"kind":"Name","value":"channelName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"channelName"}}},{"kind":"Argument","name":{"kind":"Name","value":"dashboardTimeframe"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campaigns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"customerFunnels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetChannelPerformanceDeepDiveCampaignsQuery, GetChannelPerformanceDeepDiveCampaignsQueryVariables>;
 export const GetChannelPerformanceDeepDiveOverviewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetChannelPerformanceDeepDiveOverview"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"channelName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ChannelFiltersDashboardEnum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DashboardTimeframe"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"channelPerformanceDeepDiveOverview"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}},{"kind":"Argument","name":{"kind":"Name","value":"channelName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"channelName"}}},{"kind":"Argument","name":{"kind":"Name","value":"dashboardTimeframe"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"customerFunnelsOverView"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"organicCount"}},{"kind":"Field","name":{"kind":"Name","value":"paidCount"}},{"kind":"Field","name":{"kind":"Name","value":"totalCount"}},{"kind":"Field","name":{"kind":"Name","value":"costPer"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"Field","name":{"kind":"Name","value":"spend"}}]}}]}}]} as unknown as DocumentNode<GetChannelPerformanceDeepDiveOverviewQuery, GetChannelPerformanceDeepDiveOverviewQueryVariables>;
+export const DashboardAcquisitionPerformanceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"DashboardAcquisitionPerformance"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DashboardTimeframe"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"funnelStageName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"channel"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Channels"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dashboardAcquisitionPerformance"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}},{"kind":"Argument","name":{"kind":"Name","value":"dashboardTimeframe"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}}},{"kind":"Argument","name":{"kind":"Name","value":"funnelStageName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"funnelStageName"}}},{"kind":"Argument","name":{"kind":"Name","value":"channel"},"value":{"kind":"Variable","name":{"kind":"Name","value":"channel"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"startDate"}},{"kind":"Field","name":{"kind":"Name","value":"isSetup"}},{"kind":"Field","name":{"kind":"Name","value":"endDate"}},{"kind":"Field","name":{"kind":"Name","value":"acquisitionPerformance"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]} as unknown as DocumentNode<DashboardAcquisitionPerformanceQuery, DashboardAcquisitionPerformanceQueryVariables>;
 export const GetDashboardActivityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetDashboardActivity"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dashboardActivityGoal"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dashboardId"}},{"kind":"Field","name":{"kind":"Name","value":"totalNumberOfEvents"}},{"kind":"Field","name":{"kind":"Name","value":"currentNumberOfEvents"}},{"kind":"Field","name":{"kind":"Name","value":"completesInDays"}},{"kind":"Field","name":{"kind":"Name","value":"isSetup"}},{"kind":"Field","name":{"kind":"Name","value":"customerFunnelStageName"}},{"kind":"Field","name":{"kind":"Name","value":"activityGoalProgress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]} as unknown as DocumentNode<GetDashboardActivityQuery, GetDashboardActivityQueryVariables>;
 export const GetDashboardBudgetDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetDashboardBudget"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dashboardBudget"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dashboardId"}},{"kind":"Field","name":{"kind":"Name","value":"totalAmount"}},{"kind":"Field","name":{"kind":"Name","value":"usedAmount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"recurring"}},{"kind":"Field","name":{"kind":"Name","value":"recurringRepeat"}},{"kind":"Field","name":{"kind":"Name","value":"renewsIn"}},{"kind":"Field","name":{"kind":"Name","value":"isSetup"}},{"kind":"Field","name":{"kind":"Name","value":"budgetUsage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}}]}}]}}]}}]} as unknown as DocumentNode<GetDashboardBudgetQuery, GetDashboardBudgetQueryVariables>;
 export const GetDashboardCampaignsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetDashboardCampaigns"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DashboardTimeframe"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"status"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CampaignStatusInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sorting"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CampaignSorting"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dashboardCampaignsList"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dashboardId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardId"}}},{"kind":"Argument","name":{"kind":"Name","value":"dashboardTimeframe"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dashboardTimeframe"}}},{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"Variable","name":{"kind":"Name","value":"status"}}},{"kind":"Argument","name":{"kind":"Name","value":"sorting"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sorting"}}},{"kind":"Argument","name":{"kind":"Name","value":"take"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasEvents"}},{"kind":"Field","name":{"kind":"Name","value":"totalVisits"}},{"kind":"Field","name":{"kind":"Name","value":"totalConversions"}},{"kind":"Field","name":{"kind":"Name","value":"totalCampaigns"}},{"kind":"Field","name":{"kind":"Name","value":"campaigns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"startDate"}},{"kind":"Field","name":{"kind":"Name","value":"endDate"}},{"kind":"Field","name":{"kind":"Name","value":"visits"}},{"kind":"Field","name":{"kind":"Name","value":"leads"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"spend"}},{"kind":"Field","name":{"kind":"Name","value":"cac"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"urlSourcesImages"}}]}}]}}]}}]} as unknown as DocumentNode<GetDashboardCampaignsQuery, GetDashboardCampaignsQueryVariables>;
@@ -2673,7 +2723,7 @@ export const GetStageDocument = {"kind":"Document","definitions":[{"kind":"Opera
 export const GetOrganizationPermissionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetOrganizationPermissions"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filters"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PermissionsFiltersInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"last"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"before"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sorting"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Sorting"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"permissions"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"last"},"value":{"kind":"Variable","name":{"kind":"Name","value":"last"}}},{"kind":"Argument","name":{"kind":"Name","value":"before"},"value":{"kind":"Variable","name":{"kind":"Name","value":"before"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"sorting"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sorting"}}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filters"}}},{"kind":"Argument","name":{"kind":"Name","value":"take"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalTeamMembers"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"invitationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"accessLevel"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetOrganizationPermissionsQuery, GetOrganizationPermissionsQueryVariables>;
 export const IsWebsiteConnectedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"IsWebsiteConnected"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isWebsiteConnected"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"websiteId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}}}]}]}}]} as unknown as DocumentNode<IsWebsiteConnectedQuery, IsWebsiteConnectedQueryVariables>;
 export const IsHubspotConnectedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"IsHubspotConnected"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isHubspotConnected"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"websiteId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}}}]}]}}]} as unknown as DocumentNode<IsHubspotConnectedQuery, IsHubspotConnectedQueryVariables>;
-export const GetNotificationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetNotifications"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"notifications"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"websiteId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"websiteId"}},{"kind":"Field","name":{"kind":"Name","value":"notificationType"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetNotificationsQuery, GetNotificationsQueryVariables>;
+export const GetNotificationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetNotifications"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"take"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"last"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"before"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"notifications"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"websiteId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"take"},"value":{"kind":"Variable","name":{"kind":"Name","value":"take"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"last"},"value":{"kind":"Variable","name":{"kind":"Name","value":"last"}}},{"kind":"Argument","name":{"kind":"Name","value":"before"},"value":{"kind":"Variable","name":{"kind":"Name","value":"before"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"websiteId"}},{"kind":"Field","name":{"kind":"Name","value":"notificationType"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetNotificationsQuery, GetNotificationsQueryVariables>;
 export const SelectorsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Selectors"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"selectors"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"websiteId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"querySelector"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"websiteId"}}]}}]}}]} as unknown as DocumentNode<SelectorsQuery, SelectorsQueryVariables>;
 export const GetWebsiteDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetWebsite"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"website"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizationId"}},{"kind":"Field","name":{"kind":"Name","value":"snippetUrl"}},{"kind":"Field","name":{"kind":"Name","value":"domain"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"organizationId"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"domain"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"snippetUrl"}},{"kind":"Field","name":{"kind":"Name","value":"scriptUrl"}},{"kind":"Field","name":{"kind":"Name","value":"imageUrl"}},{"kind":"Field","name":{"kind":"Name","value":"pixelScriptGenerationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"defaultDashboardId"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"hubspotIntegrationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"salesforceIntegrationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"metaAdsIntegrationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"googleAdsIntegrationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"organization"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<GetWebsiteQuery, GetWebsiteQueryVariables>;
 export const WebsiteUpdatedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"WebsiteUpdated"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UUID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"websiteUpdated"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"websiteId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"websiteId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"organizationId"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"domain"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"snippetUrl"}},{"kind":"Field","name":{"kind":"Name","value":"scriptUrl"}},{"kind":"Field","name":{"kind":"Name","value":"imageUrl"}},{"kind":"Field","name":{"kind":"Name","value":"pixelScriptGenerationStatus"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<WebsiteUpdatedSubscription, WebsiteUpdatedSubscriptionVariables>;

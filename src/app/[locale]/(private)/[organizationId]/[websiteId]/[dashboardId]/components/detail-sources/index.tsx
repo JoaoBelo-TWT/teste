@@ -7,8 +7,8 @@ import { useMemo } from 'react';
 import { Overlay } from '@/components/ui/overlay';
 import { SPACING } from '@/resources/constants';
 
-import { FiguresCard } from '../../dashboard/@campaignPerformance/components/figures-card';
-import { FiguresCardProps } from '../../dashboard/@campaignPerformance/components/figures-card/types';
+import { FiguresCard } from '../../dashboard/@executive/@campaignPerformance/components/figures-card';
+import { FiguresCardProps } from '../../dashboard/@executive/@campaignPerformance/components/figures-card/types';
 
 import { mockSources } from './mock';
 

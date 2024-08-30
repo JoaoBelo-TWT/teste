@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { TextContent } from '@/components/ui/text-content';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
 import { ProgressContainer } from '@/components/wrappers/progress-container';
-import { fetchMeData } from '@/lib/fetch-me-data';
+import { getMe } from '@/lib/react-query/user/query-me';
 import { OnboardingQueryParamsProps } from '@/types/constants/onboarding-query-params';
 
 import { OnboardingImage } from '../components/image';
@@ -19,7 +19,7 @@ export default async function CreateDashboardPage({
   searchParams: OnboardingQueryParamsProps;
 }>) {
   const t = await getTranslations();
-  const user = await fetchMeData();
+  const user = await getMe();
   const isOnboarding = !!user.me.currentOnboardingPath;
 
   const steps = [

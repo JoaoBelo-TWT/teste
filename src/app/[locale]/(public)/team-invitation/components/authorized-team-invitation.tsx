@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { getClient } from '@/lib/apollo/apollo-client';
 import { getOrganizationQuery } from '@/lib/apollo/queries/dashboard-organization';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { routes } from '@/routes/routes';
 
 import { AuthorizedTeamInvitationButton } from './button';
@@ -22,7 +22,7 @@ async function getContinueRoute(organizationId: string) {
   const organization = organizationData?.organization;
 
   if (organization?.defaultWebsiteId) {
-    const websiteData = await fetchWebsiteData(organization.defaultWebsiteId);
+    const websiteData = await getQueryWebsite(organization.defaultWebsiteId);
     const website = websiteData?.website;
 
     if (website?.defaultDashboardId) {

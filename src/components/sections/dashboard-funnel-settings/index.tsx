@@ -5,7 +5,7 @@ import { HubspotIntegrationStatus, SalesforceIntegrationStatus } from '@/__gener
 import { FunnelStagesList } from '@/components/lists/funnel-stages-list';
 import { ConnectedSourceItem } from '@/components/ui/connected-source-item';
 import { fetchFunnelStages } from '@/lib/fetch-funnel-stages';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { SPACING } from '@/resources/constants';
 
 import classes from './index.module.css';
@@ -23,7 +23,7 @@ export async function DashboardFunnelSettings({
 }) {
   const t = await getTranslations();
   const data = await fetchFunnelStages(dashboardId);
-  const websiteData = await fetchWebsiteData(websiteId);
+  const websiteData = await getQueryWebsite(websiteId);
 
   const funnelsFromCRM =
     websiteData?.website.hubspotIntegrationStatus === HubspotIntegrationStatus.Active ||

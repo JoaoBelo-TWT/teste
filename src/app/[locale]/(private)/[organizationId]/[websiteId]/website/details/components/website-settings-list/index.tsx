@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 
 import EditableDetailsList from '@/components/lists/editable-details';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 
 export default async function WebsiteDetailsList({ params }: Readonly<{ params: { websiteId: string } }>) {
-  const websiteData = await fetchWebsiteData(params.websiteId);
+  const websiteData = await getQueryWebsite(params.websiteId);
 
   /* eslint-disable i18next/no-literal-string */
   const mockDetailList = [

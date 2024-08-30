@@ -12,25 +12,19 @@ export const dynamic = 'force-dynamic';
 export default async function DashboardOverviewLayout({
   children,
   topbar,
+  executive,
   welcome,
   budgetGoal,
   activityGoal,
-  channelPerformance,
-  funnelPerformance,
-  websitePerformance,
-  campaignPerformance,
   params
 }: Readonly<{
-  params: DashboardPathParams;
   children: React.ReactNode;
   topbar: React.ReactNode;
+  executive: React.ReactNode;
   welcome: React.ReactNode;
   budgetGoal: React.ReactNode;
   activityGoal: React.ReactNode;
-  channelPerformance: React.ReactNode;
-  funnelPerformance: React.ReactNode;
-  websitePerformance: React.ReactNode;
-  campaignPerformance: React.ReactNode;
+  params: DashboardPathParams;
 }>) {
   const { dashboardId } = params;
 
@@ -68,10 +62,7 @@ export default async function DashboardOverviewLayout({
             {activityGoal}
           </div>
         </div>
-        {channelPerformance}
-        {funnelPerformance}
-        {websitePerformance}
-        {campaignPerformance}
+        {executive}
         {children}
       </div>
     </>

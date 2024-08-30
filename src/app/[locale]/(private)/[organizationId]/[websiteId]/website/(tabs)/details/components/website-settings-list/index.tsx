@@ -1,58 +1,77 @@
+/* eslint-disable i18next/no-literal-string */
+
 'use client';
 
 import dayjs from 'dayjs';
 import { useTranslations } from 'next-intl';
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 
 import { GetWebsiteQuery } from '@/__generated__/graphql';
 import EditableDetailsList from '@/components/lists/editable-details';
-import { updateWebsiteDomain } from '@/lib/mutations/update-website-domain';
-import { updateWebsiteImage } from '@/lib/mutations/update-website-image';
-import { updateWebsiteName } from '@/lib/mutations/update-website-name';
-import { showResponseToast } from '@/utils/server-actions/show-response-toast';
+import { toaster } from '@/components/ui/toast';
+import { useMutationUpdateWebsite } from '@/lib/react-query/website/mutation-update-website';
+import { useMutationUpdateWebsiteImage } from '@/lib/react-query/website/mutation-update-website-image';
 
 export default function WebsiteDetailsList({
   websiteData,
   viewOnly
 }: Readonly<{ websiteData: GetWebsiteQuery; viewOnly?: boolean }>) {
-  const t = useTranslations('website.details');
+  const t = useTranslations();
 
-  const updateWebsiteDomainAction = async (domain: string) => {
-    const response = await updateWebsiteDomain({ id: websiteData.website.id, domain });
-    showResponseToast({ response, showSuccessMessages: true });
+  const mutationOptions = {
+    onSuccess: () => {
+      toaster.success({
+        title: t('common.success')
+      });
+    },
+    onError: () =>
+      toaster.success({
+        title: t('common.error')
+      })
   };
 
-  const updateWebsiteNameAction = async (name: string) => {
-    const response = await updateWebsiteName({ id: websiteData.website.id, name });
-    showResponseToast({ response, showSuccessMessages: true });
-  };
+  const mutateData = useMutationUpdateWebsite(websiteData.website.id, mutationOptions);
+  const mutateImage = useMutationUpdateWebsiteImage(websiteData.website.id, mutationOptions);
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   const updateWebsiteImageAction = async (imageBase64: string) => {
-    const response = await updateWebsiteImage({ websiteId: websiteData.website.id, imageBase64 });
-    showResponseToast({ response, showSuccessMessages: true });
+    mutateImage.mutate({ websiteId: websiteData.website.id, imageBase64 });
   };
 
-  const createdByName = useMemo(
-    () => `${websiteData?.website?.user?.firstName} ${websiteData?.website?.user?.lastName}`,
-    [websiteData]
+  const updateHandler = useCallback(
+    // eslint-disable-next-line @typescript-eslint/require-await
+    async (value: string, type: string) => {
+      mutateData.mutate({ id: websiteData.website.id, [type]: value });
+    },
+    [mutateData, websiteData.website.id]
   );
 
   const initialWebsiteDetails = [
-    { label: t('detailsList.name'), value: websiteData?.website.name, onSave: updateWebsiteNameAction },
     {
-      label: t('detailsList.image'),
+      label: t('website.details.detailsList.name'),
+      value: websiteData?.website.name,
+      onSave: (value: string) => updateHandler(value, 'name')
+    },
+    {
+      label: t('website.details.detailsList.image'),
       value: websiteData?.website.imageUrl,
       type: 'image',
       onSave: updateWebsiteImageAction
     },
-    { label: t('detailsList.organization'), value: websiteData?.website.organization.name },
+    { label: t('website.details.detailsList.organization'), value: websiteData?.website.organization.name },
     {
-      label: t('detailsList.websiteUrl'),
+      label: t('website.details.detailsList.websiteUrl'),
       value: websiteData?.website.domain,
-      onSave: updateWebsiteDomainAction
+      onSave: async (value: string) => updateHandler(value, 'url')
     },
-    { label: t('detailsList.createdBy'), value: createdByName },
-    { label: t('detailsList.dateCreated'), value: dayjs(websiteData?.website.createdAt).format('YYYY-MM-DD') }
+    {
+      label: t('website.details.detailsList.createdBy'),
+      value: `${websiteData?.website?.user?.firstName} ${websiteData?.website?.user?.lastName}`
+    },
+    {
+      label: t('website.details.detailsList.dateCreated'),
+      value: dayjs(websiteData?.website.createdAt).format('YYYY-MM-DD')
+    }
   ];
 
   return <EditableDetailsList viewOnly={viewOnly} details={initialWebsiteDetails} />;

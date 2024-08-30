@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { HubspotIntegrationStatus, SalesforceIntegrationStatus } from '@/__generated__/graphql';
 import { ConnectionsCRMList } from '@/components/lists/connections/crm';
 import { TextContent } from '@/components/ui/text-content';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { SPACING } from '@/resources/constants';
 
 import WebsiteTrackingItem from './components/website-tracking';
@@ -15,7 +15,7 @@ export default async function SelectSourcePage({
   params: { organizationId: string; websiteId: string; dashboardId: string };
 }>) {
   const t = await getTranslations();
-  const websiteData = await fetchWebsiteData(params.websiteId);
+  const websiteData = await getQueryWebsite(params.websiteId);
 
   const connectedToCRM =
     websiteData?.website.hubspotIntegrationStatus === HubspotIntegrationStatus.Active ||

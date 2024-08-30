@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { TextContent } from '@/components/ui/text-content';
 import { LeftRightWrapper } from '@/components/wrappers/left-right';
-import { fetchWebsiteData } from '@/lib/fetch-website-data';
+import { getQueryWebsite } from '@/lib/react-query/website/query-website';
 import { SPACING } from '@/resources/constants';
 
 import { ShareCard } from './share-card';
@@ -21,7 +21,7 @@ export async function WebsiteSetupCard({
   redirectToConnectionsPage?: boolean;
 }>) {
   const t = await getTranslations();
-  const websiteData = await fetchWebsiteData(websiteId);
+  const websiteData = await getQueryWebsite(websiteId);
   const websiteName = websiteData?.website.domain?.slice(0, -1);
 
   return (

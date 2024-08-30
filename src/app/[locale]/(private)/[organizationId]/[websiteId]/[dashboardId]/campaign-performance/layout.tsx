@@ -3,8 +3,9 @@ import { Suspense } from 'react';
 
 import { BackButton } from '@/components/navigation/back-button';
 import TopBarWrapper from '@/components/wrappers/top-bar';
-import { fetchCampaigns } from '@/lib/fetch-campaigns';
+import { getQueryCampaigns } from '@/lib/react-query/campaign/query-campaigns';
 import { SPACING } from '@/resources/constants';
+import { DashboardQueryParams } from '@/types/constants/dashboard-query-params';
 
 import DashboardFilters from '../dashboard/@topbar/components/dashboard-filters';
 
@@ -17,7 +18,13 @@ export default async function CampaignsDeepDiveLayout({
   children: React.ReactNode;
   params: { organizationId: string; websiteId: string; dashboardId: string };
 }>) {
-  const dashboardCampaignsData = await fetchCampaigns(params.dashboardId);
+  const dashboardCampaignsData = await getQueryCampaigns({
+    dashboardId: params.dashboardId,
+    dashboardTimeframe: DashboardQueryParams.timeframe.default,
+    status: DashboardQueryParams.campaignStatus.default,
+    sorting: DashboardQueryParams.campaignSorting.default,
+    take: 4
+  });
 
   if (!dashboardCampaignsData) return null;
 
